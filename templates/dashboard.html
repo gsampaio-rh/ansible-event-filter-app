@@ -34,75 +34,77 @@
         </div>
     </div>
     <script>
-        // Create a more complex styled node graph with 10 nodes
-        // Dynamically create nodes with colors
         var colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548'];
         var nodes = new vis.DataSet();
+        var numNodes = 200;
 
-        // Create 10 nodes with unique colors and labels
-        for (var i = 1; i <= 10; i++) {
+        // Create 300 nodes with cycling through the predefined colors
+        for (var i = 1; i <= numNodes; i++) {
             nodes.add({ id: i, label: 'Node ' + i, color: colors[i % colors.length] });
         }
 
-        var edges = new vis.DataSet([
-            { from: 1, to: 2 },
-            { from: 1, to: 3 },
-            { from: 1, to: 4 },
-            { from: 2, to: 5 },
-            { from: 2, to: 6 },
-            { from: 3, to: 7 },
-            { from: 4, to: 8 },
-            { from: 5, to: 9 },
-            { from: 6, to: 10 },
-            { from: 7, to: 2 },
-            { from: 8, to: 9 },
-            { from: 9, to: 10 },
-            { from: 10, to: 1 }
-        ]);
+        var edges = new vis.DataSet();
+
+        // Dynamically create edges in a more natural pattern
+        for (var i = 1; i <= numNodes; i++) {
+            // Connect each node to the next, and randomly to other nodes
+            var nextNodeId = i % numNodes + 1;
+            edges.add({ from: i, to: nextNodeId });
+
+            // Adding random connections to create complexity
+            var randomNode1 = Math.floor(Math.random() * numNodes) + 1;
+            var randomNode2 = Math.floor(Math.random() * numNodes) + 1;
+            if (randomNode1 !== i && randomNode2 !== i && randomNode1 !== randomNode2) {
+                edges.add({ from: i, to: randomNode1 });
+                edges.add({ from: i, to: randomNode2 });
+            }
+        }
 
         var container = document.getElementById('network');
-            var data = {
-                nodes: nodes,
-                edges: edges
-            };
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
 
-            var options = {
-                nodes: {
-                    shape: 'dot',
-                    size: 5,
-                    font: {
-                        size: 8,
-                        color: '#000'
-                    },
-                    borderWidth: 2
+        var options = {
+            nodes: {
+                shape: 'dot',
+                size: 10,
+                font: {
+                    size: 25,
+                    color: '#000000'
                 },
-                edges: {
-                    width: 2,
-                    length: 100, // Reduced length to make nodes closer
-                    color: {
-                        color: '#848484',
-                        highlight: '#848484',
-                        hover: '#848484',
-                        opacity: 0.5
-                    }
-                },
-                layout: {
-                    improvedLayout: true
-                },
-                physics: {
-                    barnesHut: {
-                        gravitationalConstant: -300, // Adjusted for closer node spacing
-                        centralGravity: 1,
-                        springLength: 95,
-                        springConstant: 0.04,
-                        damping: 0.09,
-                        avoidOverlap: 0.1 // Increased overlap avoidance
-                    },
-                    solver: 'barnesHut'
+                borderWidth: 2
+            },
+            edges: {
+                width: 1,
+                color: {
+                    color: '#848484',
+                    highlight: '#848484',
+                    hover: '#848484',
+                    opacity: 0.8
                 }
-            };
-            var network = new vis.Network(container, data, options);
-        </script>
+            },
+            layout: {
+                improvedLayout: true, // Turned off for better manual control in large networks
+            },
+            physics: {
+                stabilization: { iterations: 150 },
+                barnesHut: {
+                    gravitationalConstant: -3000,
+                    centralGravity: 0.3,
+                    springLength: 50,
+                    springConstant: 0.01,
+                    damping: 0.09,
+                    avoidOverlap: 0.1
+                },
+                solver: 'barnesHut'
+            }
+        };
+        var network = new vis.Network(container, data, options);
+    </script>
+
+
 
 </body>
 

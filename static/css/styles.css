@@ -57,6 +57,15 @@ html {
     border-right: 1px solid #e0e0e0;
 }
 
+#network {
+    width: 100%;
+    /* Full width of the column */
+    height: 400px;
+    /* Set a fixed height or make it responsive */
+    /* border: 1px solid #ccc; */
+    /* Optional: adds border around the graph */
+}
+
 #messageStream {
     background-color: #ffffff;
     /* Column background */
