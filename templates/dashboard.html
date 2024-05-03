@@ -15,50 +15,50 @@
 </head>
 
 <body>
+    
     <div class="container-fluid">
-        <div class="row">
+        <!-- First row of four columns -->
+        <div class="row border-bottom ">
             <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Eventos</h4>
-                <!-- Node graph container -->
-                <div id="network" style="height: 400px;"></div>
+                <!-- Placeholder for content -->
+                <div style="height: 400px;"></div>
             </div>
             <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Filtro</h4>
+                <!-- Placeholder for content -->
+                <div style="height: 400px;"></div>
             </div>
             <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Playbooks</h4>
+                <!-- Placeholder for content -->
+                <div style="height: 400px;"></div>
             </div>
-            <div class="col-md-3 d-flex flex-column">
+            <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Sistemas</h4>
+                <!-- Placeholder for content -->
+                <div style="height: 400px;"></div>
+            </div>
+        </div>
+        <!-- Second row of two columns with different spans -->
+        <div class="row">
+            <div class="col-md-3 column-border d-flex flex-column">
+                <h4>Grafo</h4>
+                <!-- Node graph container -->
+                <div id="network" style="height: 400px;"></div>
+            </div>
+            <div class="col-md-9 column-border d-flex flex-column">
+                <h4>Business</h4>
+                <!-- Placeholder for content -->
+                <div style="height: 400px;"></div>
             </div>
         </div>
     </div>
     <script>
         var colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548'];
-        var nodes = new vis.DataSet();
         var numNodes = 200;
-
-        // Create 300 nodes with cycling through the predefined colors
-        for (var i = 1; i <= numNodes; i++) {
-            nodes.add({ id: i, label: 'Node ' + i, color: colors[i % colors.length] });
-        }
-
-        var edges = new vis.DataSet();
-
-        // Dynamically create edges in a more natural pattern
-        for (var i = 1; i <= numNodes; i++) {
-            // Connect each node to the next, and randomly to other nodes
-            var nextNodeId = i % numNodes + 1;
-            edges.add({ from: i, to: nextNodeId });
-
-            // Adding random connections to create complexity
-            var randomNode1 = Math.floor(Math.random() * numNodes) + 1;
-            var randomNode2 = Math.floor(Math.random() * numNodes) + 1;
-            if (randomNode1 !== i && randomNode2 !== i && randomNode1 !== randomNode2) {
-                edges.add({ from: i, to: randomNode1 });
-                edges.add({ from: i, to: randomNode2 });
-            }
-        }
+        var nodes = new vis.DataSet([]);
+        var edges = new vis.DataSet([]);
 
         var container = document.getElementById('network');
         var data = {
@@ -71,13 +71,15 @@
                 shape: 'dot',
                 size: 10,
                 font: {
-                    size: 25,
+                    size: 8,
                     color: '#000000'
                 },
                 borderWidth: 2
             },
+            
+            
             edges: {
-                width: 1,
+                width: 2,
                 color: {
                     color: '#848484',
                     highlight: '#848484',
@@ -85,26 +87,52 @@
                     opacity: 0.8
                 }
             },
-            layout: {
-                improvedLayout: true, // Turned off for better manual control in large networks
-            },
             physics: {
                 stabilization: { iterations: 150 },
                 barnesHut: {
-                    gravitationalConstant: -3000,
+                    gravitationalConstant: -1500,
                     centralGravity: 0.3,
-                    springLength: 50,
+                    springLength: 100,
                     springConstant: 0.01,
                     damping: 0.09,
                     avoidOverlap: 0.1
                 },
                 solver: 'barnesHut'
+            },
+            layout: {
+                improvedLayout: false
             }
         };
+
+        // Create the network
         var network = new vis.Network(container, data, options);
+
+        // Pre-set zoom out level
+        network.once('stabilizationIterationsDone', function() {
+            network.fit({
+                nodes: nodes.getIds(), 
+                scale: 2.0, // Pre-set scale for initial view
+                animation: { duration: 500, easingFunction: "easeOutQuad" }
+            });
+        });
+
+        // Function to add nodes and edges
+        var currentIndex = 1;
+        var addNode = function() {
+            if (currentIndex <= numNodes) {
+                nodes.add({id: currentIndex, label: 'Node ' + currentIndex, color: colors[currentIndex % colors.length] });
+                if (currentIndex > 1) {
+                    edges.add({from: currentIndex - 1, to: currentIndex});
+                }
+                currentIndex++;
+            } else {
+                clearInterval(animation); // Stop adding nodes after 100
+            }
+        };
+
+        // Start animation with a new node every 250 milliseconds
+        var animation = setInterval(addNode, 250);
     </script>
-
-
 
 </body>
 
