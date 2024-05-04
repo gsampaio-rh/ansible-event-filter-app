@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     const logContainer = document.getElementById('log-container');
     const networkContainer = document.getElementById('network');
     const filtroContainer = document.getElementById('notification-container');
+    const playbooksContainer = document.getElementById('playbooks-container');
 
-    if (!logContainer || !networkContainer || !filtroContainer) {
+
+    if (!logContainer || !networkContainer || !filtroContainer || !playbooksContainer) {
         console.error("Required DOM elements are missing.");
         return; // Stop the script if essential elements are missing
     }
@@ -23,29 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return Math.floor(container.clientHeight / MESSAGE_HEIGHT);
     }
 
-    function addLogMessage(container, message, index) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'log-message';
-        messageDiv.textContent = `#${index} ${message}`;
-        messageDiv.style.display = 'block';
-
-        if (container.firstChild) {
-            container.insertBefore(messageDiv, container.firstChild);
-        } else {
-            container.appendChild(messageDiv);
-        }
-
-        setTimeout(() => {
-            messageDiv.remove();
-        }, MESSAGE_REMOVAL_TIMEOUT);
-
-        const maxMessages = calculateMaxMessages(container);
-        while (container.children.length > maxMessages) {
-            container.removeChild(container.lastChild);
-        }
-    }
-
-    /// Network Visualization Functions
+    // Network Visualization Functions
     function setupNetworkVisualization(nodes, edges) {
         const networkData = { nodes, edges };
         const networkOptions = {
@@ -84,6 +65,32 @@ document.addEventListener('DOMContentLoaded', () => {
         return new vis.Network(networkContainer, networkData, networkOptions);
     }
 
+    const nodes = new vis.DataSet([]);
+    const edges = new vis.DataSet([]);
+    const network = setupNetworkVisualization(nodes, edges);
+
+    function addLogMessage(container, message, index) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'log-message';
+        messageDiv.textContent = `#${index} ${message}`;
+        messageDiv.style.display = 'block';
+
+        if (container.firstChild) {
+            container.insertBefore(messageDiv, container.firstChild);
+        } else {
+            container.appendChild(messageDiv);
+        }
+
+        setTimeout(() => {
+            messageDiv.remove();
+        }, MESSAGE_REMOVAL_TIMEOUT);
+
+        const maxMessages = calculateMaxMessages(container);
+        while (container.children.length > maxMessages) {
+            container.removeChild(container.lastChild);
+        }
+    }
+
     function addNotification(message) {
         const notificationDiv = document.createElement('div');
         notificationDiv.className = 'notification';
@@ -97,14 +104,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const nodes = new vis.DataSet([]);
-    const edges = new vis.DataSet([]);
-    const network = setupNetworkVisualization(nodes, edges);
+    // Sample playbook data
+    const playbooks = [];
 
+    // Function to create playbook card HTML and add it to the container
+    function addPlaybook(playbook) {
+        const playbookCard = `
+            <div class="playbook-card mb-3">
+                <div class="playbook-card-body">
+                    <h5 class="playbook-card-title">${playbook.name}</h5>
+                    <p class="playbook-card-text">${playbook.description}</p>
+                    <p class="playbook-card-text"><strong>Status:</strong> ${playbook.status}</p>
+                </div>
+            </div>
+        `;
+        playbooksContainer.insertAdjacentHTML('afterbegin', playbookCard); // Insert at the beginning
+    }
 
     // Combined function to handle both log messages and nodes
     setInterval(() => {
         const currentTime = new Date().toLocaleTimeString(); // Get current time for log message
+
         addLogMessage(logContainer, `Log message at ${currentTime}`, messageIndex++);
 
         nodes.add({ id: nodeIndex, label: `Node ${nodeIndex}`, color: colors[nodeIndex % colors.length] });
@@ -112,6 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
             edges.add({ from: nodeIndex - 1, to: nodeIndex });
         }
         nodeIndex++;
+
+        const newPlaybook = {
+            name: `Playbook ${playbooks.length + 1}`,
+            description: `Description of Playbook ${playbooks.length + 1}`,
+            status: "Pending" // Status can be updated later
+        };
+
+        playbooks.push(newPlaybook);
+        addPlaybook(newPlaybook); // Add the new playbook immediately
 
         // Add notification every 3 log messages
         if (++notificationCounter % 2 === 0) {
