@@ -1,16 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const logContainer = document.getElementById('log-container');
     const networkContainer = document.getElementById('network');
+    const filtroContainer = document.getElementById('notification-container');
 
-    if (!logContainer || !networkContainer) {
+    if (!logContainer || !networkContainer || !filtroContainer) {
         console.error("Required DOM elements are missing.");
         return; // Stop the script if essential elements are missing
     }
 
     // Constants for message and node handling
     const MESSAGE_LOGGING_INTERVAL = 3000; // Interval for logging messages
-    const MESSAGE_REMOVAL_TIMEOUT = MESSAGE_LOGGING_INTERVAL * 10; // Time after which a message is removed
+    const MESSAGE_REMOVAL_TIMEOUT = MESSAGE_LOGGING_INTERVAL * 20; // Time after which a message is removed
     const colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548'];
+
+    let notificationCounter = 0; // Counter to track the number of messages for triggering notifications
+    let messageIndex = 1;
+    let nodeIndex = 1;
 
     // Message Logger Functions
     function calculateMaxMessages(container) {
@@ -60,13 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             },
             physics: {
-                stabilization: { iterations: 10 }, // Number of iterations to stabilize the network before rendering.
+                // stabilization: { iterations: 10 }, // Number of iterations to stabilize the network before rendering.
                 barnesHut: {
                     gravitationalConstant: -1500, // Negative value to make nodes repel each other.
                     centralGravity: 0.3, // Attracts nodes towards the center to avoid them going far off screen.
                     springLength: 100, // Natural length of the springs (edges), affecting how far apart nodes are.
                     springConstant: 0.01, // Stiffness of the springs, higher values make the springs stronger.
-                    damping: 0.20, // Reduces the motion of nodes, making them stabilize faster.
+                    damping: 0.10, // Reduces the motion of nodes, making them stabilize faster.
                     avoidOverlap: 0.1 // Prevents nodes from overlapping.
                 },
                 solver: 'barnesHut' // The physics solver algorithm to use. Barnes-Hut is a performance-optimized approach.
@@ -79,21 +84,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return new vis.Network(networkContainer, networkData, networkOptions);
     }
 
+    function addNotification(message) {
+        const notificationDiv = document.createElement('div');
+        notificationDiv.className = 'notification';
+        notificationDiv.innerHTML = `Events match! Potential issue <span class="issue-name">${message}</span> identified!`;
+
+        // Check if there's already a first child and insert before it
+        if (filtroContainer.firstChild) {
+            filtroContainer.insertBefore(notificationDiv, filtroContainer.firstChild);
+        } else {
+            filtroContainer.appendChild(notificationDiv);
+        }
+    }
+
     const nodes = new vis.DataSet([]);
     const edges = new vis.DataSet([]);
     const network = setupNetworkVisualization(nodes, edges);
 
-    let messageIndex = 1;
-    let nodeIndex = 1;
 
     // Combined function to handle both log messages and nodes
     setInterval(() => {
         const currentTime = new Date().toLocaleTimeString(); // Get current time for log message
         addLogMessage(logContainer, `Log message at ${currentTime}`, messageIndex++);
+
         nodes.add({ id: nodeIndex, label: `Node ${nodeIndex}`, color: colors[nodeIndex % colors.length] });
         if (nodeIndex > 1) {
             edges.add({ from: nodeIndex - 1, to: nodeIndex });
         }
         nodeIndex++;
+
+        // Add notification every 3 log messages
+        if (++notificationCounter % 2 === 0) {
+            addNotification(`Issue #${messageIndex - 1}`);
+        }
     }, MESSAGE_LOGGING_INTERVAL);
 });
