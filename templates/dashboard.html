@@ -17,26 +17,26 @@
     
     <div class="container-fluid">
         <!-- First row of four columns -->
-        <div class="row border-bottom ">
-            <div class="col-md-3 column-border d-flex flex-column">
+        <div class="row border-bottom">
+            <div class="top-row col-md-3 column-border d-flex flex-column">
                 <h4>Eventos</h4>
                 <!-- Container for log messages -->
                 <div id="log-container">
                 </div>
             </div>
-            <div class="col-md-3 column-border d-flex flex-column">
+            <div class="top-row col-md-3 column-border d-flex flex-column">
                 <h4>Filtro</h4>
                     <div id="notification-container">
                     </div>
             </div>
-            <div class="col-md-3 column-border d-flex flex-column">
+            <div class="top-row col-md-3 column-border d-flex flex-column">
                 <h4>Playbooks</h4>
                 <!-- Playbooks container -->
                 <div id="playbooks-container">
                     <!-- Placeholder for playbook cards -->
                 </div>
             </div>
-            <div class="col-md-3 column-border d-flex flex-column">
+            <div class="top-row col-md-3 column-border d-flex flex-column">
                 <h4>Sistemas</h4>
             </div>
         </div>
@@ -45,10 +45,40 @@
             <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Grafo</h4>
                 <!-- Node graph container -->
-                <div id="network"></div>
+                <div id="network" class="bottom-row"></div>
             </div>
             <div class="col-md-9 column-border d-flex flex-column">
                 <h4>Business</h4>
+                <div id="business-container" class="bottom-row">
+                    <div class="row border-bottom">
+                        <div class="col-md-3 column-border business-card">
+                            <!-- Content for the first column -->
+                        </div>
+                        <div class="col-md-3 column-border business-card">
+                            <!-- Content for the second column -->
+                        </div>
+                        <div class="col-md-3 column-border business-card">
+                            <!-- Content for the first column -->
+                        </div>
+                        <div class="col-md-3 column-border business-card">
+                            <!-- Content for the second column -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 column-border business-card">
+                            <!-- Content for the first column -->
+                        </div>
+                        <div class="col-md-3 column-border business-card">
+                            <!-- Content for the second column -->
+                        </div>
+                        <div class="col-md-3 column-border business-card">
+                            <!-- Content for the first column -->
+                        </div>
+                        <div class="col-md-3 column-border business-card">
+                            <!-- Content for the second column -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

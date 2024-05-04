@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 barnesHut: {
                     gravitationalConstant: -1500, // Negative value to make nodes repel each other.
                     centralGravity: 0.3, // Attracts nodes towards the center to avoid them going far off screen.
-                    springLength: 100, // Natural length of the springs (edges), affecting how far apart nodes are.
+                    springLength: 10, // Natural length of the springs (edges), affecting how far apart nodes are.
                     springConstant: 0.01, // Stiffness of the springs, higher values make the springs stronger.
-                    damping: 0.10, // Reduces the motion of nodes, making them stabilize faster.
+                    damping: 1, // Reduces the motion of nodes, making them stabilize faster.
                     avoidOverlap: 0.1 // Prevents nodes from overlapping.
                 },
                 solver: 'barnesHut' // The physics solver algorithm to use. Barnes-Hut is a performance-optimized approach.
@@ -104,21 +104,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Sample playbook data
     const playbooks = [];
 
-    // Function to create playbook card HTML and add it to the container
     function addPlaybook(playbook) {
+        if (!playbook.name || !playbook.description || !playbook.status) {
+            console.error('Invalid playbook data:', playbook);
+            return; // Exit the function if playbook data is incomplete
+        }
+
         const playbookCard = `
-            <div class="playbook-card mb-3">
-                <div class="playbook-card-body">
-                    <h5 class="playbook-card-title">${playbook.name}</h5>
-                    <p class="playbook-card-text">${playbook.description}</p>
-                    <p class="playbook-card-text"><strong>Status:</strong> ${playbook.status}</p>
-                </div>
+        <div class="playbook-card ${playbook.status} mb-3">
+            <div class="playbook-card-body">
+                <h5 class="playbook-card-title">${playbook.name}</h5>
+                <p class="playbook-card-text">${playbook.description}</p>
+                <p class="playbook-card-text"><strong>Status:</strong> ${playbook.status.charAt(0).toUpperCase() + playbook.status.slice(1)}</p>
             </div>
-        `;
-        playbooksContainer.insertAdjacentHTML('afterbegin', playbookCard); // Insert at the beginning
+        </div>
+    `;
+        document.getElementById('playbooks-container').insertAdjacentHTML('afterbegin', playbookCard); // Insert at the beginning
     }
 
     // Combined function to handle both log messages and nodes
@@ -132,11 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
             edges.add({ from: nodeIndex - 1, to: nodeIndex });
         }
         nodeIndex++;
-
+        
+        // Create and add a new playbook with dynamic status
+        const statusOptions = ['pending', 'active', 'failed']; // Example status options
+        const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
         const newPlaybook = {
             name: `Playbook ${playbooks.length + 1}`,
             description: `Description of Playbook ${playbooks.length + 1}`,
-            status: "Pending" // Status can be updated later
+            status: randomStatus // Dynamic status
         };
 
         playbooks.push(newPlaybook);

@@ -13,8 +13,6 @@ html {
 .container-fluid {
     display: flex;
     flex-direction: column;
-    /* Organizes the container's children into a column */
-    height: 100vh;
     /* Sets the height of the container to be 100% of the viewport height */
     max-width: 100%;
     overflow: hidden;
@@ -27,6 +25,16 @@ html {
     /* Each row will take equal height space */
     overflow: hidden;
     /* Prevents overflow */
+}
+
+.top-row {
+    /* Organizes the container's children into a column */
+    height: 600px;
+}
+
+.bottom-row {
+    /* Organizes the container's children into a column */
+    height: 300px;
 }
 
 .column-border {
@@ -50,14 +58,14 @@ html {
 #network {
     width: 100%;
     /* Full width of the column */
-    height: 400px;
+    /* height: 300px; */
     /* Set a fixed height or make it responsive */
     /* border: 1px solid #ccc; */
     /* Optional: adds border around the graph */
 }
 
 #log-container {
-    height: 400px;
+    height: 100%;
     overflow-y: auto;
     position: relative;
 }
@@ -99,7 +107,7 @@ html {
 }
 
 #notification-container {
-    height: 400px;
+    height: 100%;
     overflow-y: auto;
     position: relative;
 }
@@ -167,37 +175,84 @@ html {
 }
 
 #playbooks-container {
-    height: 400px;
+    height: 100%;
     overflow-y: auto;
     position: relative;
+    font-family: 'Arial', sans-serif;
+    /* Modern, readable font */
 }
 
 .playbook-card {
-    background-color: #f9f9f9;
-    /* Light grey background */
-    border-left: 5px solid #007BFF;
-    /* Blue left border */
-    padding: 10px;
-    /* Padding inside the card */
-    margin-bottom: 8px;
-    /* Space between cards */
-    font-size: 14px;
-    /* Font size for readability */
-    color: #333;
-    /* Dark text color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff; /* Clean white background */
+    border-left: 5px solid; /* Color will be set dynamically */
+    padding: 10px 20px; /* Reduced vertical padding, maintained horizontal */
+    margin-bottom: 10px; /* Slightly reduced space between cards */
+    font-size: 14px; /* Slightly smaller font size */
+    color: #333; /* Maintain dark text for contrast */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Refined shadow for subtle depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for interactive effects */
+    animation: slideInFromLeft 0.5s ease-out;
+    /* animation: fadeIn 0.3s ease-in-out;  */
     /* Subtle shadow for depth */
-    animation: fadeIn 0.3s ease-in-out;
-    /* Fade-in animation */
-    transition: background-color 0.3s ease;
-    /* Smooth transition for hover effect */
 }
 
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* .playbook-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+} */
+
 .playbook-card:hover {
-    background-color: #eef2f7;
-    /* Lighter background on hover */
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    /* Show pointer cursor on hover */
+}
+
+.playbook-card h5 {
+    margin-top: 0;
+    margin-bottom: 5px; /* Reduced margin around the title */
+    font-size: 16px; /* Larger font size for titles for better emphasis */
+    font-weight: bold; /* Make title bold */
+}
+
+.playbook-card p {
+    margin-top: 0;
+    margin-bottom: 5px; /* Reduced margin around paragraphs */
+    line-height: 1.2; /* Slightly tighter line height */
+}
+
+/* Specific status-based styles */
+.playbook-card.pending {
+    border-left: 5px solid #FFA500;
+    /* Orange for pending */
+}
+
+.playbook-card.active {
+    border-left: 5px solid #28a745;
+    /* Green for active */
+}
+
+.playbook-card.failed {
+    border-left: 5px solid #dc3545;
+    /* Red for failed */
+}
+
+.business-card {
+    width: 100%;
+    /* Full width of the column */
+    height: 100px;
+    /* Set a fixed height or make it responsive */
+    /* border: 1px solid #ccc; */
+    /* Optional: adds border around the graph */
 }
 
 /* Hover effect for all interactive elements */
