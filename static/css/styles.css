@@ -61,6 +61,10 @@ html {
     border-bottom: 1px solid #e0e0e0;
 }
 
+.column-height-400  {
+
+}
+
 #network {
     width: 100%;
     /* Full width of the column */
@@ -68,6 +72,40 @@ html {
     /* Set a fixed height or make it responsive */
     /* border: 1px solid #ccc; */
     /* Optional: adds border around the graph */
+}
+
+.log-message {
+    position: relative;
+    padding: 2px 5px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+    /* Ensure text color provides good contrast */
+    background-color: #fff;
+    /* Light background for the messages */
+    display: block;
+    /* Make sure it's visible when added */
+    opacity: 0;
+    /* Start with the message being transparent */
+    animation: fadeInMoveDown 2s ease forwards;
+    /* Adjust timing and animation as needed */
+}
+
+@keyframes fadeInMoveDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 #messageStream {
@@ -82,9 +120,9 @@ html {
     /* Enable vertical scrolling */
 }
 
-.speech-balloon {
+.notification-balloon {
     position: relative;
-    background: #ececec;
+    background: #efefef;
     /* A soft gray background */
     color: #333;
     /* Darker text for readability */
@@ -102,12 +140,12 @@ html {
 }
 
 /* Positive and Negative background colors for speech balloons */
-.speech-balloon.positive {
+.notification-balloon.positive {
     background-color: #e8f5e9;
     /* Light green for positive sentiment */
 }
 
-.speech-balloon.negative {
+.notification-balloon.negative {
     background-color: #ffebee;
     /* Light red for negative sentiment */
 }

@@ -1,197 +1,101 @@
-// const source = new EventSource("/stream");
+// Constants for message and node handling
+const MESSAGE_LOGGING_INTERVAL = 3000; // Interval for logging messages
+const MESSAGE_REMOVAL_TIMEOUT = MESSAGE_LOGGING_INTERVAL * 10; // Time after which a message is removed
+const colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548'];
 
-// // Object to hold department counts
-// const departmentCounts = {};
+document.addEventListener('DOMContentLoaded', () => {
+    const logContainer = document.getElementById('log-container');
+    console.log("Log Container selected:", logContainer); // Debug: Confirm the log container is selected
 
-// let currentAudio = null;
-// let currentProgressId = '';
+    // Utility function to calculate the maximum number of log messages that can fit in the container
+    function calculateMaxMessages(container) {
+        const MESSAGE_HEIGHT = 20; // Average height of a log message in pixels
+        return Math.floor(container.clientHeight / MESSAGE_HEIGHT);
+    }
 
-// // Call this function whenever a new message is received
-// function onNewMessageReceived(message) {
-//     displayChatBallon(message.id, message.sentiment, message.conversation);
-//     displayMessageDetails(message);
-//     updateTopDepartments(message.department); // Update the departments list
-// }
+    // Initial setup for the network visualization
+    const container = document.getElementById('network');
+    const nodes = new vis.DataSet([]);
+    const edges = new vis.DataSet([]);
+    const networkData = { nodes, edges };
+    const networkOptions = {
+        nodes: {
+            shape: 'dot',
+            size: 10,
+            font: { size: 8, color: '#000000' },
+            borderWidth: 2
+        },
+        edges: {
+            width: 2,
+            color: { color: '#848484', highlight: '#848484', hover: '#848484', opacity: 0.8 }
+        },
+        physics: {
+            stabilization: { iterations: 150 },
+            barnesHut: {
+                gravitationalConstant: -1500,
+                centralGravity: 0.3,
+                springLength: 100,
+                springConstant: 0.01,
+                damping: 0.09,
+                avoidOverlap: 0.1
+            },
+            solver: 'barnesHut'
+        },
+        layout: {
+            improvedLayout: false
+        }
+    };
+    const network = new vis.Network(container, networkData, networkOptions);
+    network.once('stabilizationIterationsDone', () => {
+        network.fit({
+            nodes: nodes.getIds(),
+            scale: 2.0,
+            animation: { duration: 500, easingFunction: "easeOutQuad" }
+        });
+    });
 
-// // Example usage: This should be inside your EventSource message event listener
-// source.onmessage = event => {
-//     const request = JSON.parse(event.data);
-//     console.log(request.conversation)
-//     onNewMessageReceived(request);
-// };
+    let messageIndex = 1; // Unique index for log messages
+    let nodeIndex = 1; // Unique index for nodes
 
-// function displayChatBallon(chatID, sentiment, conversation) {
-//     const sentimentClass = sentiment.includes("Negative") ? 'negative' : 'positive';
-//     const balloon = $(`<div class="speech-balloon ${sentimentClass}"><p>💬 ${chatID}</p></div>`);
-//     // balloon.data('conversation', conversation); // Store the conversation in the data attribute
+    // Function to add a log message with a unique ID
+    // Function to add a log message with a unique ID at the top of the container
+    function addLogMessage(container, message, index) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'log-message';
+        messageDiv.textContent = `#${index} ${message}`;
+        messageDiv.style.display = 'block'; // Ensure the message is visible
 
-//     balloon.on('click', function () {
-//         // When a balloon is clicked, parse the conversation and display it in a modal
-//         const conversationHtml = formatConversationAsChat(conversation);
-//         $('#conversationModalContent').html(conversationHtml);
-//         $('#conversationModal').modal('show');
-//     });
+        // Insert the new message at the beginning of the log container
+        if (container.firstChild) {
+            container.insertBefore(messageDiv, container.firstChild);
+        } else {
+            container.appendChild(messageDiv);
+        }
 
-//     $('#messageStream').prepend(balloon);
-// }
+        // Remove the message after a specified timeout
+        setTimeout(() => {
+            messageDiv.remove();
+        }, MESSAGE_REMOVAL_TIMEOUT);
 
-// function formatConversationAsChat(conversationText) {
-//     const lines = conversationText.trim().split('\n');
-//     let conversationHtml = '<div class="chat-container">';
-//     let bubbleColor = true;  // Start with the first color, e.g., green
+        // Adjust the message count as needed
+        const maxMessages = calculateMaxMessages(container);
+        while (container.children.length > maxMessages) {
+            container.removeChild(container.lastChild);
+        }
+    }
 
-//     lines.forEach(line => {
-//         if (line) {
-//             const bubbleClass = bubbleColor ? 'sender' : 'receiver';
-//             conversationHtml += `<div class="chat-bubble ${bubbleClass}">${line}</div>`;
-//             bubbleColor = !bubbleColor;  // Toggle color for next bubble
-//         }
-//     });
+    // Function to add nodes to the network indefinitely
+    function addNode(nodes, edges, index) {
+        nodes.add({ id: index, label: `Node ${index}`, color: colors[index % colors.length] });
+        if (index > 1) {
+            edges.add({ from: index - 1, to: index });
+        }
+    }
 
-//     conversationHtml += '</div>';
-//     return conversationHtml;
-// }
-
-// function playAudio(audioUrl) {
-//     const audio = new Audio(audioUrl);
-//     audio.play().catch(e => console.error('Error playing audio:', e));
-// }
-
-// function displayMessageDetails(message) {
-
-//     // Construct the HTML for the message details
-
-//     // audio_file_url = 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
-//     // audio_file_url = '${ message.audio_file_url }'
-
-//     // Assuming 'message.text_to_synthesize' contains the text you want to convert to speech
-//     const textToSynthesize = `${message.summary}`;
-
-//     detailsHtml = `
-//     <div class="message-detail-item">
-//         <div class="detail-title">
-//             <h4>${message.id}</h4>
-//             <i class="fa fa-volume-up" aria-hidden="true" onclick="toggleAudio('${textToSynthesize}', 'progress-${message.id}')">🔊</i>
-//         </div>
-//         <progress id="progress-${message.id}" value="0" max="100" class="audio-progress"></progress>
-//     </div>
-//     <div class="message-detail-item"><strong>🧑‍💼 Name:</strong> ${message.name}</div>
-//     <div class="message-detail-item"><strong>📧 Email:</strong> ${message.email}</div>
-//     <div class="message-detail-item"><strong>📞 Phone Number:</strong> ${message.phone_number}</div>
-//     <div class="message-detail-item"><strong>🏢 Department:</strong> ${message.department}</div>
-//     <div class="message-detail-item"><strong>📄 Issue:</strong> ${message.issue}</div>
-//     <div class="message-detail-item"><strong>🛠 Service:</strong> ${message.service}</div>
-//     <div class="message-detail-item"><strong>ℹ️ Additional Information:</strong> ${message.additional_information}</div>
-//     <div class="message-detail-item"><strong>🗒 Detailed Description:</strong> ${message.detailed_description}</div>
-//     `;
-
-//     // Check if related_documents field exists and append only the Retrieved Chunks
-//     if (message.related_documents && message.related_documents.length > 0) {
-//         message.related_documents.forEach(doc => {
-//             detailsHtml += `<div class="message-detail-item"><strong>📚 Notificações Relacionadas:</strong> ${doc['Retrieved Chunks']}</div>`;
-//         });
-//     }
-
-//     // Update the message details as before
-//     $('#messageDetails').html(detailsHtml)
-//         .addClass(message.sentiment.includes("Negative") ? 'flash-negative' : 'flash-positive')
-//         .on('animationend', function () {
-//             $(this).removeClass('flash-negative flash-positive');
-//         });
-
-//     // Format the JSON string to display it pretty-printed
-//     const jsonPretty = JSON.stringify(message, null, 4); // Indent with 4 spaces
-
-//     // Set the JSON to the code block, wrapped in <pre> and <code> for formatting
-//     $('#jsonCodeBlock').html(`<pre><code>${jsonPretty}</code></pre>`);
-// }
-
-// function updateTopDepartments(department) {
-//     // Increase the count for the department or add it if it doesn't exist
-//     if (departmentCounts[department]) {
-//         departmentCounts[department]++;
-//     } else {
-//         departmentCounts[department] = 1;
-//     }
-
-//     // Sort departments by count
-//     const sortedDepartments = Object.entries(departmentCounts).sort((a, b) => b[1] - a[1]);
-
-//     // Update the list in the DOM
-//     const departmentListHtml = sortedDepartments.map(([dept, count]) =>
-//         `<li>${dept}: ${count}</li>`
-//     ).join('');
-
-//     $('#departmentList').html(departmentListHtml);
-// }
-
-// async function toggleAudio(textToSynthesize, progressId) {
-//     if (currentAudio && currentProgressId !== progressId) {
-//         console.log(`Stopping audio for progressId ${currentProgressId}, switching to ${progressId}`);
-//         currentAudio.pause();
-//         currentAudio.currentTime = 0;
-//         document.getElementById(progressId).value = 0;
-//         currentAudio = null;  // Clear the existing audio object
-//     }
-
-//     // Only create a new Audio object if there isn't one already playing for the same message
-//     if (!currentAudio) {
-//         console.log(`Creating new audio for ${progressId}`);
-//         currentAudio = new Audio();
-//         currentProgressId = progressId;
-
-//         const api_audio = "https://tts-api-tts.apps.cluster-45cdc.45cdc.openshift.opentlc.com/synthesize";
-
-//         try {
-//             const response = await fetch(api_audio, {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     'Accept': 'audio/wav',
-//                     'Access-Control-Allow-Origin': '*'
-//                 },
-//                 body: JSON.stringify({ text: textToSynthesize })
-//             });
-
-//             if (!response.ok) {
-//                 throw new Error(`HTTP error! status: ${response.status}`);
-//             }
-
-//             console.log(`Received audio response for ${progressId} - status: ${response.status}`);
-//             const audioBlob = await response.blob();
-//             const audioUrl = URL.createObjectURL(audioBlob);
-//             currentAudio.src = audioUrl;
-
-//             // Play the audio
-//             currentAudio.play();
-//             console.log(`Playing audio for ${progressId}`);
-//             document.getElementById(progressId).style.visibility = 'visible';
-
-//             currentAudio.addEventListener('timeupdate', () => {
-//                 const progress = document.getElementById(progressId);
-//                 const value = (currentAudio.currentTime / currentAudio.duration) * 100;
-//                 progress.value = value;
-//                 console.log(`Audio time update for ${progressId}: ${value.toFixed(2)}%`);
-//             });
-
-//             currentAudio.addEventListener('ended', () => {
-//                 console.log(`Audio ended for ${progressId}`);
-//                 const progress = document.getElementById(progressId);
-//                 progress.value = 0;
-//                 progress.style.visibility = 'hidden';
-//                 currentAudio = null;  // Clear the audio object when playback ends
-//             });
-//         } catch (error) {
-//             console.error('Error fetching synthesized audio:', error);
-//         }
-//     } else {
-//         // If currentAudio exists, just toggle play/pause
-//         if (currentAudio.paused) {
-//             console.log(`Resuming audio for ${progressId}`);
-//             currentAudio.play();
-//         } else {
-//             console.log(`Pausing audio for ${progressId}`);
-//             currentAudio.pause();
-//         }
-//     }
-// }
+    // Combined function to handle both log messages and nodes
+    setInterval(() => {
+        const currentTime = new Date().toLocaleTimeString(); // Get current time for log message
+        addLogMessage(logContainer, `Log message at ${currentTime}`, messageIndex++);
+        addNode(nodes, edges, nodeIndex++);
+    }, MESSAGE_LOGGING_INTERVAL);
+});
