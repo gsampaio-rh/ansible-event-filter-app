@@ -1,6 +1,6 @@
-function formatTimestamp(isoString) {
+function formatTimestamp(isoString, locale = 'en-US') {
     const date = new Date(isoString);
-    return date.toLocaleString('en-US', {
+    return date.toLocaleString(locale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -9,6 +9,7 @@ function formatTimestamp(isoString) {
         second: '2-digit',
     });
 }
+
 export class NotificationManager {
     constructor(container) {
         this.container = container;
@@ -19,16 +20,23 @@ export class NotificationManager {
         const notificationDiv = document.createElement('div');
         notificationDiv.className = 'notification';
 
-        const firedDate = formatTimestamp(fired_at);
+        const issueIdSpan = document.createElement('span');
+        issueIdSpan.className = 'issue-id';
+        issueIdSpan.textContent = `Auditoria ${id} detectada!`;
 
-        // More structured HTML assembly
-        notificationDiv.innerHTML = `
-            <span class="issue-id">Auditoria ${id} detectada!</span>
-            <span class="issue-name">${rule} (#${rule_id})</span>
-            <span class="issue-fired-at">disparada em ${firedDate}</span>
-        `;
+        const issueNameSpan = document.createElement('span');
+        issueNameSpan.className = 'issue-name';
+        issueNameSpan.textContent = `${rule} (#${rule_id})`;
 
-        // More robust insertion handling
-        this.container.prepend(notificationDiv); // Always inserts at the top
+        const firedDateSpan = document.createElement('span');
+        firedDateSpan.className = 'issue-fired-at';
+        firedDateSpan.textContent = `disparada em ${formatTimestamp(fired_at)}`;
+
+        notificationDiv.appendChild(issueIdSpan);
+        notificationDiv.appendChild(issueNameSpan);
+        notificationDiv.appendChild(firedDateSpan);
+
+        this.container.prepend(notificationDiv);
     }
 }
+
