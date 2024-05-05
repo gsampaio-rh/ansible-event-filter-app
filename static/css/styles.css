@@ -71,7 +71,7 @@ html {
 #network {
     width: 100%;
     /* Full width of the column */
-    /* height: 300px; */
+    min-height: 300px;
     /* Set a fixed height or make it responsive */
     /* border: 1px solid #ccc; */
     /* Optional: adds border around the graph */
