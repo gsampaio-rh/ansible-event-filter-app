@@ -84,16 +84,29 @@ html {
 }
 
 .log-message {
+    position: relative;
+    /* Allows absolute positioning inside */
     background-color: #f9f9f9;
     border-bottom: 1px solid #ccc;
-    /* subtle separation between entries */
     padding: 10px;
     margin-bottom: 5px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
     animation: fadeIn 0.3s ease-in-out;
     transition: background-color 0.2s;
 }
 
+.log-source-logo {
+    position: absolute;
+    right: 10px;
+    /* Position at the right corner */
+    top: 10px;
+    /* Position from the top */
+    width: 30px;
+    /* Set a fixed width */
+    height: 30px;
+    /* Set a fixed height */
+}
 
 .log-message:hover {
     background-color: #eef2f7;
@@ -127,8 +140,6 @@ html {
     color: #007bff;
     /* Keep this for level indication */
 }
-
-
 
 .log-message .log-details {
     color: #666;

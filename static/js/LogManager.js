@@ -38,13 +38,13 @@ export class LogManager {
     }
 
     formatMessage(message) {
-
         const parts = message.split('|');
         const datetime = parts[0].trim();
         const eventName = parts[1].trim();
-        
-        const details = parts.slice(3).join(' | ').trim();
-        const eventMessage = parts[4] ? parts[4].trim() : 'No event message';
+        const level = parts[2].trim();
+        const details = parts.slice(3, parts.length - 1).join(' | ').trim();
+        const eventMessage = parts[parts.length - 2].trim();
+        const source = parts[parts.length - 1].split(':')[1].trim(); // Assuming source follows the format "Source: XYZ"
 
         return `
         <div class="log-message-header">
@@ -55,6 +55,7 @@ export class LogManager {
         <div class="log-details hidden">
             ${details}
         </div>
+        <img src="/static/media/${source.toLowerCase().replace(/\s+/g, '')}.png" class="log-source-logo" alt="${source} logo">
     `;
     }
 
