@@ -14,17 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: "../static/media/logo-pix-icone-512.webp"
         },
         {
-            name: "Cartão",
+            name: "Cartão de Crédito",
             status: "operational",
             icon: "../static/media/cartao-itau.png"
         },
         {
-            name: "Itaú #3",
+            name: "Conta Corrente",
             status: "operational",
-            icon: "../static/media/itau-logo.png"
+            icon: "../static/media/conta-corrente.png"
         },
         {
-            name: "Itaú #4",
+            name: "Aplicativo",
             status: "operational",
             icon: "../static/media/itau-logo.png"
         }

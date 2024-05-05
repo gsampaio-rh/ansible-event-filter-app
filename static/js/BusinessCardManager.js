@@ -7,25 +7,39 @@ export class BusinessCardManager {
     createBusinessCard(business) {
         const column = document.createElement('div');
         column.className = 'col-md-6 business-box';
-        if (this.businessData.indexOf(business) % 2 === 0) { // Adds border to every even index item
+        if (this.businessData.indexOf(business) % 2 === 0) {
             column.classList.add('column-border');
         }
 
         const card = document.createElement('div');
         card.className = 'business-card';
-        card.innerHTML = `
-            <img src="${business.icon}" alt="System Icon" class="business-icon">
-            <div class="business-info">
-                <h3 class="business-name">${business.name}</h3>
-                <div class="business-status" data-status="${business.status}">
-                    ${business.status.charAt(0).toUpperCase() + business.status.slice(1)}
-                </div>
-            </div>
-        `;
+
+        const img = document.createElement('img');
+        img.src = business.icon;
+        img.alt = "System Icon";
+        img.className = "business-icon";
+
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'business-info';
+
+        const nameH3 = document.createElement('h3');
+        nameH3.className = 'business-name';
+        nameH3.textContent = business.name;
+
+        const statusDiv = document.createElement('div');
+        statusDiv.className = 'business-status';
+        statusDiv.setAttribute('data-status', business.status);
+        statusDiv.textContent = business.status.charAt(0).toUpperCase() + business.status.slice(1);
+
+        infoDiv.appendChild(nameH3);
+        infoDiv.appendChild(statusDiv);
+
+        card.appendChild(img);
+        card.appendChild(infoDiv);
         column.appendChild(card);
         return column;
     }
-
+    
     populateBusinessContainer() {
         let row = document.createElement('div');
         row.className = 'row border-bottom';
