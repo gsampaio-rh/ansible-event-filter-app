@@ -2,9 +2,33 @@ import { LogManager } from './LogManager.js';
 import { NetworkManager } from './NetworkManager.js';
 import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
+import { BusinessCardManager } from './BusinessCardManager.js';
 import auditJsonData from '../media/test-data/audit-rules.json' with { type: 'json' };
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const businessData = [
+        {
+            name: "Pix",
+            status: "operational",
+            icon: "../static/media/logo-pix-icone-512.webp"
+        },
+        {
+            name: "Cartão",
+            status: "operational",
+            icon: "../static/media/cartao-itau.png"
+        },
+        {
+            name: "Itaú #3",
+            status: "operational",
+            icon: "../static/media/itau-logo.png"
+        },
+        {
+            name: "Itaú #4",
+            status: "operational",
+            icon: "../static/media/itau-logo.png"
+        }
+    ];
 
     // Constants for message and node handling
     const MESSAGE_LOGGING_INTERVAL = 3000; // Interval for logging messages
@@ -32,18 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return; // Exit if data is not loaded
     }
     
-    let notificationCounter = 0; // Counter to track the number of messages for triggering notifications
-    let MESSAGE_INDEX = 1;
-    
-    let fileLines = [];
-    let currentLine = 0;
-
     fetch('/fetch-log')
         .then(response => response.text())
         .then(data => {
             fileLines = data.split('\n'); // Split the file content into lines
         })
         .catch(error => console.error("Failed to load log file", error));
+    
+    const manager = new BusinessCardManager('business-container', businessData);
+    manager.populateBusinessContainer();
+    
+    let notificationCounter = 0; // Counter to track the number of messages for triggering notifications
+    let MESSAGE_INDEX = 1;
+    
+    let fileLines = [];
+    let currentLine = 0;
 
     setInterval(() => {
         const dt = new Date(); // Get current time for log message
