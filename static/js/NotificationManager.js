@@ -32,8 +32,8 @@ export class NotificationManager {
         firedDateSpan.className = 'issue-fired-at';
         firedDateSpan.textContent = `disparada em ${formatTimestamp(fired_at)}`;
 
-        notificationDiv.appendChild(issueIdSpan);
         notificationDiv.appendChild(issueNameSpan);
+        notificationDiv.appendChild(issueIdSpan);
         notificationDiv.appendChild(firedDateSpan);
 
         this.container.prepend(notificationDiv);

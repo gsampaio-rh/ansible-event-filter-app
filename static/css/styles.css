@@ -213,6 +213,8 @@ html {
 
 .issue-id {
     font-weight: bold;
+    display: block;
+    margin-top: 3px;
     /* Makes it stand out on its own line */
 }
 
