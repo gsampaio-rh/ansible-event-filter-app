@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548'];
 
     let notificationCounter = 0; // Counter to track the number of messages for triggering notifications
-    let messageIndex = 1;
-    let nodeIndex = 1;
+    let MESSAGE_INDEX = 1;
 
     const logManager = new LogManager(logContainer);
     const networkManager = new NetworkManager(networkContainer);
@@ -30,26 +29,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(() => {
         const currentTime = new Date().toLocaleTimeString(); // Get current time for log message
-
-        logManager.addLogMessage(logContainer, `Log message at ${currentTime}`, messageIndex++);
+        
+        logManager.addLogMessage(`Log message at ${currentTime}`);
         
         // Add notification every 3 log messages
         if (++notificationCounter % 2 === 0) {
-            notificationManager.addNotification(`Issue #${messageIndex - 1}`);
+            notificationManager.addNotification(`Issue #${MESSAGE_INDEX}`);
         }
 
         // Create and add a new playbook with dynamic status
         const statusOptions = ['pending', 'active', 'failed']; // Example status options
         const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
         const newPlaybook = {
-            name: `Playbook ${messageIndex - 1}`,
-            description: `Description of Playbook ${messageIndex - 1}`,
+            name: `Playbook ${MESSAGE_INDEX}`,
+            description: `Description of Playbook ${MESSAGE_INDEX}`,
             status: randomStatus // Dynamic status
         };
 
         playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
 
-        networkManager.addNodeAndEdge(messageIndex, colors[messageIndex % colors.length])
+        networkManager.addNodeAndEdge(MESSAGE_INDEX, colors[MESSAGE_INDEX % colors.length]);
+
+        MESSAGE_INDEX++;
 
     }, MESSAGE_LOGGING_INTERVAL);
 });
