@@ -154,3 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, MESSAGE_LOGGING_INTERVAL);
 });
+
+function openDetailsModal() {
+    // Implement the logic to open a modal with more detailed system info
+    alert("More details about the system");
+}

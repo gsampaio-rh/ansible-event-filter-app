@@ -15,33 +15,77 @@
 
 <body>
     
-    <div class="container-fluid">
-        <!-- First row of four columns -->
-        <div class="row border-bottom">
-            <div class="top-row col-md-3 column-border d-flex flex-column">
+    <div class="container-fluid h-100">
+        <!-- FIRST ROW -->
+        <div class="row h-70 border-bottom">
+            <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Eventos</h4>
                 <!-- Container for log messages -->
                 <div id="log-container">
                 </div>
             </div>
-            <div class="top-row col-md-3 column-border d-flex flex-column">
+            <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Filtro</h4>
                     <div id="notification-container">
                     </div>
             </div>
-            <div class="top-row col-md-3 column-border d-flex flex-column">
+            <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Playbooks</h4>
                 <!-- Playbooks container -->
                 <div id="playbooks-container">
                     <!-- Placeholder for playbook cards -->
                 </div>
             </div>
-            <div class="top-row col-md-3 column-border d-flex flex-column">
-                <h4>Sistemas</h4>
+            <div class="col-md-3 column-border d-flex flex-column">
+                <div class="container">
+                    <h4>Business</h4>
+                    <div id="business-container">
+                        <div class="row border-bottom">
+                            <div class="col-md-6 column-border business-box">
+                                <div class="business-card">
+                                    <img src="../static/media/logo-pix-icone-512.webp" alt="System Icon" class="business-icon">
+                                    <div class="business-info">
+                                        <h3 class="business-name">Pix</h3>
+                                        <div class="business-status" data-status="operational">Operational</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 business-box">
+                                <div class="business-card">
+                                    <img src="../static/media/cartao-itau.png" alt="System Icon" class="business-icon">
+                                    <div class="business-info">
+                                        <h3 class="business-name">Cartão</h3>
+                                        <div class="business-status" data-status="operational">Operational</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 column-border business-box">
+                                <div class="business-card">
+                                    <img src="../static/media/itau-logo.png" alt="System Icon" class="business-icon">
+                                    <div class="business-info">
+                                        <h3 class="business-name">Itaú #3</h3>
+                                        <div class="business-status" data-status="operational">Operational</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 business-box">
+                                <div class="business-card">
+                                    <img src="../static/media/itau-logo.png" alt="System Icon" class="business-icon">
+                                    <div class="business-info">
+                                        <h3 class="business-name">Itaú #4</h3>
+                                        <div class="business-status" data-status="operational">Operational</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Second row of two columns with different spans -->
-        <div class="row">
+        <!-- SECOND ROW -->
+        <div class="row h-30">
             <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Grafo</h4>
                 <!-- Node graph container -->
@@ -49,39 +93,11 @@
             </div>
             <div class="col-md-9 column-border d-flex flex-column">
                 <h4>Business</h4>
-                <div id="business-container" class="bottom-row">
-                    <div class="row border-bottom">
-                        <div class="col-md-3 column-border business-card">
-                            <!-- Content for the first column -->
-                        </div>
-                        <div class="col-md-3 column-border business-card">
-                            <!-- Content for the second column -->
-                        </div>
-                        <div class="col-md-3 column-border business-card">
-                            <!-- Content for the first column -->
-                        </div>
-                        <div class="col-md-3 column-border business-card">
-                            <!-- Content for the second column -->
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 column-border business-card">
-                            <!-- Content for the first column -->
-                        </div>
-                        <div class="col-md-3 column-border business-card">
-                            <!-- Content for the second column -->
-                        </div>
-                        <div class="col-md-3 column-border business-card">
-                            <!-- Content for the first column -->
-                        </div>
-                        <div class="col-md-3 column-border business-card">
-                            <!-- Content for the second column -->
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
