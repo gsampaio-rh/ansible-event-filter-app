@@ -2,6 +2,7 @@ import { LogManager } from './LogManager.js';
 import { NetworkManager } from './NetworkManager.js';
 import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
+import auditJsonData from '../media/test-data/audit-rules.json' with { type: 'json' };
 
 document.addEventListener('DOMContentLoaded', () => {
     const logContainer = document.getElementById('log-container');
@@ -12,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!logContainer || !networkContainer || !notificationContainer || !playbooksContainer) {
         console.error("Required DOM elements are missing.");
         return;
+    }
+
+    if (!auditJsonData) {
+        console.error("Failed to load JSON data. Please check the path and server configuration.");
+        return; // Exit if data is not loaded
     }
 
     // Constants for message and node handling
@@ -27,14 +33,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const notificationManager = new NotificationManager(notificationContainer);
     const playbookManager = new PlaybookManager(playbooksContainer);
 
+    
+
     setInterval(() => {
         const currentTime = new Date().toLocaleTimeString(); // Get current time for log message
         
         logManager.addLogMessage(`Log message at ${currentTime}`);
         
-        // Add notification every 3 log messages
+        // // Add notification every 3 log messages
+        // if (++notificationCounter % 2 === 0) {
+        //     notificationManager.addNotification(`Issue #${MESSAGE_INDEX}`);
+        // }
+
         if (++notificationCounter % 2 === 0) {
-            notificationManager.addNotification(`Issue #${MESSAGE_INDEX}`);
+            // Select a random entry from the JSON data
+            const randomEntry = auditJsonData.results[Math.floor(Math.random() * auditJsonData.results.length)];
+            const eventId = randomEntry.id;
+            const eventName = randomEntry.name;
+            const auditRule = randomEntry.activation_instance.id;
+            const eventFireAt = randomEntry.fired_at;
+            console.log(randomEntry)
+            // Use the 'name' and 'status' of the random entry to generate the notification
+            notificationManager.addNotification(eventId, eventName, auditRule, eventFireAt);
         }
 
         // Create and add a new playbook with dynamic status

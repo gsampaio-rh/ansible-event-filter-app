@@ -150,11 +150,29 @@ html {
     /* Show that it's clickable */
 }
 
+.issue-id {
+    font-weight: bold;
+    /* Makes it stand out on its own line */
+}
+
 .issue-name {
     font-weight: bold;
-    /* Make issue names bold */
     color: #dc3545;
-    /* Red color for importance */
+    display: block;
+    /* Makes it stand out on its own line */
+}
+
+.issue-fired-at {
+    display: block;
+    /* Makes timestamp appear on a new line */
+    color: #666;
+    /* Subdued color for less emphasis */
+    font-size: 12px;
+    /* Smaller font size */
+    margin-top: 5px;
+    /* Space from the main message */
+    font-style: italic;
+    /* Italicize to differentiate from main content */
 }
 
 .notification-balloon {

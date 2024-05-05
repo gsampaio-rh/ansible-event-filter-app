@@ -13,7 +13,7 @@ export class NetworkManager {
         const networkOptions = {
             nodes: {
                 shape: 'dot',
-                size: 10,
+                size: 5,
                 font: { size: 8, color: '#000000' },
                 borderWidth: 2
             },
