@@ -1,14 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
+import { LogManager } from './LogManager.js';
+import { NetworkManager } from './NetworkManager.js';
+import { NotificationManager } from './NotificationManager.js';
+import { PlaybookManager } from './PlaybookManager.js';
 
+document.addEventListener('DOMContentLoaded', () => {
     const logContainer = document.getElementById('log-container');
     const networkContainer = document.getElementById('network');
-    const filtroContainer = document.getElementById('notification-container');
+    const notificationContainer = document.getElementById('notification-container');
     const playbooksContainer = document.getElementById('playbooks-container');
 
-
-    if (!logContainer || !networkContainer || !filtroContainer || !playbooksContainer) {
+    if (!logContainer || !networkContainer || !notificationContainer || !playbooksContainer) {
         console.error("Required DOM elements are missing.");
-        return; // Stop the script if essential elements are missing
+        return;
     }
 
     // Constants for message and node handling
@@ -20,142 +23,33 @@ document.addEventListener('DOMContentLoaded', () => {
     let messageIndex = 1;
     let nodeIndex = 1;
 
-    // Message Logger Functions
-    function calculateMaxMessages(container) {
-        const MESSAGE_HEIGHT = 20; // Average height of a log message in pixels
-        return Math.floor(container.clientHeight / MESSAGE_HEIGHT);
-    }
+    const logManager = new LogManager(logContainer);
+    const networkManager = new NetworkManager(networkContainer);
+    const notificationManager = new NotificationManager(notificationContainer);
+    const playbookManager = new PlaybookManager(playbooksContainer);
 
-    // Network Visualization Functions
-    function setupNetworkVisualization(nodes, edges) {
-        const networkData = { nodes, edges };
-        const networkOptions = {
-            nodes: {
-                shape: 'dot', // Shape of the nodes. 'dot' is a circle.
-                size: 10, // Radius of the nodes.
-                font: { size: 8, color: '#000000' }, // Font style for labels on the nodes.
-                borderWidth: 2 // Width of the border around each node.
-            },
-            edges: {
-                width: 2, // Thickness of the lines (edges) connecting nodes.
-                color: {
-                    color: '#848484', // Default color of edges.
-                    highlight: '#848484', // Color of edges when they are highlighted.
-                    hover: '#848484', // Color of edges when the mouse hovers over them.
-                    opacity: 0.8 // Transparency of edges.
-                }
-            },
-            physics: {
-                // stabilization: { iterations: 10 }, // Number of iterations to stabilize the network before rendering.
-                barnesHut: {
-                    gravitationalConstant: -1500, // Negative value to make nodes repel each other.
-                    centralGravity: 0.3, // Attracts nodes towards the center to avoid them going far off screen.
-                    springLength: 10, // Natural length of the springs (edges), affecting how far apart nodes are.
-                    springConstant: 0.01, // Stiffness of the springs, higher values make the springs stronger.
-                    damping: 1, // Reduces the motion of nodes, making them stabilize faster.
-                    avoidOverlap: 0.1 // Prevents nodes from overlapping.
-                },
-                solver: 'barnesHut' // The physics solver algorithm to use. Barnes-Hut is a performance-optimized approach.
-            },
-            layout: {
-                improvedLayout: false // Whether to use an improved layout algorithm, which can provide better positioning but may be more computationally intensive.
-            }
-        };
-
-        return new vis.Network(networkContainer, networkData, networkOptions);
-    }
-
-    const nodes = new vis.DataSet([]);
-    const edges = new vis.DataSet([]);
-    const network = setupNetworkVisualization(nodes, edges);
-
-    function addLogMessage(container, message, index) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'log-message';
-        messageDiv.textContent = `#${index} ${message}`;
-        messageDiv.style.display = 'block';
-
-        if (container.firstChild) {
-            container.insertBefore(messageDiv, container.firstChild);
-        } else {
-            container.appendChild(messageDiv);
-        }
-
-        setTimeout(() => {
-            messageDiv.remove();
-        }, MESSAGE_REMOVAL_TIMEOUT);
-
-        const maxMessages = calculateMaxMessages(container);
-        while (container.children.length > maxMessages) {
-            container.removeChild(container.lastChild);
-        }
-    }
-
-    function addNotification(message) {
-        const notificationDiv = document.createElement('div');
-        notificationDiv.className = 'notification';
-        notificationDiv.innerHTML = `Events match! Potential issue <span class="issue-name">${message}</span> identified!`;
-
-        // Check if there's already a first child and insert before it
-        if (filtroContainer.firstChild) {
-            filtroContainer.insertBefore(notificationDiv, filtroContainer.firstChild);
-        } else {
-            filtroContainer.appendChild(notificationDiv);
-        }
-    }
-
-    const playbooks = [];
-
-    function addPlaybook(playbook) {
-        if (!playbook.name || !playbook.description || !playbook.status) {
-            console.error('Invalid playbook data:', playbook);
-            return; // Exit the function if playbook data is incomplete
-        }
-
-        const playbookCard = `
-        <div class="playbook-card ${playbook.status} mb-3">
-            <div class="playbook-card-body">
-                <h5 class="playbook-card-title">${playbook.name}</h5>
-                <p class="playbook-card-text">${playbook.description}</p>
-                <p class="playbook-card-text"><strong>Status:</strong> ${playbook.status.charAt(0).toUpperCase() + playbook.status.slice(1)}</p>
-            </div>
-        </div>
-    `;
-        document.getElementById('playbooks-container').insertAdjacentHTML('afterbegin', playbookCard); // Insert at the beginning
-    }
-
-    // Combined function to handle both log messages and nodes
     setInterval(() => {
         const currentTime = new Date().toLocaleTimeString(); // Get current time for log message
 
-        addLogMessage(logContainer, `Log message at ${currentTime}`, messageIndex++);
-
-        nodes.add({ id: nodeIndex, label: `Node ${nodeIndex}`, color: colors[nodeIndex % colors.length] });
-        if (nodeIndex > 1) {
-            edges.add({ from: nodeIndex - 1, to: nodeIndex });
-        }
-        nodeIndex++;
+        logManager.addLogMessage(logContainer, `Log message at ${currentTime}`, messageIndex++);
         
+        // Add notification every 3 log messages
+        if (++notificationCounter % 2 === 0) {
+            notificationManager.addNotification(`Issue #${messageIndex - 1}`);
+        }
+
         // Create and add a new playbook with dynamic status
         const statusOptions = ['pending', 'active', 'failed']; // Example status options
         const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
         const newPlaybook = {
-            name: `Playbook ${playbooks.length + 1}`,
-            description: `Description of Playbook ${playbooks.length + 1}`,
+            name: `Playbook ${messageIndex - 1}`,
+            description: `Description of Playbook ${messageIndex - 1}`,
             status: randomStatus // Dynamic status
         };
 
-        playbooks.push(newPlaybook);
-        addPlaybook(newPlaybook); // Add the new playbook immediately
+        playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
 
-        // Add notification every 3 log messages
-        if (++notificationCounter % 2 === 0) {
-            addNotification(`Issue #${messageIndex - 1}`);
-        }
+        networkManager.addNodeAndEdge(messageIndex, colors[messageIndex % colors.length])
+
     }, MESSAGE_LOGGING_INTERVAL);
 });
-
-function openDetailsModal() {
-    // Implement the logic to open a modal with more detailed system info
-    alert("More details about the system");
-}
