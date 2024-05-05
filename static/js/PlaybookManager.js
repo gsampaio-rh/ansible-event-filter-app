@@ -12,6 +12,7 @@ export class PlaybookManager {
 
         const playbookCard = `
         <div class="playbook-card ${playbook.status} mb-3">
+            <img src="/static/media/ansible.png" class="playbook-logo" alt="Ansible Logo">
             <div class="playbook-card-body">
                 <h5 class="playbook-card-title">${playbook.name}</h5>
                 <p class="playbook-card-text">${playbook.description}</p>

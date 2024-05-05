@@ -243,28 +243,41 @@ html {
     /* Modern, readable font */
 }
 
-.playbook-card {
-    background-color: #ffffff; /* Clean white background */
-    border-left: 5px solid; /* Color will be set dynamically */
-    padding: 10px 20px; /* Reduced vertical padding, maintained horizontal */
-    margin-bottom: 10px; /* Slightly reduced space between cards */
-    font-size: 14px; /* Slightly smaller font size */
-    color: #333; /* Maintain dark text for contrast */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Refined shadow for subtle depth */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for interactive effects */
-    /* animation: slideInFromLeft 0.5s ease-out; */
-    animation: fadeIn 0.3s ease-in-out; 
-    /* Subtle shadow for depth */
+.playbook-logo {
+    width: 30px;
+    /* Adjust size as needed */
+    height: 30px;
+    /* Adjust size as needed */
+    float: left;
+    /* Aligns the logo to the left */
+    margin-right: 10px;
+    /* Adds some space between the logo and the text */
 }
 
-@keyframes slideInFromLeft {
-    from {
-        transform: translateX(-100%);
-    }
+.playbook-card {
+    display: flex;
+    align-items: center;
+    /* Aligns items vertically in the center */
+    background-color: #ffffff;
+    border-left: 5px solid;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.3s ease-in-out;
+}
 
-    to {
-        transform: translateX(0);
-    }
+.playbook-card-body {
+    flex-grow: 1;
+    /* Ensures the body takes up the remaining space */
+}
+
+.playbook-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 /* .playbook-card:hover {
@@ -272,11 +285,11 @@ html {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 } */
 
-.playbook-card:hover {
+/* .playbook-card:hover {
     transform: scale(1.01);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-}
+} */
 
 .playbook-card h5 {
     margin-top: 0;
@@ -307,16 +320,15 @@ html {
     /* Red for failed */
 }
 
-/* .fixed-height-box {
-    height: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9f9f9;
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
-} */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
 
 #business-container {
     height: 60vh;
