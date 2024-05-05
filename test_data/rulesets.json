@@ -1,0 +1,22 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "page_size": 20,
+  "page": 1,
+  "results": [
+    {
+      "id": 29,
+      "name": "Receive and Process Cloud Events",
+      "created_at": "2024-05-05T21:39:00.010274Z",
+      "modified_at": "2024-05-05T21:39:00.010287Z",
+      "source_types": [
+        "webhook"
+      ],
+      "rule_count": 8,
+      "fired_stats": [
+        {}
+      ]
+    }
+  ]
+}

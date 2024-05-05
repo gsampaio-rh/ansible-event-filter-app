@@ -4,6 +4,7 @@ import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
 import { BusinessCardManager } from './BusinessCardManager.js';
 import auditJsonData from '../media/test-data/audit-rules.json' with { type: 'json' };
+import ruleSetJsonData from '../media/test-data/demo-rulebook.json' with { type: 'json' };
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -62,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fileLines = data.split('\n'); // Split the file content into lines
         })
         .catch(error => console.error("Failed to load log file", error));
-    
+
     const manager = new BusinessCardManager('business-container', businessData);
     manager.populateBusinessContainer();
     
@@ -75,29 +76,39 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
         const dt = new Date(); // Get current time for log message
         const currentTime = dt.toISOString().replace('T', ' ').substring(0, 19); // Formats to 'YYYY-MM-DD HH:MM:SS'
-        
-        // logManager.addLogMessage(`Log message at ${currentTime}`);
 
         // Read line from file if available
         if (currentLine < fileLines.length) {
             const line = fileLines[currentLine++];
             console.log(`Log message at ${currentTime}: ${line}`)
             logManager.addLogMessage(`${line}`);
+            // Assuming we have the JSON data loaded into `jsonRules`
+            const matchedRule = logManager.evaluateLogMessage(`${line}`);
+            // If a rule is matched
+            if (matchedRule) {
+                // Here you can construct the notification directly from the matched rule object
+                const eventId = crypto.randomUUID(); // This generates a random UUID // Example, you might need to adapt based on actual data structure
+                const eventName = matchedRule.name;
+                const auditRule = matchedRule.condition; // This is just a placeholder, adjust as needed
+                const eventFireAt = currentTime; // Using current time as fired at time
+                console.log(`Rule triggered: ${eventName}`);
+                notificationManager.addNotification(eventId, eventName, auditRule, eventFireAt);
+            }
         } else {
             logManager.addLogMessage(`No more lines to read.`);
         }
 
-        if (++notificationCounter % 2 === 0) {
-            // Select a random entry from the JSON data
-            const randomEntry = auditJsonData.results[Math.floor(Math.random() * auditJsonData.results.length)];
-            const eventId = randomEntry.id;
-            const eventName = randomEntry.name;
-            const auditRule = randomEntry.activation_instance.id;
-            const eventFireAt = randomEntry.fired_at;
-            console.log(randomEntry)
-            // Use the 'name' and 'status' of the random entry to generate the notification
-            notificationManager.addNotification(eventId, eventName, auditRule, eventFireAt);
-        }
+        // if (++notificationCounter % 2 === 0) {
+        //     // Select a random entry from the JSON data
+        //     const randomEntry = auditJsonData.results[Math.floor(Math.random() * auditJsonData.results.length)];
+        //     const eventId = randomEntry.id;
+        //     const eventName = randomEntry.name;
+        //     const auditRule = randomEntry.activation_instance.id;
+        //     const eventFireAt = randomEntry.fired_at;
+        //     console.log(randomEntry)
+        //     // Use the 'name' and 'status' of the random entry to generate the notification
+        //     notificationManager.addNotification(eventId, eventName, auditRule, eventFireAt);
+        // }
 
         // Create and add a new playbook with dynamic status
         const statusOptions = ['pending', 'active', 'failed']; // Example status options

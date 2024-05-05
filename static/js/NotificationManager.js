@@ -16,21 +16,36 @@ export class NotificationManager {
         this.notificationCounter = 0;
     }
 
+    formatCondition(condition) {
+        // Extract the values after the equality checks
+        const formatted = condition.match(/==\s*"([^"]*)"/g)
+            .map(item => item.split('==')[1].trim().replace(/"/g, '')) // Remove == and quotes
+            .map(item => `| ${item}`) // Add dash for list format
+            .join('\n'); // Join with newline
+
+        return formatted;
+    }
+
+    formatTimestamp(timestamp) {
+        const date = new Date(timestamp);
+        return date.toLocaleString('pt-BR', { dateStyle: 'medium', timeStyle: 'short' });
+    }
+
     addNotification(id, rule, rule_id, fired_at) {
         const notificationDiv = document.createElement('div');
         notificationDiv.className = 'notification';
 
         const issueIdSpan = document.createElement('span');
         issueIdSpan.className = 'issue-id';
-        issueIdSpan.textContent = `Auditoria ${id} detectada!`;
+        issueIdSpan.textContent = `${this.formatCondition(rule_id)}`;
 
         const issueNameSpan = document.createElement('span');
         issueNameSpan.className = 'issue-name';
-        issueNameSpan.textContent = `${rule} (#${rule_id})`;
+        issueNameSpan.textContent = `${rule}`;
 
         const firedDateSpan = document.createElement('span');
         firedDateSpan.className = 'issue-fired-at';
-        firedDateSpan.textContent = `disparada em ${formatTimestamp(fired_at)}`;
+        firedDateSpan.textContent = `disparada em ${this.formatTimestamp(fired_at)}`;
 
         notificationDiv.appendChild(issueNameSpan);
         notificationDiv.appendChild(issueIdSpan);

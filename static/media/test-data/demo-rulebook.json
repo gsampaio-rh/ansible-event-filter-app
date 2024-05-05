@@ -1,0 +1,142 @@
+{
+  "name": "Receive and Process Cloud Events",
+  "hosts": "all",
+  "sources": [
+    {
+      "ansible.eda.webhook": {
+        "host": "0.0.0.0",
+        "port": 5000
+      }
+    }
+  ],
+  "rules": [
+    {
+      "name": "Falha de Login Crítica",
+      "condition": "(event.payload.system == \"CloudResource\" and event.payload.severity == \"CRITICAL\" and event.payload.message == \"LoginFailure\")",
+      "action": {
+        "run_job_template": {
+          "name": "Corrigir e Resolver Falha Crítica de Login em Mobile Banking",
+          "organization": "Default",
+          "job_args": {
+            "extra_vars": {
+              "details": "{{ event.payload.details }}",
+              "business_type": "mobile_banking"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Erro de API",
+      "condition": "(event.payload.system == \"API\" and event.payload.message == \"APICallFailure\")",
+      "action": {
+        "run_job_template": {
+          "name": "Revisão e Correção de Erros de API no Pix",
+          "organization": "Default",
+          "job_args": {
+            "extra_vars": {
+              "details": "{{ event.payload.details }}",
+              "business_type": "pix"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Limite de Recursos Atingido",
+      "condition": "(event.payload.system == \"Database\" and event.payload.message == \"ResourceLimitReached\")",
+      "action": {
+        "run_job_template": {
+          "name": "Resolver Limites de Recursos em Contas Correntes",
+          "organization": "Default",
+          "job_args": {
+            "extra_vars": {
+              "details": "{{ event.payload.details }}",
+              "business_type": "conta_corrente"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Falhas Críticas de Banco de Dados",
+      "condition": "(event.payload.system == \"Database\" and event.payload.severity == \"CRITICAL\")",
+      "action": {
+        "run_job_template": {
+          "name": "Correção Urgente em Falhas Críticas de Banco de Dados",
+          "organization": "Default",
+          "job_args": {
+            "extra_vars": {
+              "details": "{{ event.payload.details }}",
+              "business_type": "cartao_credito"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Alertas de Performance com Impacto Potencial",
+      "condition": "(event.payload.system == \"WebServer\" and event.payload.severity == \"WARNING\" and event.payload.message == \"PerformanceAlert\")",
+      "action": {
+        "run_job_template": {
+          "name": "Otimização de Performance para Transações com Cartão de Crédito",
+          "organization": "Default",
+          "job_args": {
+            "extra_vars": {
+              "details": "{{ event.payload.details }}",
+              "business_type": "cartao_credito"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Sucessos de Login após Falhas",
+      "condition": "(event.payload.system == \"UserAuth\" and event.payload.message == \"LoginSuccess\")",
+      "action": {
+        "run_job_template": {
+          "name": "Investigação e Resolução de Tentativas de Login Após Falhas",
+          "organization": "Default",
+          "job_args": {
+            "extra_vars": {
+              "details": "{{ event.payload.details }}",
+              "business_type": "mobile_banking"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Alertas Frequentes de Limite de Recursos",
+      "condition": "(event.payload.system == \"AppServer\" and event.payload.message == \"ResourceLimitReached\")",
+      "action": {
+        "run_job_template": {
+          "name": "Análise e Expansão de Capacidade para Operações com Pix",
+          "organization": "Default",
+          "job_args": {
+            "extra_vars": {
+              "details": "{{ event.payload.details }}",
+              "business_type": "pix"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Respostas Lentas de Servidores",
+      "condition": "(event.payload.system == \"WebServer\" and event.payload.message == \"DataUpdated\")",
+      "action": {
+        "run_job_template": {
+          "name": "Diagnóstico e Correção de Gargalos em Web Banking",
+          "organization": "Default",
+          "job_args": {
+            "extra_vars": {
+              "details": "{{ event.payload.details }}",
+              "business_type": "mobile_banking"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

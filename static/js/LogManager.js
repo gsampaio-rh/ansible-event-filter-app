@@ -1,3 +1,9 @@
+import ruleSetJsonData from '../media/test-data/demo-rulebook.json' with { type: 'json' };
+
+// if (!ruleSetJsonData) {
+//     console.error("Failed to load JSON data. Please check the path and server configuration.");
+//     return; // Exit if data is not loaded
+// }
 export class LogManager {
     constructor(container) {
         this.container = container;
@@ -64,6 +70,71 @@ export class LogManager {
             element.textContent += text.charAt(index);
             setTimeout(() => this.animateText(element, text, index + 1), 50); // Adjust timing to your liking
         }
+    }
+
+    listRules() {
+        if (!ruleSetJsonData || !ruleSetJsonData.rules) {
+            console.error('No rules data available');
+            return;
+        }
+
+        console.log('Listing all rules:');
+        ruleSetJsonData.rules.forEach((rule, index) => {
+            console.log(`${index + 1}: ${rule.name}`);
+            console.log(`  Condition: ${rule.condition}`);
+            console.log(`  Action: ${JSON.stringify(rule.action, null, 2)}`);
+        });
+    }
+
+    evaluateLogMessage(logMessage) {
+        // Example parser for log messages (might need to adjust based on actual log format variations)
+        const logPattern = /(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) \| (.+?) \| (\w+) \| (.+?) \| (.+?) \| Source: (.+)/;
+        const match = logMessage.match(logPattern);
+        if (!match) {
+            console.error('Log message format is incorrect');
+            return null;
+        }
+        const [, timestamp, service, severity, details, message, source] = match;
+
+        // Parsing details further to extract 'system', 'userID', etc.
+        const detailParts = details.split(', ').reduce((acc, part) => {
+            const [key, value] = part.split(': ');
+            acc[key.trim().toLowerCase().replace(/ /g, '_')] = value.trim();
+            return acc;
+        }, {});
+
+        const payload = {
+            system: service,
+            severity: severity,
+            message: message,
+            ...detailParts
+        };
+
+        // Check against each rule in JSON
+        for (let rule of ruleSetJsonData.rules) {
+            // Replace placeholders and logical operators in the condition with actual payload data
+            let condition = rule.condition
+                .replace(/event.payload\.([a-zA-Z_]+)/g, (match, p1) => {
+                    return `payload['${p1}']`;
+                })
+                .replace(/ and /g, ' && ')
+                .replace(/ or /g, ' || ');
+
+            // Safely evaluate condition - Note: This is a basic implementation and may need more security considerations
+            try {
+                if (eval(condition)) {
+                    console.log(`Rule matched: ${rule.name}`);
+                    return rule; // Returning the matched rule object
+                }
+                else {
+                    console.log(`No rule founded`);
+                }
+            } catch (error) {
+                console.error('Error evaluating condition:', error);
+            }
+        }
+
+        return null; // No rule matched
     }
 
 }

@@ -1,10 +1,350 @@
 {
-  "count": 21,
-  "next": "/api/eda/v1/audit-rules/?page=2",
+  "count": 55,
+  "next": null,
   "previous": null,
-  "page_size": 20,
+  "page_size": 100,
   "page": 1,
   "results": [
+    {
+      "id": 55,
+      "name": "Respostas Lentas de Servidores",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:47:03.753988Z"
+    },
+    {
+      "id": 54,
+      "name": "Alertas Frequentes de Limite de Recursos",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:46:43.181629Z"
+    },
+    {
+      "id": 53,
+      "name": "Sucessos de Login após Falhas",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:46:22.576707Z"
+    },
+    {
+      "id": 52,
+      "name": "Alertas de Performance com Impacto Potencial",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:46:01.952590Z"
+    },
+    {
+      "id": 51,
+      "name": "Falhas Críticas de Banco de Dados",
+      "status": "failed",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:46:01.879353Z"
+    },
+    {
+      "id": 50,
+      "name": "Limite de Recursos Atingido",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:45:41.199696Z"
+    },
+    {
+      "id": 49,
+      "name": "Erro de API",
+      "status": "failed",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:45:41.121541Z"
+    },
+    {
+      "id": 48,
+      "name": "Falha de Login Crítica",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:45:20.469541Z"
+    },
+    {
+      "id": 47,
+      "name": "Alertas de Performance com Impacto Potencial",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:40:10.155863Z"
+    },
+    {
+      "id": 46,
+      "name": "Falhas Críticas de Banco de Dados",
+      "status": "failed",
+      "activation_instance": {
+        "id": 1369,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:39:54.142325Z"
+    },
+    {
+      "id": 45,
+      "name": "Limite de Recursos Atingido",
+      "status": "failed",
+      "activation_instance": {
+        "id": 1368,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:38:42.190531Z"
+    },
+    {
+      "id": 44,
+      "name": "Erro de API",
+      "status": "failed",
+      "activation_instance": {
+        "id": 1361,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:35:34.410997Z"
+    },
+    {
+      "id": 43,
+      "name": "Falha de Login Crítica",
+      "status": "failed",
+      "activation_instance": {
+        "id": 1361,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T21:12:41.671742Z"
+    },
+    {
+      "id": 42,
+      "name": "CloudResource Info Login Failure",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1352,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T20:25:42.337960Z"
+    },
+    {
+      "id": 41,
+      "name": "WebServer Info Data Updated",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1352,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T20:25:31.644557Z"
+    },
+    {
+      "id": 40,
+      "name": "Database Critical Resource Limit",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1352,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T20:25:21.099516Z"
+    },
+    {
+      "id": 39,
+      "name": "Database Critical Resource Limit",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1352,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T20:21:36.132424Z"
+    },
+    {
+      "id": 38,
+      "name": "WebServer Warning Performance Alert",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1335,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T19:46:15.108403Z"
+    },
+    {
+      "id": 37,
+      "name": "WebServer Warning Performance Alert",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1335,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T19:46:04.598870Z"
+    },
+    {
+      "id": 36,
+      "name": "UserAuth Info Login Failure",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1335,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T19:45:24.666484Z"
+    },
+    {
+      "id": 35,
+      "name": "Database Critical Resource Limit",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1335,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T19:44:51.747409Z"
+    },
+    {
+      "id": 34,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1312,
+        "name": "demo-eda"
+      },
+      "fired_at": "2024-05-05T19:29:06.181424Z"
+    },
+    {
+      "id": 33,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1308,
+        "name": "test-rule"
+      },
+      "fired_at": "2024-05-05T19:25:52.644928Z"
+    },
+    {
+      "id": 32,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1308,
+        "name": "test-rule"
+      },
+      "fired_at": "2024-05-05T19:15:05.986374Z"
+    },
+    {
+      "id": 31,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "failed",
+      "activation_instance": {
+        "id": 1305,
+        "name": "test-rule"
+      },
+      "fired_at": "2024-05-05T19:10:50.566706Z"
+    },
+    {
+      "id": 30,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "failed",
+      "activation_instance": {
+        "id": 1304,
+        "name": "test-rule"
+      },
+      "fired_at": "2024-05-05T19:02:09.891237Z"
+    },
+    {
+      "id": 29,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1298,
+        "name": "test-rule"
+      },
+      "fired_at": "2024-05-05T19:00:37.390414Z"
+    },
+    {
+      "id": 28,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1298,
+        "name": "test-rule"
+      },
+      "fired_at": "2024-05-05T19:00:17.744130Z"
+    },
+    {
+      "id": 27,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1298,
+        "name": "test-rule"
+      },
+      "fired_at": "2024-05-05T18:45:36.874042Z"
+    },
+    {
+      "id": 26,
+      "name": "Check Cloud Resource Info Level Events",
+      "status": "successful",
+      "activation_instance": {
+        "id": 1298,
+        "name": "test-rule"
+      },
+      "fired_at": "2024-05-05T18:45:13.518548Z"
+    },
+    {
+      "id": 25,
+      "name": "Alert Rule",
+      "status": "successful",
+      "activation_instance": {
+        "id": null,
+        "name": "DELETED"
+      },
+      "fired_at": "2024-05-05T16:28:56.566184Z"
+    },
+    {
+      "id": 24,
+      "name": "Alert Rule",
+      "status": "successful",
+      "activation_instance": {
+        "id": null,
+        "name": "DELETED"
+      },
+      "fired_at": "2024-05-05T16:28:24.431367Z"
+    },
+    {
+      "id": 23,
+      "name": "Alert Rule",
+      "status": "successful",
+      "activation_instance": {
+        "id": null,
+        "name": "DELETED"
+      },
+      "fired_at": "2024-05-05T16:28:18.105351Z"
+    },
+    {
+      "id": 22,
+      "name": "Alert Rule",
+      "status": "successful",
+      "activation_instance": {
+        "id": null,
+        "name": "DELETED"
+      },
+      "fired_at": "2024-05-05T16:27:03.664698Z"
+    },
     {
       "id": 21,
       "name": "Say Hello",
@@ -204,6 +544,16 @@
         "name": "Patch Route With Cert"
       },
       "fired_at": "2024-05-03T18:59:36.127892Z"
+    },
+    {
+      "id": 1,
+      "name": "Patch a Route",
+      "status": "successful",
+      "activation_instance": {
+        "id": 77,
+        "name": "Patch Route With Cert"
+      },
+      "fired_at": "2024-05-03T18:59:25.609227Z"
     }
   ]
 }
