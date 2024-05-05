@@ -243,6 +243,19 @@ html {
     /* Modern, readable font */
 }
 
+.playbook-date-time {
+    display: block;
+    /* Makes timestamp appear on a new line */
+    color: #666;
+    /* Subdued color for less emphasis */
+    font-size: 12px;
+    /* Smaller font size */
+    margin-top: 5px;
+    /* Space from the main message */
+    font-style: italic;
+    /* Italicize to differentiate from main content */
+}
+
 .playbook-logo {
     width: 30px;
     /* Adjust size as needed */

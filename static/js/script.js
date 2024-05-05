@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error("Failed to load log file", error));
 
     setInterval(() => {
-        const currentTime = new Date().toLocaleTimeString(); // Get current time for log message
+        const dt = new Date(); // Get current time for log message
+        const currentTime = dt.toISOString().replace('T', ' ').substring(0, 19); // Formats to 'YYYY-MM-DD HH:MM:SS'
         
         // logManager.addLogMessage(`Log message at ${currentTime}`);
 
@@ -77,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const newPlaybook = {
             name: `Playbook ${MESSAGE_INDEX}`,
             description: `Description of Playbook ${MESSAGE_INDEX}`,
+            lastUpdated: currentTime, // Add formatted datetime here
             status: randomStatus // Dynamic status
         };
 

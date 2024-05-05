@@ -5,7 +5,7 @@ export class PlaybookManager {
     }
 
     addPlaybook(playbook) {
-        if (!playbook.name || !playbook.description || !playbook.status) {
+        if (!playbook.name || !playbook.description || !playbook.status || !playbook.lastUpdated) {
             console.error('Invalid playbook data:', playbook);
             return;
         }
@@ -17,6 +17,7 @@ export class PlaybookManager {
                 <h5 class="playbook-card-title">${playbook.name}</h5>
                 <p class="playbook-card-text">${playbook.description}</p>
                 <p class="playbook-card-text"><strong>Status:</strong> ${playbook.status.charAt(0).toUpperCase() + playbook.status.slice(1)}</p>
+                <div class="playbook-date-time">Last Updated: ${playbook.lastUpdated}</div>
             </div>
         </div>`;
         this.container.insertAdjacentHTML('afterbegin', playbookCard);
