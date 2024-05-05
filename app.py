@@ -1,10 +1,5 @@
-from flask import Flask, render_template
-from kafka import KafkaConsumer
-import threading
-import json
+from flask import Flask, render_template, send_from_directory
 import argparse
-import time
-import html
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description="Run Flask app in test or normal mode.")
@@ -113,6 +108,11 @@ TOPIC_NAME="answer"
 #                     print(f"Error decoding JSON for message: {message.value}")
 
 #     return Response(generate_messages(), mimetype="text/event-stream")
+
+@app.route('/fetch-log')
+def fetch_log():
+    log_path = 'static/media/test-data/sample_log.txt'
+    return send_from_directory('static/media/test-data', 'sample_log.txt')
 
 @app.route("/dashboard")
 def messages():

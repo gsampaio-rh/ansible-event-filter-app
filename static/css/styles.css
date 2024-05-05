@@ -85,26 +85,76 @@ html {
 
 .log-message {
     background-color: #f9f9f9;
-    /* Light grey background for slight emphasis */
-    border-bottom: 1px solid #e0e0e0;
-    /* Softer border color */
-    color: #333;
-    /* Keeping the text color dark for better contrast */
-    padding: 10px 15px;
-    /* Increased padding for better spacing */
-    font-size: 16px;
-    /* Good size for readability */
-    font-weight: 500;
-    /* Slightly bolder font for emphasis */
+    border-bottom: 1px solid #ccc;
+    /* subtle separation between entries */
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
     animation: fadeIn 0.3s ease-in-out;
-    /* Keeping your animation */
-    transition: background-color 0.3s ease;
-    /* Smooth transition for hover effect */
+    transition: background-color 0.2s;
 }
 
+
 .log-message:hover {
-    background-color: #e8e8e8;
-    /* Slightly darker on hover to indicate interactivity */
+    background-color: #eef2f7;
+}
+
+.log-event-message {
+    font-size: 0.9rem;
+    color: #333;
+    /* Slightly more emphasis on the message */
+    margin-bottom: 5px;
+    /* Space before additional details */
+}
+
+.log-message-header strong {
+    display: block;
+    /* Make the event name stand out */
+    font-size: 1rem;
+    /* Larger font for event name */
+    color: #333;
+}
+
+.log-timestamp {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 5px;
+    /* Space between date and details */
+}
+
+.highlight {
+    font-size: 0.9rem;
+    color: #007bff;
+    /* Keep this for level indication */
+}
+
+
+
+.log-message .log-details {
+    color: #666;
+    font-size: 0.75rem;
+    display: none;
+    /* hidden by default */
+}
+
+.log-message:hover .log-details {
+    display: block;
+    /* show details on hover */
+}
+
+.log-message.info {
+    border-left-color: #17a2b8;
+    /* Bootstrap info blue */
+}
+
+.log-message.warning {
+    border-left-color: #ffc107;
+    /* Bootstrap warning yellow */
+}
+
+.log-message.critical {
+    border-left-color: #dc3545;
+    /* Bootstrap danger red */
 }
 
 @keyframes fadeIn {
@@ -173,36 +223,6 @@ html {
     /* Space from the main message */
     font-style: italic;
     /* Italicize to differentiate from main content */
-}
-
-.notification-balloon {
-    position: relative;
-    background: #efefef;
-    /* A soft gray background */
-    color: #333;
-    /* Darker text for readability */
-    border-radius: 18px;
-    /* Smooth, rounded corners for the balloon */
-    padding: 15px 20px;
-    /* Adequate padding for content */
-    margin-bottom: 20px;
-    /* Space out balloons */
-    display: block;
-    clear: both;
-    max-width: 80%;
-    word-wrap: break-word;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Positive and Negative background colors for speech balloons */
-.notification-balloon.positive {
-    background-color: #e8f5e9;
-    /* Light green for positive sentiment */
-}
-
-.notification-balloon.negative {
-    background-color: #ffebee;
-    /* Light red for negative sentiment */
 }
 
 #playbooks-container {
@@ -276,24 +296,6 @@ html {
     /* Red for failed */
 }
 
-#business-container {
-    height: 60vh;
-    margin-top: 20px;
-    padding: 20px;
-}
-
-.business-box {
-    min-height: 30vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Center the content inside the boxes */
-    padding: 10px;
-    /* background-color: #f9f9f9;
-    font-size: 16px;
-    color: #333; */
-}
-
 /* .fixed-height-box {
     height: 40%;
     display: flex;
@@ -305,14 +307,47 @@ html {
     color: #333;
 } */
 
+#business-container {
+    height: 60vh;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.business-box {
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    /* Centers content vertically */
+    justify-content: center;
+    /* Centers content horizontally */
+    padding: 10px;
+    background-color: #f9f9f9;
+    /* Light gray background, uncomment if needed */
+    font-size: 16px;
+    color: #333;
+}
+
 .business-card {
-    flex-basis: 30%;
+    flex: 1;
+    /* Makes the business-card expand to fill the business-box */
+    display: flex;
+    flex-direction: column;
+    /* Aligns child elements in a column */
+    align-items: center;
+    /* Centers content horizontally */
+    justify-content: center;
+    /* Centers content vertically */
     padding: 10px;
     margin-bottom: 10px;
     transition: all 0.3s ease;
     text-align: center;
-    /* height: 100% */
-    /* Default background color */
+    /* background-color: #fff; */
+    /* Default white background, adjust as necessary */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    /* Optional: adds shadow for depth */
+    border-radius: 8px;
+    height:100%;
+    /* Optional: rounds corners */
 }
 
 .business-card:hover {

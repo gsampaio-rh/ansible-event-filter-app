@@ -32,8 +32,8 @@ export class NetworkManager {
                     centralGravity: 0.3,
                     springLength: 10,
                     springConstant: 0.01,
-                    damping: 1,
-                    avoidOverlap: 0.1
+                    damping: 2,
+                    avoidOverlap: 0
                 },
                 solver: 'barnesHut'
             },

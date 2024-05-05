@@ -23,9 +23,9 @@ export class NotificationManager {
 
         // More structured HTML assembly
         notificationDiv.innerHTML = `
-            <span class="issue-id">Event ${id} detected!</span>
+            <span class="issue-id">Auditoria ${id} detectada!</span>
             <span class="issue-name">${rule} (#${rule_id})</span>
-            <span class="issue-fired-at">fired at ${firedDate}</span>
+            <span class="issue-fired-at">disparada em ${firedDate}</span>
         `;
 
         // More robust insertion handling
