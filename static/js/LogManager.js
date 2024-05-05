@@ -14,6 +14,12 @@ export class LogManager {
         messageDiv.className = `log-message ${this.getMessageType(message)}`;
         messageDiv.innerHTML = this.formatMessage(message);
 
+        // Start the animation for the event message part
+        const eventMessageDiv = messageDiv.querySelector('.log-event-message');
+        const fullText = eventMessageDiv.textContent;
+        eventMessageDiv.textContent = ''; // Ensure it's empty before starting animation
+        this.animateText(eventMessageDiv, fullText);
+
         if (this.container.firstChild) {
             this.container.insertBefore(messageDiv, this.container.firstChild);
         } else {
@@ -50,6 +56,13 @@ export class LogManager {
             ${details}
         </div>
     `;
+    }
+
+    animateText(element, text, index = 0) {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            setTimeout(() => this.animateText(element, text, index + 1), 50); // Adjust timing to your liking
+        }
     }
 
 }
