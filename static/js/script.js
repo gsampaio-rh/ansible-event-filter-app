@@ -4,28 +4,31 @@ import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
 import { BusinessCardManager } from './BusinessCardManager.js';
 import auditJsonData from '../media/test-data/audit-rules.json' with { type: 'json' };
-import ruleSetJsonData from '../media/test-data/demo-rulebook.json' with { type: 'json' };
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const businessData = [
         {
             name: "Pix",
+            system: "pix",
             status: "operational",
             icon: "../static/media/logo-pix-icone-512.webp"
         },
         {
             name: "Cartão de Crédito",
+            system: "cartao_credito",
             status: "operational",
             icon: "../static/media/cartao-itau.png"
         },
         {
             name: "Conta Corrente",
+            system: "conta_corrente",
             status: "operational",
             icon: "../static/media/conta-corrente.png"
         },
         {
             name: "Aplicativo",
+            system: "mobile_banking",
             status: "operational",
             icon: "../static/media/itau-logo.png"
         }
@@ -80,8 +83,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Read line from file if available
         if (currentLine < fileLines.length) {
             const line = fileLines[currentLine++];
-            console.log(`Log message at ${currentTime}: ${line}`)
-            logManager.addLogMessage(`${line}`);
+            console.log(`#${MESSAGE_INDEX} Log message at ${currentTime}: ${line}`)
+            const logMessage = logManager.addLogMessage(`${line}`);
+
+            // If a rule is matched and it's either 'ERROR' or 'CRITICAL'
+            if (logMessage && (logMessage.severity === 'ERROR' || logMessage.severity === 'CRITICAL')) {
+                console.log(`Critical or Error rule triggered: ${logMessage.eventMessage}`);
+                if (logMessage.businessType) {
+                    manager.toggleBusinessStatus(logMessage.businessType, 'disabled'); // Disable the business
+                    console.log(`Business type '${logMessage.businessType}' has been disabled due to severity.`);
+                }
+            }
             
             // Assuming we have the JSON data loaded into `jsonRules`
             const matchedRule = logManager.evaluateLogMessage(`${line}`);
@@ -92,8 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 notificationManager.addNotification(matchedRule);
 
                 // Create and add a new playbook with dynamic status
-                const statusOptions = ['pending', 'active', 'failed']; // Example status options
-                const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
+                // const statusOptions = ['pending', 'active', 'failed']; // Example status options
+                // const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
                 const newPlaybook = {
                     name: `${matchedRule.actionName}`,
                     description: `Self-healing para ruleset #${matchedRule.id}`,
@@ -102,6 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
+
+                // Check if the matched rule affects a specific business type and update its status
+                if (matchedRule.businessType) {
+                    manager.toggleBusinessStatus(matchedRule.businessType, 'operational'); // Disable the business
+                }
 
             }
             

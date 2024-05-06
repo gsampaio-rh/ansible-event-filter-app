@@ -388,6 +388,18 @@ html {
     opacity: 0.95;
 }
 
+.business-card.disabled {
+    opacity: 0.5;
+    background-color: #ccc;
+    pointer-events: none; /* Disable interactions */
+}
+
+.business-card.disabled:hover {
+    box-shadow: none;
+    transform: none;
+    background-color: #f0f0f0;
+}
+
 .business-icon {
     max-width: 60%;
     /* Adjusts width of the icon */

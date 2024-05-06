@@ -16,10 +16,26 @@ export class LogManager {
         return Math.floor(this.container.clientHeight / MESSAGE_HEIGHT);
     }
 
+    extractFieldsFromMessage(message) {
+        const parts = message.split('|');
+        return {
+            datetime: parts[0].trim(),
+            serviceName: parts[1].trim(),
+            severity: parts[2].trim(),
+            details: parts.slice(3, parts.length - 2).join(' | ').trim(),
+            eventMessage: parts[parts.length - 3].trim(),
+            source: parts[parts.length - 2].split(':')[1].trim(),
+            businessType: parts[parts.length - 1].split(':')[1].trim()
+        };
+    }
+
     addLogMessage(message) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `log-message ${this.getMessageType(message)}`;
         messageDiv.innerHTML = this.formatMessage(message);
+
+        // Extract the log message fields
+        const fields = this.extractFieldsFromMessage(message);
 
         // Start the animation for the event message part
         const eventMessageDiv = messageDiv.querySelector('.log-event-message');
@@ -32,6 +48,9 @@ export class LogManager {
         } else {
             this.container.appendChild(messageDiv);
         }
+
+        // Return the extracted fields from the log message as an object
+        return fields;
     }
 
     getMessageType(message) {
@@ -49,21 +68,22 @@ export class LogManager {
         const datetime = parts[0].trim();
         const eventName = parts[1].trim();
         const level = parts[2].trim();
-        const details = parts.slice(3, parts.length - 1).join(' | ').trim();
-        const eventMessage = parts[parts.length - 2].trim();
-        const source = parts[parts.length - 1].split(':')[1].trim(); // Assuming source follows the format "Source: XYZ"
+        const details = parts.slice(3, parts.length - 2).join(' | ').trim();
+        const eventMessage = parts[parts.length - 3].trim();
+        const source = parts[parts.length - 2].split(':')[1].trim();
+        const businessType = parts[parts.length - 1].split(':')[1].trim();
 
         return `
-        <div class="log-message-header">
-            <strong>${eventName}</strong>
-            <div class="log-timestamp">${datetime}</div>
-            <div class="log-event-message">${eventMessage}</div>
-        </div>
-        <div class="log-details hidden">
-            ${details}
-        </div>
-        <img src="/static/media/${source.toLowerCase().replace(/\s+/g, '')}.png" class="log-source-logo" alt="${source} logo">
-    `;
+            <div class="log-message-header">
+                <strong>${eventName}</strong>
+                <div class="log-timestamp">${datetime}</div>
+                <div class="log-event-message">${eventMessage} - ${businessType}</div>
+            </div>
+            <div class="log-details hidden">
+                ${details}
+            </div>
+            <img src="/static/media/${source.toLowerCase().replace(/\s+/g, '')}.png" class="log-source-logo" alt="${source} logo">
+        `;
     }
 
     animateText(element, text, index = 0) {
