@@ -62,6 +62,8 @@ html {
     padding-left: 15px;
     font-size: 18px;
     font-weight: bold;
+    cursor: pointer;
+        /* Show that it's clickable */
 }
 
 .border-bottom {
