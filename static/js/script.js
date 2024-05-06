@@ -175,20 +175,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.getElementById('toggleButton').addEventListener('click', function () {
     var button = this;
-    if (button.textContent === 'Start') {
+    if (button.textContent === 'Stop') {
         console.log(`Stopping at  #${currentLine}`);
         stopInterval();
         // console.log(`Stopped at  ${currentLine}`);
-        button.textContent = 'Stop';  // Change text to Stop
-        button.classList.remove('btn-primary');
-        button.classList.add('btn-danger');  // Optionally change color to red
+        button.textContent = 'Start';  // Change text to Stop
+        button.classList.remove('btn-danger');
+        button.classList.add('btn-primary');  // Optionally change color to red
     } else {
         console.log(`Starting at  #${currentLine}`);
         startInterval();
         // console.log(`Starting at  ${currentLine}`);
-        button.textContent = 'Start'; // Change text to Start
-        button.classList.remove('btn-danger');
-        button.classList.add('btn-primary');  // Optionally change color to blue
+        button.textContent = 'Stop'; // Change text to Start
+        button.classList.remove('btn-primary');
+        button.classList.add('btn-danger');  // Optionally change color to blue
     }
 });
 
