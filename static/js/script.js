@@ -3,6 +3,7 @@ import { NetworkManager } from './NetworkManager.js';
 import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
 import { BusinessCardManager } from './BusinessCardManager.js';
+import { ArchitectureManager } from './ArchitectureManager.js';
 import auditJsonData from '../media/test-data/audit-rules.json' with { type: 'json' };
 
 let intervalID; // Variable to hold the interval ID for starting or stopping it
@@ -38,7 +39,34 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Aplicativo",
             system: "mobile_banking",
             status: "operational",
-            icon: "../static/media/itau-logo.png"
+            icon: "../static/media/itau-logo-no-bg.png"
+        }
+    ];
+
+    const architectureData = [
+        {
+            name: "API Itaú",
+            system: "cartao_credito",
+            status: "operational",
+            icon: "../static/media/api.png"
+        },
+        {
+            name: "Banco de Dados",
+            system: "conta_corrente",
+            status: "operational",
+            icon: "../static/media/db.png"
+        },
+        {
+            name: "Kafka",
+            system: "mobile_banking",
+            status: "operational",
+            icon: "../static/media/kafkaicon.png"
+        },
+        {
+            name: "Integrador Banco Central",
+            system: "pix",
+            status: "operational",
+            icon: "../static/media/fuse.png"
         }
     ];
 
@@ -58,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const notificationManager = new NotificationManager(notificationContainer);
     const playbookManager = new PlaybookManager(playbooksContainer);
     const manager = new BusinessCardManager('business-container', businessData);
+    const archManager = new ArchitectureManager('architecture-container', architectureData);
 
     function processLogLine() {
         const dt = new Date();
@@ -67,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`#${MESSAGE_INDEX} Log message at ${currentTime}: ${line}`);
 
             const logMessage = logManager.addLogMessage(MESSAGE_INDEX, line);
+            console.log(logMessage);
 
             // If a rule is matched and it's either 'ERROR' or 'CRITICAL'
             if (logMessage && (logMessage.severity === 'ERROR' || logMessage.severity === 'CRITICAL')) {
@@ -74,6 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (logMessage.businessType) {
                     manager.toggleBusinessStatus(logMessage.businessType, 'disabled'); // Disable the business
                     console.log(`Business type '${logMessage.businessType}' has been disabled due to severity.`);
+                    archManager.toggleArchStatus(logMessage.businessType, 'disabled'); // Disable the component
+                    console.log(`Architecture Component API has been disabled due to severity.`);
                 }
             }
 
@@ -98,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Check if the matched rule affects a specific business type and update its status
                 if (matchedRule.businessType) {
                     manager.toggleBusinessStatus(matchedRule.businessType, 'operational'); // Re-enable the business
+                    archManager.toggleArchStatus(logMessage.businessType, 'operational'); // Re-enable the component
                 }
             }
 
@@ -129,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     manager.populateBusinessContainer();
+    archManager.populateArchitectureContainer();
     fetchLogData(); // Start the log fetching and processing
 });
 
