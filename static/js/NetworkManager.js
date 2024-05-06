@@ -45,9 +45,9 @@ export class NetworkManager {
         return new vis.Network(container, networkData, networkOptions);
     }
 
-    addNodeAndEdge(nodeIndex, color) {
+    addNodeAndEdge(nodeIndex, color, message) {
         // Access nodes and edges using this.nodes and this.edges
-        this.nodes.add({ id: nodeIndex, label: `Node ${nodeIndex}`, color: color });
+        this.nodes.add({ id: nodeIndex, label: `#${nodeIndex} ${message}`, color: color });
         if (nodeIndex > 1) {
             this.edges.add({ from: nodeIndex - 1, to: nodeIndex });
         }
