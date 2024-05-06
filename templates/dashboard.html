@@ -12,14 +12,14 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
     <script>
         function toggleDivVisibility(divId) {
-                const div = document.getElementById(divId);
-                if (!div) {
-                    console.error('Div not found with ID:', divId);
-                    return;
-                }
-
-                div.style.display = (div.style.display === 'none' ? 'block' : 'none');
+            const div = document.getElementById(divId);
+            if (!div) {
+                console.error('Div not found with ID:', divId);
+                return;
             }
+
+            div.style.display = (div.style.display === 'none' ? 'block' : 'none');
+        }
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
 </head>
@@ -31,6 +31,7 @@
         <div class="row h-70 border-bottom">
             <div class="col-md-3 column-border d-flex flex-column">
                 <h4>Eventos</h4>
+                
                 <!-- Container for log messages -->
                 <div id="log-container">
                 </div>
