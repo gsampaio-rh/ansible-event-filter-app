@@ -1,119 +1,203 @@
-2024-05-06 12:15:00 | AppServer | WARNING | User ID: 1073, System ID: 508, Error Code: 471 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
-2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1026, System ID: 571, Error Code: 484 | DataUpdated | Source: New Relic | Business Type: mobile_banking
-2024-05-06 12:15:00 | CloudResource | ERROR | User ID: 1044, System ID: 523, Error Code: 485 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams | Business Type: cartao_credito
-2024-05-06 12:15:00 | AppServer | ERROR | User ID: 1076, System ID: 525, Error Code: 498 | DataUpdated | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1026, System ID: 571, Error Code: 484 | DataUpdated | Source: New Relic | Business Type: mobile_banking
-2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1008, System ID: 528, Error Code: 425 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:30:00 | AppServer | WARNING | User ID: 1096, System ID: 541, Error Code: 485 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1010, System ID: 560, Error Code: 456 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
-2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1041, System ID: 566, Error Code: 411 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
 2024-05-06 12:30:00 | API | INFO | User ID: 1024, System ID: 544, Error Code: 449 | DataUpdated | Source: Microsoft Teams | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
 2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | ResourceLimitReached | Source: Google Cloud Operations | Business Type: conta_corrente
 2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
-2024-05-06 12:00:00 | API | INFO | User ID: 1060, System ID: 574, Error Code: 464 | DataCorruptionDetected | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1051, System ID: 513, Error Code: 475 | APICallFailure | Source: AWS CloudWatch | Business Type: pix
-2024-05-06 12:15:00 | WebServer | INFO | User ID: 1000, System ID: 538, Error Code: 480 | DataCorruptionDetected | Source: DataDog | Business Type: cartao_credito
-2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1094, System ID: 570, Error Code: 418 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
-2024-05-06 12:30:00 | UserAuth | WARNING | User ID: 1084, System ID: 597, Error Code: 458 | LoginFailure | Source: New Relic | Business Type: mobile_banking
-2024-05-06 12:30:00 | WebServer | ERROR | User ID: 1040, System ID: 502, Error Code: 408 | APICallFailure | Source: DataDog | Business Type: pix
-2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1008, System ID: 528, Error Code: 425 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:30:00 | AppServer | WARNING | User ID: 1096, System ID: 541, Error Code: 485 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1010, System ID: 560, Error Code: 456 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
-2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Slack | Business Type: mobile_banking
+2024-05-05 02:16:27 | SQL Database | CRITICAL | User ID: 1732, System ID: 771, Error Code: 383 | Storage Accessed | Source: GitHub | Business Type: cartao_credito
+2024-05-05 00:19:27 | SQL Database | INFO | User ID: 4600, System ID: 941, Error Code: 325 | ML Model Trained | Source: Grafana | Business Type: web_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Kafka | Business Type: cartao_credito
 2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1041, System ID: 566, Error Code: 411 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
-2024-05-06 12:30:00 | API | INFO | User ID: 1024, System ID: 544, Error Code: 449 | DataUpdated | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | ResourceLimitReached | Source: Google Cloud Operations | Business Type: conta_corrente
-2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
-2024-05-06 12:00:00 | API | INFO | User ID: 1060, System ID: 574, Error Code: 464 | DataCorruptionDetected | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-04 23:26:27 | Cloud Storage | CRITICAL | User ID: 7568, System ID: 285, Error Code: 497 | Security Check | Source: Google Cloud Operations | Business Type: web_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Slack | Business Type: mobile_banking
+2024-05-06 12:00:00 | API | INFO | User ID: 1060, System ID: 574, Error Code: 464 | DataCorruptionDetected | Source: Kafka| Business Type: cartao_credito
+2024-05-05 02:27:27 | DynamoDB | ERROR | User ID: 1928, System ID: 526, Error Code: 145 | ML Model Trained | Source: Amazon Kinesis | Business Type: cartao_credito
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | PerformanceAlert | Source: GitHub | Business Type: cartao_credito
 2024-05-06 12:00:00 | UserAuth | WARNING | User ID: 1041, System ID: 582, Error Code: 437 | APICallFailure | Source: Microsoft Teams | Business Type: pix
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
 2024-05-06 12:30:00 | API | WARNING | User ID: 1098, System ID: 582, Error Code: 423 | DataUpdated | Source: New Relic | Business Type: mobile_banking
 2024-05-06 12:15:00 | WebServer | ERROR | User ID: 1025, System ID: 547, Error Code: 472 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
 2024-05-06 12:15:00 | UserAuth | INFO | User ID: 1082, System ID: 538, Error Code: 457 | DataCorruptionDetected | Source: Google Cloud Operations | Business Type: cartao_credito
 2024-05-06 12:30:00 | AppServer | INFO | User ID: 1018, System ID: 557, Error Code: 453 | APICallFailure | Source: Google Cloud Operations | Business Type: pix
 2024-05-06 12:00:00 | Database | ERROR | User ID: 1082, System ID: 501, Error Code: 425 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
 2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1047, System ID: 580, Error Code: 429 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
 2024-05-06 12:30:00 | UserAuth | WARNING | User ID: 1051, System ID: 589, Error Code: 441 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
 2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1092, System ID: 577, Error Code: 466 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
 2024-05-06 12:00:00 | Database | WARNING | User ID: 1004, System ID: 587, Error Code: 474 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
 2024-05-06 12:00:00 | AppServer | WARNING | User ID: 1078, System ID: 519, Error Code: 429 | LoginFailure | Source: Google Cloud Operations | Business Type: mobile_banking
 2024-05-06 12:00:00 | CloudResource | WARNING | User ID: 1061, System ID: 540, Error Code: 434 | DataUpdated | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
 2024-05-06 12:00:00 | UserAuth | CRITICAL | User ID: 1021, System ID: 560, Error Code: 419 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
 2024-05-06 12:30:00 | UserAuth | ERROR | User ID: 1024, System ID: 536, Error Code: 477 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
 2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1051, System ID: 540, Error Code: 487 | APICallFailure | Source: AWS CloudWatch | Business Type: pix
-2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1020, System ID: 577, Error Code: 488 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
 2024-05-06 12:15:00 | WebServer | INFO | User ID: 1002, System ID: 503, Error Code: 409 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:00:00 | Database | CRITICAL | User ID: 1045, System ID: 550, Error Code: 427 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:15:00 | Database | WARNING | User ID: 1099, System ID: 568, Error Code: 415 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
-2024-05-06 12:30:00 | WebServer | CRITICAL | User ID: 1098, System ID: 597, Error Code: 424 | APICallFailure | Source: DataDog | Business Type: pix
-2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1061, System ID: 502, Error Code: 406 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:30:00 | API | ERROR | User ID: 1083, System ID: 509, Error Code: 455 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
-2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1039, System ID: 523, Error Code: 452 | LoginSuccess | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:15:00 | API | INFO | User ID: 1045, System ID: 519, Error Code: 405 | LoginFailure | Source: Google Cloud Operations | Business Type: mobile_banking
-2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1098, System ID: 553, Error Code: 474 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
-2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1018, System ID: 578, Error Code: 422 | LoginFailure | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:30:00 | Database | INFO | User ID: 1041, System ID: 518, Error Code: 429 | PerformanceAlert | Source: Microsoft Teams | Business Type: cartao_credito
-2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1005, System ID: 578, Error Code: 401 | DataCorruptionDetected | Source: Google Cloud Operations | Business Type: cartao_credito
-2024-05-06 12:30:00 | API | INFO | User ID: 1092, System ID: 536, Error Code: 452 | APICallFailure | Source: AWS CloudWatch | Business Type: pix
-2024-05-06 12:30:00 | UserAuth | INFO | User ID: 1094, System ID: 567, Error Code: 457 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
-2024-05-06 12:00:00 | API | ERROR | User ID: 1083, System ID: 574, Error Code: 483 | LoginSuccess | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:00:00 | UserAuth | CRITICAL | User ID: 1068, System ID: 530, Error Code: 462 | LoginSuccess | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1040, System ID: 514, Error Code: 439 | LoginFailure | Source: New Relic | Business Type: mobile_banking
-2024-05-06 12:00:00 | CloudResource | WARNING | User ID: 1084, System ID: 518, Error Code: 400 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
-2024-05-06 12:00:00 | Database | WARNING | User ID: 1025, System ID: 566, Error Code: 470 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
-2024-05-06 12:00:00 | WebServer | INFO | User ID: 1017, System ID: 589, Error Code: 413 | APICallFailure | Source: DataDog | Business Type: pix
-2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1019, System ID: 537, Error Code: 427 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
-2024-05-06 12:15:00 | CloudResource | INFO | User ID: 1077, System ID: 539, Error Code: 428 | DataCorruptionDetected | Source: Microsoft Teams | Business Type: cartao_credito
-2024-05-06 12:15:00 | Database | WARNING | User ID: 1083, System ID: 514, Error Code: 472 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
-2024-05-06 12:00:00 | Database | ERROR | User ID: 1031, System ID: 569, Error Code: 406 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
-2024-05-06 12:00:00 | WebServer | CRITICAL | User ID: 1054, System ID: 578, Error Code: 474 | PerformanceAlert | Source: New Relic | Business Type: cartao_credito
-2024-05-06 12:30:00 | UserAuth | INFO | User ID: 1027, System ID: 561, Error Code: 404 | LoginFailure | Source: DataDog | Business Type: mobile_banking
-2024-05-06 12:00:00 | AppServer | WARNING | User ID: 1092, System ID: 586, Error Code: 492 | APICallFailure | Source: New Relic | Business Type: pix
-2024-05-06 12:15:00 | AppServer | WARNING | User ID: 1009, System ID: 595, Error Code: 419 | LoginFailure | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1005, System ID: 529, Error Code: 463 | DataUpdated | Source: New Relic | Business Type: mobile_banking
-2024-05-06 12:00:00 | UserAuth | WARNING | User ID: 1091, System ID: 590, Error Code: 401 | LoginSuccess | Source: New Relic | Business Type: mobile_banking
-2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1021, System ID: 527, Error Code: 404 | LoginSuccess | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:00:00 | WebServer | CRITICAL | User ID: 1004, System ID: 588, Error Code: 455 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | AppServer | WARNING | User ID: 1073, System ID: 508, Error Code: 471 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1026, System ID: 571, Error Code: 484 | DataUpdated | Source: New Relic | Business Type: mobile_banking
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams | Business Type: cartao_credito
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Slack | Business Type: conta_corrente
+2024-05-06 12:15:00 | AppServer | ERROR | User ID: 1076, System ID: 525, Error Code: 498 | DataUpdated | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1008, System ID: 528, Error Code: 425 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
 2024-05-06 12:30:00 | AppServer | WARNING | User ID: 1096, System ID: 541, Error Code: 485 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:15:00 | API | ERROR | User ID: 1013, System ID: 538, Error Code: 440 | LoginFailure | Source: New Relic | Business Type: mobile_banking
-2024-05-06 12:00:00 | AppServer | CRITICAL | User ID: 1065, System ID: 507, Error Code: 479 | LoginFailure | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:30:00 | AppServer | ERROR | User ID: 1098, System ID: 598, Error Code: 412 | APICallFailure | Source: New Relic | Business Type: pix
-2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1005, System ID: 517, Error Code: 439 | DataCorruptionDetected | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:30:00 | CloudResource | ERROR | User ID: 1074, System ID: 570, Error Code: 406 | DataCorruptionDetected | Source: Google Cloud Operations | Business Type: cartao_credito
-2024-05-06 12:30:00 | AppServer | ERROR | User ID: 1097, System ID: 525, Error Code: 402 | APICallFailure | Source: Google Cloud Operations | Business Type: pix
-2024-05-06 12:30:00 | API | INFO | User ID: 1075, System ID: 501, Error Code: 468 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
-2024-05-06 12:00:00 | API | WARNING | User ID: 1032, System ID: 543, Error Code: 401 | DataUpdated | Source: New Relic | Business Type: mobile_banking
-2024-05-06 12:30:00 | AppServer | INFO | User ID: 1055, System ID: 530, Error Code: 496 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:30:00 | Database | INFO | User ID: 1099, System ID: 500, Error Code: 448 | DataCorruptionDetected | Source: Google Cloud Operations | Business Type: cartao_credito
-2024-05-06 12:00:00 | Database | INFO | User ID: 1046, System ID: 501, Error Code: 468 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
-2024-05-06 12:15:00 | CloudResource | WARNING | User ID: 1003, System ID: 595, Error Code: 485 | PerformanceAlert | Source: DataDog | Business Type: cartao_credito
-2024-05-06 12:30:00 | UserAuth | WARNING | User ID: 1088, System ID: 584, Error Code: 438 | DataCorruptionDetected | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:15:00 | CloudResource | WARNING | User ID: 1053, System ID: 579, Error Code: 414 | APICallFailure | Source: Google Cloud Operations | Business Type: pix
-2024-05-06 12:00:00 | WebServer | ERROR | User ID: 1073, System ID: 574, Error Code: 420 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
-2024-05-06 12:15:00 | UserAuth | INFO | User ID: 1008, System ID: 512, Error Code: 445 | LoginFailure | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:15:00 | UserAuth | INFO | User ID: 1049, System ID: 539, Error Code: 417 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
-2024-05-06 12:00:00 | API | CRITICAL | User ID: 1027, System ID: 575, Error Code: 452 | LoginSuccess | Source: AWS CloudWatch | Business Type: mobile_banking
-2024-05-06 12:30:00 | UserAuth | INFO | User ID: 1068, System ID: 533, Error Code: 411 | LoginFailure | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:00:00 | AppServer | CRITICAL | User ID: 1078, System ID: 593, Error Code: 460 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:30:00 | AppServer | INFO | User ID: 1036, System ID: 564, Error Code: 498 | APICallFailure | Source: AWS CloudWatch | Business Type: pix
-2024-05-06 12:00:00 | AppServer | ERROR | User ID: 1090, System ID: 566, Error Code: 441 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:15:00 | AppServer | INFO | User ID: 1041, System ID: 583, Error Code: 443 | PerformanceAlert | Source: AWS CloudWatch | Business Type: cartao_credito
-2024-05-06 12:15:00 | WebServer | INFO | User ID: 1036, System ID: 517, Error Code: 431 | DataUpdated | Source: New Relic | Business Type: mobile_banking
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1010, System ID: 560, Error Code: 456 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
 2024-05-06 12:30:00 | API | INFO | User ID: 1024, System ID: 544, Error Code: 449 | DataUpdated | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:30:00 | WebServer | INFO | User ID: 1072, System ID: 556, Error Code: 488 | LoginSuccess | Source: Microsoft Teams | Business Type: mobile_banking
-2024-05-06 12:30:00 | WebServer | WARNING | User ID: 1055, System ID: 563, Error Code: 431 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:30:00 | WebServer | ERROR | User ID: 1064, System ID: 593, Error Code: 466 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
-2024-05-06 12:00:00 | UserAuth | ERROR | User ID: 1052, System ID: 560, Error Code: 464 | APICallFailure | Source: Microsoft Teams | Business Type: pix
-2024-05-06 12:00:00 | CloudResource | CRITICAL | User ID: 1097, System ID: 590, Error Code: 412 | PerformanceAlert | Source: Google Cloud Operations | Business Type: cartao_credito
-2024-05-06 12:30:00 | UserAuth | ERROR | User ID: 1097, System ID: 526, Error Code: 479 | DataCorruptionDetected | Source: Azure DevOps | Business Type: cartao_credito
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1099, System ID: 515, Error Code: 423 | DataUpdated | Source: DataDog | Business Type: mobile_banking
-2024-05-06 12:00:00 | API | ERROR | User ID: 1057, System ID: 597, Error Code: 466 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
-2024-05-05 01:40:27 | Machine Learning Service | ERROR | User ID: 7664, System ID: 801, Error Code: 401 | Deployment Failed | Source: DataDog | Business Type: mobile_banking
-2024-05-05 00:38:27 | Compute Engine | ERROR | User ID: 7343, System ID: 485, Error Code: 483 | VM Started | Source: Google Cloud Operations | Business Type: pix
-2024-05-04 20:35:27 | VMware | INFO | User ID: 2113, System ID: 529, Error Code: 313 | Container Deployed | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | ResourceLimitReached | Source: Google Cloud Operations | Business Type: conta_corrente
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Slack | Business Type: mobile_banking
+2024-05-05 02:16:27 | SQL Database | CRITICAL | User ID: 1732, System ID: 771, Error Code: 383 | Storage Accessed | Source: GitHub | Business Type: cartao_credito
+2024-05-05 00:19:27 | SQL Database | INFO | User ID: 4600, System ID: 941, Error Code: 325 | ML Model Trained | Source: Grafana | Business Type: web_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Kafka | Business Type: cartao_credito
+2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1041, System ID: 566, Error Code: 411 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-04 23:26:27 | Cloud Storage | CRITICAL | User ID: 7568, System ID: 285, Error Code: 497 | Security Check | Source: Google Cloud Operations | Business Type: web_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Slack | Business Type: mobile_banking
+2024-05-06 12:00:00 | API | INFO | User ID: 1060, System ID: 574, Error Code: 464 | DataCorruptionDetected | Source: Kafka| Business Type: cartao_credito
+2024-05-05 02:27:27 | DynamoDB | ERROR | User ID: 1928, System ID: 526, Error Code: 145 | ML Model Trained | Source: Amazon Kinesis | Business Type: cartao_credito
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | PerformanceAlert | Source: GitHub | Business Type: cartao_credito
+2024-05-06 12:00:00 | UserAuth | WARNING | User ID: 1041, System ID: 582, Error Code: 437 | APICallFailure | Source: Microsoft Teams | Business Type: pix
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:30:00 | API | WARNING | User ID: 1098, System ID: 582, Error Code: 423 | DataUpdated | Source: New Relic | Business Type: mobile_banking
+2024-05-06 12:15:00 | WebServer | ERROR | User ID: 1025, System ID: 547, Error Code: 472 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
+2024-05-06 12:15:00 | UserAuth | INFO | User ID: 1082, System ID: 538, Error Code: 457 | DataCorruptionDetected | Source: Google Cloud Operations | Business Type: cartao_credito
+2024-05-06 12:30:00 | AppServer | INFO | User ID: 1018, System ID: 557, Error Code: 453 | APICallFailure | Source: Google Cloud Operations | Business Type: pix
+2024-05-06 12:00:00 | Database | ERROR | User ID: 1082, System ID: 501, Error Code: 425 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1047, System ID: 580, Error Code: 429 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
+2024-05-06 12:30:00 | UserAuth | WARNING | User ID: 1051, System ID: 589, Error Code: 441 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1092, System ID: 577, Error Code: 466 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:00:00 | Database | WARNING | User ID: 1004, System ID: 587, Error Code: 474 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:00:00 | AppServer | WARNING | User ID: 1078, System ID: 519, Error Code: 429 | LoginFailure | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:00:00 | CloudResource | WARNING | User ID: 1061, System ID: 540, Error Code: 434 | DataUpdated | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
+2024-05-06 12:00:00 | UserAuth | CRITICAL | User ID: 1021, System ID: 560, Error Code: 419 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
+2024-05-06 12:30:00 | UserAuth | ERROR | User ID: 1024, System ID: 536, Error Code: 477 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1051, System ID: 540, Error Code: 487 | APICallFailure | Source: AWS CloudWatch | Business Type: pix
+2024-05-06 12:15:00 | WebServer | INFO | User ID: 1002, System ID: 503, Error Code: 409 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | AppServer | WARNING | User ID: 1073, System ID: 508, Error Code: 471 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1026, System ID: 571, Error Code: 484 | DataUpdated | Source: New Relic | Business Type: mobile_banking
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams | Business Type: cartao_credito
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Slack | Business Type: conta_corrente
+2024-05-06 12:15:00 | AppServer | ERROR | User ID: 1076, System ID: 525, Error Code: 498 | DataUpdated | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1008, System ID: 528, Error Code: 425 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:30:00 | AppServer | WARNING | User ID: 1096, System ID: 541, Error Code: 485 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1010, System ID: 560, Error Code: 456 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | INFO | User ID: 1024, System ID: 544, Error Code: 449 | DataUpdated | Source: Microsoft Teams | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | ResourceLimitReached | Source: Google Cloud Operations | Business Type: conta_corrente
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Slack | Business Type: mobile_banking
+2024-05-05 02:16:27 | SQL Database | CRITICAL | User ID: 1732, System ID: 771, Error Code: 383 | Storage Accessed | Source: GitHub | Business Type: cartao_credito
+2024-05-05 00:19:27 | SQL Database | INFO | User ID: 4600, System ID: 941, Error Code: 325 | ML Model Trained | Source: Grafana | Business Type: web_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Kafka | Business Type: cartao_credito
+2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1041, System ID: 566, Error Code: 411 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-04 23:26:27 | Cloud Storage | CRITICAL | User ID: 7568, System ID: 285, Error Code: 497 | Security Check | Source: Google Cloud Operations | Business Type: web_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Slack | Business Type: mobile_banking
+2024-05-06 12:00:00 | API | INFO | User ID: 1060, System ID: 574, Error Code: 464 | DataCorruptionDetected | Source: Kafka| Business Type: cartao_credito
+2024-05-05 02:27:27 | DynamoDB | ERROR | User ID: 1928, System ID: 526, Error Code: 145 | ML Model Trained | Source: Amazon Kinesis | Business Type: cartao_credito
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | PerformanceAlert | Source: GitHub | Business Type: cartao_credito
+2024-05-06 12:00:00 | UserAuth | WARNING | User ID: 1041, System ID: 582, Error Code: 437 | APICallFailure | Source: Microsoft Teams | Business Type: pix
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:30:00 | API | WARNING | User ID: 1098, System ID: 582, Error Code: 423 | DataUpdated | Source: New Relic | Business Type: mobile_banking
+2024-05-06 12:15:00 | WebServer | ERROR | User ID: 1025, System ID: 547, Error Code: 472 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
+2024-05-06 12:15:00 | UserAuth | INFO | User ID: 1082, System ID: 538, Error Code: 457 | DataCorruptionDetected | Source: Google Cloud Operations | Business Type: cartao_credito
+2024-05-06 12:30:00 | AppServer | INFO | User ID: 1018, System ID: 557, Error Code: 453 | APICallFailure | Source: Google Cloud Operations | Business Type: pix
+2024-05-06 12:00:00 | Database | ERROR | User ID: 1082, System ID: 501, Error Code: 425 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1047, System ID: 580, Error Code: 429 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
+2024-05-06 12:30:00 | UserAuth | WARNING | User ID: 1051, System ID: 589, Error Code: 441 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1092, System ID: 577, Error Code: 466 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:00:00 | Database | WARNING | User ID: 1004, System ID: 587, Error Code: 474 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:00:00 | AppServer | WARNING | User ID: 1078, System ID: 519, Error Code: 429 | LoginFailure | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:00:00 | CloudResource | WARNING | User ID: 1061, System ID: 540, Error Code: 434 | DataUpdated | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
+2024-05-06 12:00:00 | UserAuth | CRITICAL | User ID: 1021, System ID: 560, Error Code: 419 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
+2024-05-06 12:30:00 | UserAuth | ERROR | User ID: 1024, System ID: 536, Error Code: 477 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1051, System ID: 540, Error Code: 487 | APICallFailure | Source: AWS CloudWatch | Business Type: pix
+2024-05-06 12:15:00 | WebServer | INFO | User ID: 1002, System ID: 503, Error Code: 409 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | AppServer | WARNING | User ID: 1073, System ID: 508, Error Code: 471 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1026, System ID: 571, Error Code: 484 | DataUpdated | Source: New Relic | Business Type: mobile_banking
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams | Business Type: cartao_credito
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Slack | Business Type: conta_corrente
+2024-05-06 12:15:00 | AppServer | ERROR | User ID: 1076, System ID: 525, Error Code: 498 | DataUpdated | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1008, System ID: 528, Error Code: 425 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:30:00 | AppServer | WARNING | User ID: 1096, System ID: 541, Error Code: 485 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1010, System ID: 560, Error Code: 456 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | INFO | User ID: 1024, System ID: 544, Error Code: 449 | DataUpdated | Source: Microsoft Teams | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | ResourceLimitReached | Source: Google Cloud Operations | Business Type: conta_corrente
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Slack | Business Type: mobile_banking
+2024-05-05 02:16:27 | SQL Database | CRITICAL | User ID: 1732, System ID: 771, Error Code: 383 | Storage Accessed | Source: GitHub | Business Type: cartao_credito
+2024-05-05 00:19:27 | SQL Database | INFO | User ID: 4600, System ID: 941, Error Code: 325 | ML Model Trained | Source: Grafana | Business Type: web_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Kafka | Business Type: cartao_credito
+2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1041, System ID: 566, Error Code: 411 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-04 23:26:27 | Cloud Storage | CRITICAL | User ID: 7568, System ID: 285, Error Code: 497 | Security Check | Source: Google Cloud Operations | Business Type: web_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Slack | Business Type: mobile_banking
+2024-05-06 12:00:00 | API | INFO | User ID: 1060, System ID: 574, Error Code: 464 | DataCorruptionDetected | Source: Kafka| Business Type: cartao_credito
+2024-05-05 02:27:27 | DynamoDB | ERROR | User ID: 1928, System ID: 526, Error Code: 145 | ML Model Trained | Source: Amazon Kinesis | Business Type: cartao_credito
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | PerformanceAlert | Source: GitHub | Business Type: cartao_credito
+2024-05-06 12:00:00 | UserAuth | WARNING | User ID: 1041, System ID: 582, Error Code: 437 | APICallFailure | Source: Microsoft Teams | Business Type: pix
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:30:00 | API | WARNING | User ID: 1098, System ID: 582, Error Code: 423 | DataUpdated | Source: New Relic | Business Type: mobile_banking
+2024-05-06 12:15:00 | WebServer | ERROR | User ID: 1025, System ID: 547, Error Code: 472 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
+2024-05-06 12:15:00 | UserAuth | INFO | User ID: 1082, System ID: 538, Error Code: 457 | DataCorruptionDetected | Source: Google Cloud Operations | Business Type: cartao_credito
+2024-05-06 12:30:00 | AppServer | INFO | User ID: 1018, System ID: 557, Error Code: 453 | APICallFailure | Source: Google Cloud Operations | Business Type: pix
+2024-05-06 12:00:00 | Database | ERROR | User ID: 1082, System ID: 501, Error Code: 425 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1047, System ID: 580, Error Code: 429 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
+2024-05-06 12:30:00 | UserAuth | WARNING | User ID: 1051, System ID: 589, Error Code: 441 | ResourceLimitReached | Source: New Relic | Business Type: conta_corrente
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1092, System ID: 577, Error Code: 466 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:00:00 | Database | WARNING | User ID: 1004, System ID: 587, Error Code: 474 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:00:00 | AppServer | WARNING | User ID: 1078, System ID: 519, Error Code: 429 | LoginFailure | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:00:00 | CloudResource | WARNING | User ID: 1061, System ID: 540, Error Code: 434 | DataUpdated | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Azure DevOps | Business Type: conta_corrente
+2024-05-06 12:00:00 | UserAuth | CRITICAL | User ID: 1021, System ID: 560, Error Code: 419 | ResourceLimitReached | Source: AWS CloudWatch | Business Type: conta_corrente
+2024-05-06 12:30:00 | UserAuth | ERROR | User ID: 1024, System ID: 536, Error Code: 477 | LoginSuccess | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1051, System ID: 540, Error Code: 487 | APICallFailure | Source: AWS CloudWatch | Business Type: pix
+2024-05-06 12:15:00 | WebServer | INFO | User ID: 1002, System ID: 503, Error Code: 409 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | APICallFailure | Source: Azure DevOps | Business Type: pix
+2024-05-06 12:15:00 | AppServer | WARNING | User ID: 1073, System ID: 508, Error Code: 471 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1026, System ID: 571, Error Code: 484 | DataUpdated | Source: New Relic | Business Type: mobile_banking
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations | Business Type: mobile_banking
+2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams | Business Type: cartao_credito
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | ResourceLimitReached | Source: Slack | Business Type: conta_corrente
+2024-05-06 12:15:00 | AppServer | ERROR | User ID: 1076, System ID: 525, Error Code: 498 | DataUpdated | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1008, System ID: 528, Error Code: 425 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps | Business Type: cartao_credito
+2024-05-06 12:30:00 | AppServer | WARNING | User ID: 1096, System ID: 541, Error Code: 485 | LoginFailure | Source: AWS CloudWatch | Business Type: mobile_banking
+2024-05-06 12:15:00 | CloudResource | CRITICAL | User ID: 1044, System ID: 523, Error Code: 485 | LoginFailure | Source: Azure DevOps | Business Type: mobile_banking
+2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1010, System ID: 560, Error Code: 456 | LoginSuccess | Source: DataDog | Business Type: mobile_banking
 2024-05-05 14:29:27 | Cloud Storage | CRITICAL | User ID: 9936, System ID: 999, Error Code: 208 | ML Model Trained | Source: Google Cloud Operations | Business Type: web_banking
 2024-05-05 04:08:27 | Machine Learning Service | INFO | User ID: 2929, System ID: 108, Error Code: 216 | Data Synced | Source: New Relic | Business Type: cartao_credito
 2024-05-04 23:59:27 | Machine Learning Service | CRITICAL | User ID: 9152, System ID: 693, Error Code: 319 | Stream Processed | Source: AWS CloudWatch | Business Type: web_banking

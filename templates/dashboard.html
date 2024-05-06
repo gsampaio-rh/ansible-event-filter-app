@@ -10,6 +10,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Include Vis.js -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <script>
+        function toggleDivVisibility(divId) {
+                const div = document.getElementById(divId);
+                if (!div) {
+                    console.error('Div not found with ID:', divId);
+                    return;
+                }
+
+                div.style.display = (div.style.display === 'none' ? 'block' : 'none');
+            }
+    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -25,12 +36,13 @@
                 </div>
             </div>
             <div class="col-md-3 column-border d-flex flex-column">
-                <h4>Event-Driven Ansible</h4>
-                    <div id="notification-container">
-                    </div>
+                <h4 onclick="toggleDivVisibility('notification-container');">Event-Driven Ansible</h4>
+                <div id="notification-container">
+                </div>
             </div>
             <div class="col-md-3 column-border d-flex flex-column">
-                <h4>Ansible Playbooks</h4>
+                <!-- <h4>Ansible Playbooks</h4> -->
+                <h4 onclick="toggleDivVisibility('playbooks-container');">Ansible Playbooks</h4>
                 <!-- Playbooks container -->
                 <div id="playbooks-container">
                     <!-- Placeholder for playbook cards -->
@@ -48,12 +60,12 @@
         <!-- SECOND ROW -->
         <div class="row h-30">
             <div class="col-md-3 column-border d-flex flex-column">
-                <h4>Grafo</h4>
+                <h4>Events Network</h4>
                 <!-- Node graph container -->
                 <div id="network" class="bottom-row"></div>
             </div>
             <div class="col-md-9 column-border d-flex flex-column">
-                <h4>Business</h4>
+                <!-- <h4>Business</h4> -->
                 
             </div>
         </div>

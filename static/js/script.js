@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // Constants for message and node handling
-    const MESSAGE_LOGGING_INTERVAL = 2000; // Interval for logging messages
+    const MESSAGE_LOGGING_INTERVAL = 1000; // Interval for logging messages
     const MESSAGE_REMOVAL_TIMEOUT = MESSAGE_LOGGING_INTERVAL * 20; // Time after which a message is removed
     const colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548'];
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentLine < fileLines.length) {
             const line = fileLines[currentLine++];
             console.log(`#${MESSAGE_INDEX} Log message at ${currentTime}: ${line}`)
-            const logMessage = logManager.addLogMessage(`${line}`);
+            const logMessage = logManager.addLogMessage(MESSAGE_INDEX, line);
 
             // If a rule is matched and it's either 'ERROR' or 'CRITICAL'
             if (logMessage && (logMessage.severity === 'ERROR' || logMessage.severity === 'CRITICAL')) {

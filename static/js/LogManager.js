@@ -29,10 +29,10 @@ export class LogManager {
         };
     }
 
-    addLogMessage(message) {
+    addLogMessage(id, message) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `log-message ${this.getMessageType(message)}`;
-        messageDiv.innerHTML = this.formatMessage(message);
+        messageDiv.innerHTML = this.formatMessage(id, message);
 
         // Extract the log message fields
         const fields = this.extractFieldsFromMessage(message);
@@ -63,7 +63,7 @@ export class LogManager {
         }
     }
 
-    formatMessage(message) {
+    formatMessage(id, message) {
         const parts = message.split('|');
         const datetime = parts[0].trim();
         const eventName = parts[1].trim();
@@ -76,7 +76,7 @@ export class LogManager {
         return `
             <div class="log-message-header">
                 <strong>${eventName}</strong>
-                <div class="log-timestamp">${datetime}</div>
+                <div class="log-timestamp">#${id} - ${datetime}</div>
                 <div class="log-event-message">${eventMessage} - ${businessType}</div>
             </div>
             <div class="log-details hidden">
