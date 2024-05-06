@@ -1,40 +1,41 @@
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
-
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps
 2024-05-06 12:15:00 | AppServer | WARNING | User ID: 1073, System ID: 508, Error Code: 471 | LoginFailure | Source: Azure DevOps
 2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1026, System ID: 571, Error Code: 484 | DataUpdated | Source: New Relic
 2024-05-06 12:15:00 | CloudResource | ERROR | User ID: 1044, System ID: 523, Error Code: 485 | PerformanceAlert | Source: Azure DevOps
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations
 2024-05-06 12:00:00 | WebServer | WARNING | User ID: 1061, System ID: 584, Error Code: 406 | PerformanceAlert | Source: Microsoft Teams
 2024-05-06 12:15:00 | AppServer | ERROR | User ID: 1076, System ID: 525, Error Code: 498 | DataUpdated | Source: AWS CloudWatch
-2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps
 2024-05-06 12:00:00 | CloudResource | ERROR | User ID: 1026, System ID: 571, Error Code: 484 | DataUpdated | Source: New Relic
 2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1008, System ID: 528, Error Code: 425 | PerformanceAlert | Source: Azure DevOps
 2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps
+2024-05-06 12:30:00 | AppServer | WARNING | User ID: 1096, System ID: 541, Error Code: 485 | LoginFailure | Source: AWS CloudWatch
 2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1010, System ID: 560, Error Code: 456 | LoginSuccess | Source: DataDog
 2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1041, System ID: 566, Error Code: 411 | LoginSuccess | Source: Google Cloud Operations
+2024-05-06 12:30:00 | API | INFO | User ID: 1024, System ID: 544, Error Code: 449 | DataUpdated | Source: Microsoft Teams
 2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | ResourceLimitReached | Source: Google Cloud Operations
 2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | LoginFailure | Source: Azure DevOps
 2024-05-06 12:00:00 | API | INFO | User ID: 1060, System ID: 574, Error Code: 464 | DataCorruptionDetected | Source: Azure DevOps
+2024-05-06 12:15:00 | Database | CRITICAL | User ID: 1036, System ID: 526, Error Code: 418 | PerformanceAlert | Source: Azure DevOps
 2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1051, System ID: 513, Error Code: 475 | APICallFailure | Source: AWS CloudWatch
 2024-05-06 12:15:00 | WebServer | INFO | User ID: 1000, System ID: 538, Error Code: 480 | DataCorruptionDetected | Source: DataDog
 2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1094, System ID: 570, Error Code: 418 | LoginSuccess | Source: Google Cloud Operations
 2024-05-06 12:30:00 | UserAuth | WARNING | User ID: 1084, System ID: 597, Error Code: 458 | LoginFailure | Source: New Relic
 2024-05-06 12:30:00 | WebServer | ERROR | User ID: 1040, System ID: 502, Error Code: 408 | APICallFailure | Source: DataDog
+2024-05-06 12:30:00 | AppServer | CRITICAL | User ID: 1008, System ID: 528, Error Code: 425 | PerformanceAlert | Source: Azure DevOps
+2024-05-06 12:30:00 | AppServer | WARNING | User ID: 1096, System ID: 541, Error Code: 485 | LoginFailure | Source: AWS CloudWatch
+2024-05-06 12:15:00 | WebServer | CRITICAL | User ID: 1010, System ID: 560, Error Code: 456 | LoginSuccess | Source: DataDog
+2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations
+2024-05-06 12:15:00 | AppServer | CRITICAL | User ID: 1041, System ID: 566, Error Code: 411 | LoginSuccess | Source: Google Cloud Operations
+2024-05-06 12:30:00 | API | INFO | User ID: 1024, System ID: 544, Error Code: 449 | DataUpdated | Source: Microsoft Teams
+2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1057, System ID: 579, Error Code: 493 | ResourceLimitReached | Source: Google Cloud Operations
+2024-05-06 12:30:00 | API | ERROR | User ID: 1085, System ID: 521, Error Code: 439 | LoginFailure | Source: Azure DevOps
+2024-05-06 12:00:00 | API | INFO | User ID: 1060, System ID: 574, Error Code: 464 | DataCorruptionDetected | Source: Azure DevOps
 2024-05-06 12:00:00 | UserAuth | WARNING | User ID: 1041, System ID: 582, Error Code: 437 | APICallFailure | Source: Microsoft Teams
 2024-05-06 12:30:00 | API | WARNING | User ID: 1098, System ID: 582, Error Code: 423 | DataUpdated | Source: New Relic
 2024-05-06 12:15:00 | WebServer | ERROR | User ID: 1025, System ID: 547, Error Code: 472 | LoginSuccess | Source: Azure DevOps
 2024-05-06 12:15:00 | UserAuth | INFO | User ID: 1082, System ID: 538, Error Code: 457 | DataCorruptionDetected | Source: Google Cloud Operations
 2024-05-06 12:30:00 | AppServer | INFO | User ID: 1018, System ID: 557, Error Code: 453 | APICallFailure | Source: Google Cloud Operations
 2024-05-06 12:00:00 | Database | ERROR | User ID: 1082, System ID: 501, Error Code: 425 | APICallFailure | Source: Azure DevOps
-2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1096, System ID: 556, Error Code: 410 | LoginSuccess | Source: Google Cloud Operations
 2024-05-06 12:15:00 | WebServer | WARNING | User ID: 1047, System ID: 580, Error Code: 429 | ResourceLimitReached | Source: AWS CloudWatch
 2024-05-06 12:30:00 | UserAuth | WARNING | User ID: 1051, System ID: 589, Error Code: 441 | ResourceLimitReached | Source: New Relic
 2024-05-06 12:15:00 | UserAuth | ERROR | User ID: 1092, System ID: 577, Error Code: 466 | LoginFailure | Source: Azure DevOps

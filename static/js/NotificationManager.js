@@ -40,7 +40,7 @@ export class NotificationManager {
         const eventName = matchedRule.name;
         const auditRule = matchedRule.condition; // This is just a placeholder, adjust as needed
         const eventFireAt = currentTime; // Using current time as fired at time
-        const actionName = matchedRule.actionName;
+        // const actionName = matchedRule.actionName;
         const businessType = matchedRule.businessType;
 
         const notificationDiv = document.createElement('div');

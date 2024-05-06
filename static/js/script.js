@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // Constants for message and node handling
-    const MESSAGE_LOGGING_INTERVAL = 3000; // Interval for logging messages
+    const MESSAGE_LOGGING_INTERVAL = 2000; // Interval for logging messages
     const MESSAGE_REMOVAL_TIMEOUT = MESSAGE_LOGGING_INTERVAL * 20; // Time after which a message is removed
     const colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548'];
 
@@ -82,40 +82,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const line = fileLines[currentLine++];
             console.log(`Log message at ${currentTime}: ${line}`)
             logManager.addLogMessage(`${line}`);
+            
             // Assuming we have the JSON data loaded into `jsonRules`
             const matchedRule = logManager.evaluateLogMessage(`${line}`);
+            
             // If a rule is matched
             if (matchedRule) {
                 console.log(`Rule triggered: ${matchedRule}`);
                 notificationManager.addNotification(matchedRule);
+
+                // Create and add a new playbook with dynamic status
+                const statusOptions = ['pending', 'active', 'failed']; // Example status options
+                const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
+                const newPlaybook = {
+                    name: `${matchedRule.actionName}`,
+                    description: `Playbook ID ${matchedRule.id}`,
+                    lastUpdated: currentTime, // Add formatted datetime here
+                    status: randomStatus // Dynamic status
+                };
+
+                playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
+
             }
+            
         } else {
             logManager.addLogMessage(`No more lines to read.`);
         }
-
-        // if (++notificationCounter % 2 === 0) {
-        //     // Select a random entry from the JSON data
-        //     const randomEntry = auditJsonData.results[Math.floor(Math.random() * auditJsonData.results.length)];
-        //     const eventId = randomEntry.id;
-        //     const eventName = randomEntry.name;
-        //     const auditRule = randomEntry.activation_instance.id;
-        //     const eventFireAt = randomEntry.fired_at;
-        //     console.log(randomEntry)
-        //     // Use the 'name' and 'status' of the random entry to generate the notification
-        //     notificationManager.addNotification(eventId, eventName, auditRule, eventFireAt);
-        // }
-
-        // Create and add a new playbook with dynamic status
-        // const statusOptions = ['pending', 'active', 'failed']; // Example status options
-        // const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
-        // const newPlaybook = {
-        //     name: `Playbook ${MESSAGE_INDEX}`,
-        //     description: `Description of Playbook ${MESSAGE_INDEX}`,
-        //     lastUpdated: currentTime, // Add formatted datetime here
-        //     status: randomStatus // Dynamic status
-        // };
-
-        // playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
 
         networkManager.addNodeAndEdge(MESSAGE_INDEX, colors[MESSAGE_INDEX % colors.length]);
 
