@@ -11,7 +11,7 @@
   ],
   "rules": [
     {
-      "name": "Falha de Login Crítica",
+      "name": "Falha de Login Crítica no Mobile Banking",
       "condition": "(event.payload.system == \"CloudResource\" and event.payload.severity == \"CRITICAL\" and event.payload.message == \"LoginFailure\")",
       "action": {
         "run_job_template": {
@@ -27,7 +27,7 @@
       }
     },
     {
-      "name": "Erro de API",
+      "name": "Análise e Correção de Erros Críticos na API do Pix",
       "condition": "(event.payload.system == \"API\" and event.payload.message == \"APICallFailure\")",
       "action": {
         "run_job_template": {
@@ -43,7 +43,7 @@
       }
     },
     {
-      "name": "Limite de Recursos Atingido",
+      "name": "Gestão de Capacidade em Contas Correntes por Excesso de Limite",
       "condition": "(event.payload.system == \"Database\" and event.payload.message == \"ResourceLimitReached\")",
       "action": {
         "run_job_template": {
@@ -59,7 +59,7 @@
       }
     },
     {
-      "name": "Falhas Críticas de Banco de Dados",
+      "name": "Falhas Críticas de Banco de Dados serviço de Cartões de Crédito",
       "condition": "(event.payload.system == \"Database\" and event.payload.severity == \"CRITICAL\")",
       "action": {
         "run_job_template": {
@@ -75,7 +75,7 @@
       }
     },
     {
-      "name": "Alertas de Performance com Impacto Potencial",
+      "name": "Otimização Proativa de Performance para Transações de Cartão de Crédito",
       "condition": "(event.payload.system == \"WebServer\" and event.payload.severity == \"WARNING\" and event.payload.message == \"PerformanceAlert\")",
       "action": {
         "run_job_template": {
@@ -91,7 +91,7 @@
       }
     },
     {
-      "name": "Sucessos de Login após Falhas",
+      "name": "Investigação de Segurança em Autenticação Pós-Falha no Mobile Banking",
       "condition": "(event.payload.system == \"UserAuth\" and event.payload.message == \"LoginSuccess\")",
       "action": {
         "run_job_template": {
@@ -107,7 +107,7 @@
       }
     },
     {
-      "name": "Alertas Frequentes de Limite de Recursos",
+      "name": "Estratégia de Expansão de Recursos para Serviços Pix",
       "condition": "(event.payload.system == \"AppServer\" and event.payload.message == \"ResourceLimitReached\")",
       "action": {
         "run_job_template": {
@@ -123,7 +123,7 @@
       }
     },
     {
-      "name": "Respostas Lentas de Servidores",
+      "name": "Diagnóstico de Desempenho e Correção de Gargalos no Web Banking",
       "condition": "(event.payload.system == \"WebServer\" and event.payload.message == \"DataUpdated\")",
       "action": {
         "run_job_template": {

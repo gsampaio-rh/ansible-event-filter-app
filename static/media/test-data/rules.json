@@ -6,8 +6,8 @@
   "page": 1,
   "results": [
     {
-      "id": 87,
-      "name": "Falha de Login Crítica",
+      "id": 95,
+      "name": "Falha de Login Crítica no Mobile Banking",
       "action": {
         "run_job_template": {
           "name": "Corrigir e Resolver Falha Crítica de Login em Mobile Banking",
@@ -20,11 +20,11 @@
           "organization": "Default"
         }
       },
-      "ruleset_id": 29
+      "ruleset_id": 30
     },
     {
-      "id": 88,
-      "name": "Erro de API",
+      "id": 96,
+      "name": "Análise e Correção de Erros Críticos na API do Pix",
       "action": {
         "run_job_template": {
           "name": "Revisão e Correção de Erros de API no Pix",
@@ -37,11 +37,11 @@
           "organization": "Default"
         }
       },
-      "ruleset_id": 29
+      "ruleset_id": 30
     },
     {
-      "id": 89,
-      "name": "Limite de Recursos Atingido",
+      "id": 97,
+      "name": "Gestão de Capacidade em Contas Correntes por Excesso de Limite",
       "action": {
         "run_job_template": {
           "name": "Resolver Limites de Recursos em Contas Correntes",
@@ -54,14 +54,14 @@
           "organization": "Default"
         }
       },
-      "ruleset_id": 29
+      "ruleset_id": 30
     },
     {
-      "id": 90,
-      "name": "Falhas Críticas de Banco de Dados",
+      "id": 98,
+      "name": "Falhas Críticas de Banco de Dados serviço de Cartões de Crédito",
       "action": {
         "run_job_template": {
-          "name": "dCorreção Urgente em Falhas Críticas de Banco de Dados",
+          "name": "Correção Urgente em Falhas Críticas de Banco de Dados",
           "job_args": {
             "extra_vars": {
               "details": "{{ event.payload.details }}",
@@ -71,11 +71,11 @@
           "organization": "Default"
         }
       },
-      "ruleset_id": 29
+      "ruleset_id": 30
     },
     {
-      "id": 91,
-      "name": "Alertas de Performance com Impacto Potencial",
+      "id": 99,
+      "name": "Otimização Proativa de Performance para Transações de Cartão de Crédito",
       "action": {
         "run_job_template": {
           "name": "Otimização de Performance para Transações com Cartão de Crédito",
@@ -88,11 +88,11 @@
           "organization": "Default"
         }
       },
-      "ruleset_id": 29
+      "ruleset_id": 30
     },
     {
-      "id": 92,
-      "name": "Sucessos de Login após Falhas",
+      "id": 100,
+      "name": "Investigação de Segurança em Autenticação Pós-Falha no Mobile Banking",
       "action": {
         "run_job_template": {
           "name": "Investigação e Resolução de Tentativas de Login Após Falhas",
@@ -105,11 +105,11 @@
           "organization": "Default"
         }
       },
-      "ruleset_id": 29
+      "ruleset_id": 30
     },
     {
-      "id": 93,
-      "name": "Alertas Frequentes de Limite de Recursos",
+      "id": 101,
+      "name": "Estratégia de Expansão de Recursos para Serviços Pix",
       "action": {
         "run_job_template": {
           "name": "Análise e Expansão de Capacidade para Operações com Pix",
@@ -122,11 +122,11 @@
           "organization": "Default"
         }
       },
-      "ruleset_id": 29
+      "ruleset_id": 30
     },
     {
-      "id": 94,
-      "name": "Respostas Lentas de Servidores",
+      "id": 102,
+      "name": "Diagnóstico de Desempenho e Correção de Gargalos no Web Banking",
       "action": {
         "run_job_template": {
           "name": "Diagnóstico e Correção de Gargalos em Web Banking",
@@ -139,7 +139,7 @@
           "organization": "Default"
         }
       },
-      "ruleset_id": 29
+      "ruleset_id": 30
     }
   ]
 }

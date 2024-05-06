@@ -86,13 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const matchedRule = logManager.evaluateLogMessage(`${line}`);
             // If a rule is matched
             if (matchedRule) {
-                // Here you can construct the notification directly from the matched rule object
-                const eventId = crypto.randomUUID(); // This generates a random UUID // Example, you might need to adapt based on actual data structure
-                const eventName = matchedRule.name;
-                const auditRule = matchedRule.condition; // This is just a placeholder, adjust as needed
-                const eventFireAt = currentTime; // Using current time as fired at time
-                console.log(`Rule triggered: ${eventName}`);
-                notificationManager.addNotification(eventId, eventName, auditRule, eventFireAt);
+                console.log(`Rule triggered: ${matchedRule}`);
+                notificationManager.addNotification(matchedRule);
             }
         } else {
             logManager.addLogMessage(`No more lines to read.`);
@@ -111,16 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // }
 
         // Create and add a new playbook with dynamic status
-        const statusOptions = ['pending', 'active', 'failed']; // Example status options
-        const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
-        const newPlaybook = {
-            name: `Playbook ${MESSAGE_INDEX}`,
-            description: `Description of Playbook ${MESSAGE_INDEX}`,
-            lastUpdated: currentTime, // Add formatted datetime here
-            status: randomStatus // Dynamic status
-        };
+        // const statusOptions = ['pending', 'active', 'failed']; // Example status options
+        // const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
+        // const newPlaybook = {
+        //     name: `Playbook ${MESSAGE_INDEX}`,
+        //     description: `Description of Playbook ${MESSAGE_INDEX}`,
+        //     lastUpdated: currentTime, // Add formatted datetime here
+        //     status: randomStatus // Dynamic status
+        // };
 
-        playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
+        // playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
 
         networkManager.addNodeAndEdge(MESSAGE_INDEX, colors[MESSAGE_INDEX % colors.length]);
 

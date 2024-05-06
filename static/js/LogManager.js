@@ -1,4 +1,5 @@
 import ruleSetJsonData from '../media/test-data/demo-rulebook.json' with { type: 'json' };
+import rulesJsonData from '../media/test-data/rules.json' with { type: 'json' };
 
 // if (!ruleSetJsonData) {
 //     console.error("Failed to load JSON data. Please check the path and server configuration.");
@@ -86,6 +87,19 @@ export class LogManager {
         });
     }
 
+    findRuleByName(ruleName) {
+        // Use Array.find to locate the rule with the matching name
+        const rule = rulesJsonData.results.find(rule => rule.name === ruleName);
+
+        if (rule) {
+            console.log('Rule found:', rule);
+            return rule;
+        } else {
+            console.log('No rule found with the name:', ruleName);
+            return null;
+        }
+    }
+
     evaluateLogMessage(logMessage) {
         // Example parser for log messages (might need to adjust based on actual log format variations)
         const logPattern = /(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) \| (.+?) \| (\w+) \| (.+?) \| (.+?) \| Source: (.+)/;
@@ -124,10 +138,24 @@ export class LogManager {
             try {
                 if (eval(condition)) {
                     console.log(`Rule matched: ${rule.name}`);
-                    return rule; // Returning the matched rule object
+                    const ruleData = this.findRuleByName(rule.name);
+                    if (ruleData) {
+                        // Enhance rule object with additional details
+                        const enhancedRule = {
+                            ...rule,
+                            id: ruleData.id,
+                            name: ruleData.name,
+                            actionName: ruleData.action.run_job_template.name,
+                            businessType: ruleData.action.run_job_template.job_args.extra_vars.business_type
+                        };
+                        console.log('Enhanced Rule Details:', enhancedRule);
+                        return enhancedRule;
+                    }
+                    
+                    // return rule; // Returning the matched rule object
                 }
                 else {
-                    console.log(`No rule founded`);
+                    // console.log(`No rule founded`);
                 }
             } catch (error) {
                 console.error('Error evaluating condition:', error);

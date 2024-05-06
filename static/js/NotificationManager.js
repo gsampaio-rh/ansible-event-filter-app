@@ -31,27 +31,49 @@ export class NotificationManager {
         return date.toLocaleString('pt-BR', { dateStyle: 'medium', timeStyle: 'short' });
     }
 
-    addNotification(id, rule, rule_id, fired_at) {
+    addNotification(matchedRule) {
+        const dt = new Date(); // Get current time for log message
+        const currentTime = dt.toISOString().replace('T', ' ').substring(0, 19); // Formats to 'YYYY-MM-DD HH:MM:SS'
+
+        // Here you can construct the notification directly from the matched rule object
+        const eventId = matchedRule.id; // This generates a random UUID // Example, you might need to adapt based on actual data structure
+        const eventName = matchedRule.name;
+        const auditRule = matchedRule.condition; // This is just a placeholder, adjust as needed
+        const eventFireAt = currentTime; // Using current time as fired at time
+        const actionName = matchedRule.actionName;
+        const businessType = matchedRule.businessType;
+
         const notificationDiv = document.createElement('div');
         notificationDiv.className = 'notification';
 
-        const issueIdSpan = document.createElement('span');
-        issueIdSpan.className = 'issue-id';
-        issueIdSpan.textContent = `${this.formatCondition(rule_id)}`;
-
         const issueNameSpan = document.createElement('span');
         issueNameSpan.className = 'issue-name';
-        issueNameSpan.textContent = `${rule}`;
+        issueNameSpan.textContent = `${eventName}`;
+
+        const issueIdSpan = document.createElement('span');
+        // issueIdSpan.className = 'issue-id';
+        issueIdSpan.textContent = `${this.formatCondition(auditRule)}`;
+
+        const actionSpan = document.createElement('span');
+        actionSpan.className = 'issue-id';
+        actionSpan.textContent = `Sistema impactado: ${businessType}`;
+
+        // const businessSpan = document.createElement('span');
+        // businessSpan.className = 'issue-id';
+        // businessSpan.textContent = `${businessType}`;
 
         const firedDateSpan = document.createElement('span');
         firedDateSpan.className = 'issue-fired-at';
-        firedDateSpan.textContent = `disparada em ${this.formatTimestamp(fired_at)}`;
+        firedDateSpan.textContent = `disparada em ${this.formatTimestamp(eventFireAt)}`;
 
         notificationDiv.appendChild(issueNameSpan);
+        notificationDiv.appendChild(actionSpan);
+        // notificationDiv.appendChild(businessSpan);
         notificationDiv.appendChild(issueIdSpan);
         notificationDiv.appendChild(firedDateSpan);
 
         this.container.prepend(notificationDiv);
     }
+
 }
 
