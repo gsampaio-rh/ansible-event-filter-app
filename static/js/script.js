@@ -128,7 +128,7 @@ function processLogLine() {
             // Create and add a new playbook with dynamic status
             const newPlaybook = {
                 name: `${matchedRule.actionName}`,
-                description: `Self-healing para ruleset #${matchedRule.id}`,
+                description: `Playbook para conjunto de regras #${matchedRule.id}`,
                 lastUpdated: currentTime, // Add formatted datetime here
                 status: 'active' // Dynamic status
             };
