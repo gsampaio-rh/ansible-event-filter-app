@@ -48,7 +48,7 @@ export class NotificationManager {
 
         const issueNameSpan = document.createElement('span');
         issueNameSpan.className = 'issue-name';
-        issueNameSpan.textContent = `${eventName}`;
+        issueNameSpan.textContent = `${eventName} (#${eventId})`;
 
         const issueIdSpan = document.createElement('span');
         // issueIdSpan.className = 'issue-id';

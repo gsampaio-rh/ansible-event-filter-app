@@ -96,9 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)]; // Randomly select status
                 const newPlaybook = {
                     name: `${matchedRule.actionName}`,
-                    description: `Playbook ID ${matchedRule.id}`,
+                    description: `Self-healing para ruleset #${matchedRule.id}`,
                     lastUpdated: currentTime, // Add formatted datetime here
-                    status: randomStatus // Dynamic status
+                    status: 'active' // Dynamic status
                 };
 
                 playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
