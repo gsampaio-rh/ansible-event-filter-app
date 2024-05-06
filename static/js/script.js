@@ -46,24 +46,28 @@ const architectureData = [
         name: "API Itaú",
         system: "cartao_credito",
         status: "operational",
+        modal: "API is currently operational. Latency SLO is met with 99.99% No issues reported.",
         icon: "../static/media/api.png"
     },
     {
         name: "Banco de Dados",
         system: "conta_corrente",
         status: "operational",
+        modal: "DB is currently operational. Availability SLO is met with 99.999% No issues reported.",
         icon: "../static/media/db.png"
     },
     {
         name: "Kafka",
         system: "mobile_banking",
         status: "operational",
+        modal: "Kafka is currently operational. Replication SLO is met with 99.99% No issues reported.",
         icon: "../static/media/kafkaicon.png"
     },
     {
         name: "Integrador Banco Central",
         system: "pix",
         status: "operational",
+        modal: "Camel Route is currently operational. Latency SLO is met with 99.9999% No issues reported.",
         icon: "../static/media/fuse.png"
     }
 ];
@@ -186,6 +190,15 @@ document.getElementById('toggleButton').addEventListener('click', function () {
         button.classList.remove('btn-danger');
         button.classList.add('btn-primary');  // Optionally change color to blue
     }
+});
+
+document.querySelectorAll('.system-box').forEach(box => {
+    box.addEventListener('mouseenter', function () {
+        this.querySelector('.system-modal').style.display = 'block';
+    });
+    box.addEventListener('mouseleave', function () {
+        this.querySelector('.system-modal').style.display = 'none';
+    });
 });
 
 // document.addEventListener('DOMContentLoaded', () => {

@@ -33,8 +33,13 @@ export class ArchitectureManager {
         statusDiv.setAttribute('data-status', business.status);
         statusDiv.textContent = business.status.charAt(0).toUpperCase() + business.status.slice(1);
 
+        const modalDiv = document.createElement('div');
+        modalDiv.className = 'system-modal hidden';   
+        modalDiv.textContent = business.modal;
+
         infoDiv.appendChild(nameH3);
         // infoDiv.appendChild(statusDiv);
+        infoDiv.appendChild(modalDiv);
 
         card.appendChild(img);
         card.appendChild(infoDiv);
@@ -93,7 +98,7 @@ export class ArchitectureManager {
 
     populateArchitectureContainer() {
         let row = document.createElement('div');
-        row.className = 'row';
+        row.className = 'row system-row';
         this.businessData.forEach((business, index) => {
             const businessCard = this.createArchCard(business);
             row.appendChild(businessCard);
