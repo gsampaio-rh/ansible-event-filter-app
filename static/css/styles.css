@@ -63,7 +63,7 @@ html {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-        /* Show that it's clickable */
+    /* Show that it's clickable */
 }
 
 .border-bottom {
@@ -554,14 +554,63 @@ td {
     width: 100%;
 }
 
-/* Hover effect for all interactive elements */
-.button,
-.interactive {
-    transition: background-color 0.3s ease;
+.column-head {
+    display: flex;
+    /* Enables flexbox layout */
+    align-items: center;
+    /* Vertically centers the items in the container */
+    justify-content: space-between;
+    /* Places space between the title and the button */
+    padding: 10px;
+    /* Adds some padding inside the column-head container */
 }
 
-.button:hover,
-.interactive:hover {
-    background-color: #dedede;
-    /* Subtle hover effect */
+.column-head h4 {
+    margin: 0;
+    /* Removes margin to align title properly with the button */
+    font-size: 18px;
+    /* Optional: Adjust font size as needed */
+    font-weight: bold;
+    /* Makes the font bold */
+}
+
+.button-container {
+    margin-left: 10px;
+    /* Adds some space between the title and the button */
+}
+
+.btn {
+    padding: 4px 8px;
+    /* Smaller padding to reduce overall button size */
+    font-size: 12px;
+    /* Smaller font size for the text inside the button */
+    border-radius: 3px;
+    /* Optional: Adjust the border-radius for aesthetics */
+    /* Adjust padding to increase the button's size */
+    background-color: #007bff;
+    /* Sets the background color of the button */
+    color: white;
+    /* Sets the text color of the button */
+    border: none;
+    /* Rounds the corners of the button */
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    /* Darkens the button on hover for better UX */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    /* Primary blue */
+    color: white;
+    /* White text color */
+    /* Other existing styles */
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    /* Danger red for 'Stop' */
+    /* Other existing styles */
 }
