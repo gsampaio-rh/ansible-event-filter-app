@@ -7,7 +7,7 @@ import { ArchitectureManager } from './ArchitectureManager.js';
 import { colors, MESSAGE_LOGGING_INTERVAL } from './config.js';
 
 import { getBusinessData, getArchitectureData } from './dataManager.js'
-import { setupToggleButton, setupSystemBoxHover } from './eventHandlers.js';
+import { setupSystemBoxHover } from './eventHandlers.js';
 // import { startInterval, stopInterval } from './intervalcontrol.js';
 
 let intervalID;
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     businessManager.populateBusinessContainer();
     archManager.populateArchitectureContainer();
-    setupToggleButton();
+
     setupSystemBoxHover();
     fetchLogData(); // Start the log fetching and processing
 });
