@@ -6,9 +6,10 @@ import rulesJsonData from '../media/test-data/rules.json' with { type: 'json' };
 //     return; // Exit if data is not loaded
 // }
 export class LogManager {
-    constructor(container) {
+    constructor(container, networkManager) {
         this.container = container;
         this.messageIndex = 1;
+        this.networkManager = networkManager;
     }
 
     calculateMaxMessages() {
@@ -32,6 +33,7 @@ export class LogManager {
     addLogMessage(id, message) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `log-message ${this.getMessageType(message)}`;
+        messageDiv.id = `log-message-${id}`;  // Assigning a unique ID using the log message ID
         messageDiv.innerHTML = this.formatMessage(id, message);
 
         // Extract the log message fields
@@ -52,6 +54,12 @@ export class LogManager {
         } else {
             this.container.appendChild(messageDiv);
         }
+
+
+        // Add event listeners for hovering
+        messageDiv.addEventListener('mouseover', () => this.networkManager.updateNodeColor(id, 'highlightColor'));
+        messageDiv.addEventListener('mouseout', () => this.networkManager.updateNodeColor(id, 'defaultColor'));
+
 
         // Return the extracted fields from the log message as an object
         return fields;

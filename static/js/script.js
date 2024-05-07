@@ -21,8 +21,8 @@ const businessContainer = document.getElementById('business-container');
 const businessData = getBusinessData();
 const architectureData = getArchitectureData();
 
-const logManager = new LogManager(logContainer);
 const networkManager = new NetworkManager(networkContainer);
+const logManager = new LogManager(document.getElementById('log-container'), networkManager);
 const notificationManager = new NotificationManager(notificationContainer);
 const playbookManager = new PlaybookManager(playbooksContainer);
 const businessManager = new BusinessCardManager('business-container', businessData);

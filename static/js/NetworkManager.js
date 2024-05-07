@@ -1,4 +1,5 @@
 // import { Network, DataSet } from 'vis-network'; (make sure this import line is uncommented and correctly set up)
+import { colors } from './config.js';
 
 export class NetworkManager {
     constructor(container) {
@@ -50,6 +51,18 @@ export class NetworkManager {
         this.nodes.add({ id: nodeIndex, label: `#${nodeIndex} ${message}`, color: color });
         if (nodeIndex > 1) {
             this.edges.add({ from: nodeIndex - 1, to: nodeIndex });
+        }
+    }
+
+    updateNodeColor(nodeId, type) {
+        const node = this.nodes.get(nodeId);
+        if (node) {
+            if (type === 'highlightColor') {
+                node.color = '#ff0000';  // Highlight color
+            } else {
+                node.color = colors[nodeId % colors.length];  // Reset to original color
+            }
+            this.nodes.update(node);
         }
     }
     
