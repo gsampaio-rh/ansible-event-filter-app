@@ -1,24 +1,24 @@
 export class ArchitectureManager {
-    constructor(containerId, businessData) {
+    constructor(containerId, componentData) {
         this.container = document.getElementById(containerId);
-        this.businessData = businessData;
+        this.componentData = componentData;
     }
 
-    createArchCard(business) {
+    createArchCard(component) {
         const column = document.createElement('div');
         column.className = 'col-md-3 system-box';
-        if (this.businessData.indexOf(business) <= 3) {
+        if (this.componentData.indexOf(component) <= 3) {
             column.classList.add('column-border');
         }
 
         const card = document.createElement('div');
         card.className = 'system-card';
-        card.setAttribute('data-id', business.system);  // Unique identifier
-        card.setAttribute('data-active', business.status === 'operational');
+        card.setAttribute('data-id', component.system);  // Unique identifier
+        card.setAttribute('data-active', component.status === 'operational');
 
         const img = document.createElement('img');
-        img.src = business.icon;
-        img.alt = `${business.name} Icon`;
+        img.src = component.icon;
+        img.alt = `${component.name} Icon`;
         img.className = "system-icon";
 
         const infoDiv = document.createElement('div');
@@ -26,16 +26,16 @@ export class ArchitectureManager {
 
         const nameH3 = document.createElement('h3');
         nameH3.className = 'system-name';
-        nameH3.textContent = business.name;
+        nameH3.textContent = component.name;
 
         const statusDiv = document.createElement('div');
         statusDiv.className = 'system-status';
-        statusDiv.setAttribute('data-status', business.status);
-        statusDiv.textContent = business.status.charAt(0).toUpperCase() + business.status.slice(1);
+        statusDiv.setAttribute('data-status', component.status);
+        statusDiv.textContent = component.status.charAt(0).toUpperCase() + component.status.slice(1);
 
         const modalDiv = document.createElement('div');
         modalDiv.className = 'system-modal hidden';   
-        modalDiv.textContent = business.modal;
+        modalDiv.textContent = component.modal;
 
         infoDiv.appendChild(nameH3);
         // infoDiv.appendChild(statusDiv);
@@ -47,33 +47,33 @@ export class ArchitectureManager {
 
         card.addEventListener('click', () => {
             const isActive = card.getAttribute('data-active') === 'true';
-            this.toggleArchCardState(business.system, !isActive);
+            this.toggleArchCardState(component.system, !isActive);
         });
 
         return column;
     }
 
     toggleArchStatus(system, newStatus) {
-        this.businessData = this.businessData.map(business => {
-            if (business.system === system) {
-                business.status = newStatus; // Update the status
-                // Update UI for the specific business card
-                const businessCard = this.container.querySelector(`.system-card[data-id='${system}']`);
-                if (businessCard) {
-                    const statusDiv = businessCard.querySelector('.system-status');
+        this.componentData = this.componentData.map(component => {
+            if (component.system === system) {
+                component.status = newStatus; // Update the status
+                // Update UI for the specific component card
+                const componentCard = this.container.querySelector(`.system-card[data-id='${system}']`);
+                if (componentCard) {
+                    const statusDiv = componentCard.querySelector('.system-status');
                     // statusDiv.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
                     // statusDiv.style.color = newStatus === 'operational' ? 'green' : 'red'; // Change color based on status
-                    businessCard.classList.toggle('disabled', newStatus !== 'operational');
+                    componentCard.classList.toggle('disabled', newStatus !== 'operational');
                 }
             }
-            return business;
+            return component;
         });
     }
 
-    toggleArchCardState(businessId, isActive) {
-        const businessCards = this.container.querySelectorAll('.system-card');
-        businessCards.forEach(card => {
-            if (card.getAttribute('data-id') === businessId) {
+    toggleArchCardState(componentId, isActive) {
+        const componentCards = this.container.querySelectorAll('.system-card');
+        componentCards.forEach(card => {
+            if (card.getAttribute('data-id') === componentId) {
                 const newStatus = isActive ? 'operational' : 'disabled';
                 card.setAttribute('data-active', isActive);
                 card.querySelector('.system-status').textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
@@ -84,24 +84,24 @@ export class ArchitectureManager {
                     card.classList.remove('disabled');
                 }
                 // Update internal data model
-                this.updateArchStatus(businessId, newStatus);
+                this.updateArchStatus(componentId, newStatus);
             }
         });
     }
 
     updateArchStatus(system, newStatus) {
-        const business = this.businessData.find(b => b.system === system);
-        if (business) {
-            business.status = newStatus;
+        const component = this.componentData.find(b => b.system === system);
+        if (component) {
+            component.status = newStatus;
         }
     }
 
     populateArchitectureContainer() {
         let row = document.createElement('div');
         row.className = 'row system-row';
-        this.businessData.forEach((business, index) => {
-            const businessCard = this.createArchCard(business);
-            row.appendChild(businessCard);
+        this.componentData.forEach((component, index) => {
+            const componentCard = this.createArchCard(component);
+            row.appendChild(componentCard);
             if ((index + 1) % 4 === 0) { // After every two cards, append the row to the container and create a new row
                 this.container.appendChild(row);
                 row = document.createElement('div');
