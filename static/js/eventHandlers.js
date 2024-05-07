@@ -1,7 +1,6 @@
 // eventHandlers.js
 import { startInterval, stopInterval } from './intervalControl.js';
-
-let currentLine = 0;  // This should be passed or managed in a shared state if needed across different modules.
+import { getCurrentLine, advanceCurrentLine } from './stateManager.js';  // Import the necessary functions from stateManager
 
 /**
  * Initializes UI event listeners related to application controls like buttons.
@@ -16,14 +15,15 @@ function setupControlListeners(processLogLine, MESSAGE_LOGGING_INTERVAL) {
     }
 
     toggleButton.addEventListener('click', function () {
+        let currentLine = getCurrentLine();  // Use the centralized currentLine
         if (this.textContent === 'Stop') {
-            console.log(`Stopping at  #${currentLine}`);
+            console.log(`Stopping at #${currentLine}`);
             stopInterval();
             this.textContent = 'Start';
             this.classList.remove('btn-danger');
             this.classList.add('btn-primary');
         } else {
-            console.log(`Starting at  #${currentLine}`);
+            console.log(`Starting at #${currentLine}`);
             startInterval(() => processLogLine(currentLine), MESSAGE_LOGGING_INTERVAL);
             this.textContent = 'Stop';
             this.classList.remove('btn-primary');

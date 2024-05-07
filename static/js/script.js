@@ -1,18 +1,16 @@
+//script.js
+import { colors, MESSAGE_LOGGING_INTERVAL } from './config.js';
+import { getBusinessData, getArchitectureData } from './dataManager.js'
+import { setupSystemBoxHover, setupControlListeners } from './eventHandlers.js';
+import { startInterval, stopInterval } from './intervalControl.js';
+import { getCurrentLine, advanceCurrentLine, getMessageIndex, incrementMessageIndex, getFileLines, setFileLines } from './stateManager.js';
+
 import { LogManager } from './LogManager.js';
 import { NetworkManager } from './NetworkManager.js';
 import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
 import { BusinessCardManager } from './BusinessCardManager.js';
 import { ArchitectureManager } from './ArchitectureManager.js';
-import { colors, MESSAGE_LOGGING_INTERVAL } from './config.js';
-
-import { getBusinessData, getArchitectureData } from './dataManager.js'
-import { setupSystemBoxHover, setupControlListeners } from './eventHandlers.js';
-import { startInterval, stopInterval } from './intervalControl.js';
-
-let fileLines = []; // To store lines fetched from logs
-let currentLine = 0; // To keep track of the current line being processed
-let MESSAGE_INDEX = 1; // To track the number of messages processed
 
 const logContainer = document.getElementById('log-container');
 const networkContainer = document.getElementById('network');
@@ -57,22 +55,23 @@ function handleMatchedRule(logMessage, currentTime) {
 
 async function processLogLine() {
     const currentTime = new Date().toISOString().replace('T', ' ').substring(0, 19);
-    if (currentLine >= fileLines.length) {
+    if (getCurrentLine() >= getFileLines().length) {
         console.log("No more lines to read.");
         stopInterval();
         return;
     }
 
-    const line = fileLines[currentLine++];
+    const line = getFileLines()[getCurrentLine()];
+    advanceCurrentLine();
     try {
-        const logMessage = logManager.addLogMessage(MESSAGE_INDEX, line);
-        console.log(`#${MESSAGE_INDEX} Log message at ${currentTime}: ${line}`);
+        const logMessage = logManager.addLogMessage(getMessageIndex(), line);
+        console.log(`#${getMessageIndex()} Log message at ${currentTime}: ${line}`);
 
         handleLogMessageSeverity(logMessage);
         handleMatchedRule(line, currentTime);
-        networkManager.addNodeAndEdge(MESSAGE_INDEX, colors[MESSAGE_INDEX % colors.length], logMessage.serviceName);
+        networkManager.addNodeAndEdge(getMessageIndex(), colors[getMessageIndex() % colors.length], logMessage.serviceName);
 
-        MESSAGE_INDEX++;
+        incrementMessageIndex();
     } catch (error) {
         console.error("Error processing log line: ", error);
     }
@@ -89,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/fetch-log');
             const data = await response.text();
-            fileLines = data.split('\n');
+            setFileLines(data.split('\n'));
             startInterval(processLogLine, MESSAGE_LOGGING_INTERVAL);
         } catch (error) {
             console.error("Failed to load log file", error);
@@ -103,4 +102,3 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSystemBoxHover();
     fetchLogData(); // Start the log fetching and processing
 });
-
