@@ -37,6 +37,10 @@ export class LogManager {
         // Extract the log message fields
         const fields = this.extractFieldsFromMessage(message);
 
+        if (fields.severity === 'ERROR' || fields.severity === 'CRITICAL') {
+            messageDiv.classList.add('error-flash'); // Add the class if the log is critical or an error
+        }
+
         // Start the animation for the event message part
         const eventMessageDiv = messageDiv.querySelector('.log-event-message');
         const fullText = eventMessageDiv.textContent;

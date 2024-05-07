@@ -58,6 +58,12 @@ export class BusinessCardManager {
                     const statusDiv = businessCard.querySelector('.business-status');
                     statusDiv.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
                     statusDiv.style.color = newStatus === 'operational' ? 'green' : 'red'; // Change color based on status
+                    // Add 'error-flash' class only if the new status is 'disabled'
+                    if (newStatus === 'disabled') {
+                        businessCard.classList.add('error-flash');
+                    } else {
+                        businessCard.classList.remove('error-flash');
+                    }
                     businessCard.classList.toggle('disabled', newStatus !== 'operational');
                 }
             }

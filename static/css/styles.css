@@ -100,14 +100,20 @@ html {
 
 .log-source-logo {
     position: absolute;
-    right: 10px;
-    /* Position at the right corner */
+    right: -15px;
+    /* Move half of the logo out of the container */
     top: 10px;
     /* Position from the top */
-    width: 30px;
-    /* Set a fixed width */
-    height: 30px;
+    width: 45px;
+    /* Width of the full logo */
+    height: 45px;
     /* Set a fixed height */
+    opacity: 0.6;
+    /* Make the logo slightly opaque */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    /* Show the entire right half */
+    overflow: visible;
+    /* Ensure parts of the logo outside the container are visible */
 }
 
 .log-message:hover {
@@ -180,6 +186,20 @@ html {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes flashRed {
+    from {
+        background-color: rgba(255, 0, 0, 0.491);
+    }
+
+    to {
+        background-color: transparent;
+    }
+}
+
+.error-flash {
+    animation: flashRed 1s ease-in-out;
 }
 
 #notification-container {

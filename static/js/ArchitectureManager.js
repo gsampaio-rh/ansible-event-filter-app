@@ -63,6 +63,12 @@ export class ArchitectureManager {
                     const statusDiv = componentCard.querySelector('.system-status');
                     // statusDiv.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
                     // statusDiv.style.color = newStatus === 'operational' ? 'green' : 'red'; // Change color based on status
+                    // Add 'error-flash' class only if the new status is 'disabled'
+                    if (newStatus === 'disabled') {
+                        componentCard.classList.add('error-flash');
+                    } else {
+                        componentCard.classList.remove('error-flash');
+                    }
                     componentCard.classList.toggle('disabled', newStatus !== 'operational');
                 }
             }
