@@ -12,6 +12,15 @@ export class PlaybookManager {
         };
     }
 
+    createPlaybook(matchedRule, currentTime) {
+        return {
+            name: `${matchedRule.actionName}`,
+            description: `Playbook for rule set #${matchedRule.id}`,
+            lastUpdated: currentTime,
+            status: 'active'
+        };
+    }
+
     addPlaybook(playbook) {
         if (!playbook.name || !playbook.description || !playbook.status || !playbook.lastUpdated) {
             console.error('Invalid playbook data:', playbook);

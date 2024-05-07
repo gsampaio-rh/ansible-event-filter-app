@@ -4,16 +4,16 @@ import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
 import { BusinessCardManager } from './BusinessCardManager.js';
 import { ArchitectureManager } from './ArchitectureManager.js';
-import businessData from '../media/test-data/business-data.json' with { type: 'json' };
-import architectureData from '../media/test-data/archdata.json' with { type: 'json' };
+import { colors, MESSAGE_LOGGING_INTERVAL } from './config.js';
 
-let intervalID; // Variable to hold the interval ID for starting or stopping it
+import { getBusinessData, getArchitectureData } from './dataManager.js'
+import { setupToggleButton, setupSystemBoxHover } from './eventHandlers.js';
+// import { startInterval, stopInterval } from './intervalcontrol.js';
+
+let intervalID;
 let fileLines = []; // To store lines fetched from logs
 let currentLine = 0; // To keep track of the current line being processed
 let MESSAGE_INDEX = 1; // To track the number of messages processed
-
-const MESSAGE_LOGGING_INTERVAL = 3000; // Interval for logging messages
-const colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548']; // Colors for nodes
 
 const logContainer = document.getElementById('log-container');
 const networkContainer = document.getElementById('network');
@@ -21,11 +21,14 @@ const notificationContainer = document.getElementById('notification-container');
 const playbooksContainer = document.getElementById('playbooks-container');
 const businessContainer = document.getElementById('business-container');
 
+const businessData = getBusinessData();
+const architectureData = getArchitectureData();
+
 const logManager = new LogManager(logContainer);
 const networkManager = new NetworkManager(networkContainer);
 const notificationManager = new NotificationManager(notificationContainer);
 const playbookManager = new PlaybookManager(playbooksContainer);
-const manager = new BusinessCardManager('business-container', businessData);
+const businessManager = new BusinessCardManager('business-container', businessData);
 const archManager = new ArchitectureManager('architecture-container', architectureData);
 
 // Function definitions for starting and stopping the interval
@@ -39,58 +42,55 @@ function stopInterval() {
     console.log(`Interval stopped at #${currentLine}.`);
 }
 
-function processLogLine() {
-    const dt = new Date();
-    const currentTime = dt.toISOString().replace('T', ' ').substring(0, 19);
-    if (currentLine < fileLines.length) {
-        const line = fileLines[currentLine++];
+function handleLogMessageSeverity(logMessage) {
+    if (!logMessage || (logMessage.severity !== 'ERROR' && logMessage.severity !== 'CRITICAL')) return;
+
+    console.log(`Critical or Error rule triggered: ${logMessage.eventMessage}`);
+    businessManager.toggleBusinessStatus(logMessage.businessType, 'disabled');
+    archManager.toggleArchStatus(logMessage.businessType, 'disabled');
+    console.log(`Business and architecture components related to ${logMessage.businessType} have been disabled.`);
+}
+
+function handleMatchedRule(logMessage, currentTime) {
+    const matchedRule = logManager.evaluateLogMessage(logMessage);
+    if (!matchedRule) return;
+
+    console.log(`Rule triggered: ${matchedRule}`);
+    notificationManager.addNotification(matchedRule);
+
+    const newPlaybook = playbookManager.createPlaybook(matchedRule, currentTime);
+    playbookManager.addPlaybook(newPlaybook);
+
+    if (matchedRule.businessType) {
+        businessManager.toggleBusinessStatus(matchedRule.businessType, 'operational');
+        archManager.toggleArchStatus(logMessage.businessType, 'operational');
+    }
+}
+
+function updateNetworkGraph(logMessage) {
+    networkManager.addNodeAndEdge(MESSAGE_INDEX, colors[MESSAGE_INDEX % colors.length], logMessage.serviceName);
+}
+
+async function processLogLine() {
+    const currentTime = new Date().toISOString().replace('T', ' ').substring(0, 19);
+    if (currentLine >= fileLines.length) {
+        console.log("No more lines to read.");
+        stopInterval();
+        return;
+    }
+
+    const line = fileLines[currentLine++];
+    try {
+        const logMessage = logManager.addLogMessage(MESSAGE_INDEX, line);
         console.log(`#${MESSAGE_INDEX} Log message at ${currentTime}: ${line}`);
 
-        const logMessage = logManager.addLogMessage(MESSAGE_INDEX, line);
-        console.log(logMessage);
+        handleLogMessageSeverity(logMessage);
+        handleMatchedRule(line, currentTime);
+        updateNetworkGraph(logMessage);
 
-        // If a rule is matched and it's either 'ERROR' or 'CRITICAL'
-        if (logMessage && (logMessage.severity === 'ERROR' || logMessage.severity === 'CRITICAL')) {
-            console.log(`Critical or Error rule triggered: ${logMessage.eventMessage}`);
-            if (logMessage.businessType) {
-                manager.toggleBusinessStatus(logMessage.businessType, 'disabled'); // Disable the business
-                console.log(`Business type '${logMessage.businessType}' has been disabled due to severity.`);
-                archManager.toggleArchStatus(logMessage.businessType, 'disabled'); // Disable the component
-                console.log(`Architecture Component API has been disabled due to severity.`);
-            }
-        }
-
-        // Evaluate log message against rules
-        const matchedRule = logManager.evaluateLogMessage(line);
-
-        // If a rule is matched
-        if (matchedRule) {
-            console.log(`Rule triggered: ${matchedRule}`);
-            notificationManager.addNotification(matchedRule);
-
-            // Create and add a new playbook with dynamic status
-            const newPlaybook = {
-                name: `${matchedRule.actionName}`,
-                description: `Playbook para conjunto de regras #${matchedRule.id}`,
-                lastUpdated: currentTime, // Add formatted datetime here
-                status: 'active' // Dynamic status
-            };
-
-            playbookManager.addPlaybook(newPlaybook); // Add the new playbook immediately
-
-            // Check if the matched rule affects a specific business type and update its status
-            if (matchedRule.businessType) {
-                manager.toggleBusinessStatus(matchedRule.businessType, 'operational'); // Re-enable the business
-                archManager.toggleArchStatus(logMessage.businessType, 'operational'); // Re-enable the component
-            }
-        }
-
-        networkManager.addNodeAndEdge(MESSAGE_INDEX, colors[MESSAGE_INDEX % colors.length], logMessage.serviceName);
         MESSAGE_INDEX++;
-
-    } else {
-        console.log("No more lines to read.");
-        stopInterval(); // Stop the interval if no more lines to process
+    } catch (error) {
+        console.error("Error processing log line: ", error);
     }
 }
 
@@ -111,8 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error("Failed to load log file", error));
     }
 
-    manager.populateBusinessContainer();
+    businessManager.populateBusinessContainer();
     archManager.populateArchitectureContainer();
+    setupToggleButton();
+    setupSystemBoxHover();
     fetchLogData(); // Start the log fetching and processing
 });
 
@@ -133,13 +135,4 @@ document.getElementById('toggleButton').addEventListener('click', function () {
         button.classList.remove('btn-primary');
         button.classList.add('btn-danger');  // Optionally change color to blue
     }
-});
-
-document.querySelectorAll('.system-box').forEach(box => {
-    box.addEventListener('mouseenter', function () {
-        this.querySelector('.system-modal').style.display = 'block';
-    });
-    box.addEventListener('mouseleave', function () {
-        this.querySelector('.system-modal').style.display = 'none';
-    });
 });

@@ -121,7 +121,6 @@ export class LogManager {
     }
 
     evaluateLogMessage(logMessage) {
-        // Example parser for log messages (might need to adjust based on actual log format variations)
         const logPattern = /(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) \| (.+?) \| (\w+) \| (.+?) \| (.+?) \| Source: (.+)/;
         const match = logMessage.match(logPattern);
         if (!match) {

@@ -52,4 +52,5 @@ export class NetworkManager {
             this.edges.add({ from: nodeIndex - 1, to: nodeIndex });
         }
     }
+    
 }
