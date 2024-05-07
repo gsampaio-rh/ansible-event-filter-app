@@ -8,9 +8,8 @@ import { colors, MESSAGE_LOGGING_INTERVAL } from './config.js';
 
 import { getBusinessData, getArchitectureData } from './dataManager.js'
 import { setupSystemBoxHover } from './eventHandlers.js';
-// import { startInterval, stopInterval } from './intervalcontrol.js';
+import { startInterval, stopInterval } from './intervalControl.js';
 
-let intervalID;
 let fileLines = []; // To store lines fetched from logs
 let currentLine = 0; // To keep track of the current line being processed
 let MESSAGE_INDEX = 1; // To track the number of messages processed
@@ -32,15 +31,6 @@ const businessManager = new BusinessCardManager('business-container', businessDa
 const archManager = new ArchitectureManager('architecture-container', architectureData);
 
 // Function definitions for starting and stopping the interval
-function startInterval() {
-    intervalID = setInterval(processLogLine, MESSAGE_LOGGING_INTERVAL);
-    console.log(`Interval started at #${currentLine}.`);
-}
-
-function stopInterval() {
-    clearInterval(intervalID);
-    console.log(`Interval stopped at #${currentLine}.`);
-}
 
 function handleLogMessageSeverity(logMessage) {
     if (!logMessage || (logMessage.severity !== 'ERROR' && logMessage.severity !== 'CRITICAL')) return;
@@ -63,7 +53,7 @@ function handleMatchedRule(logMessage, currentTime) {
 
     if (matchedRule.businessType) {
         businessManager.toggleBusinessStatus(matchedRule.businessType, 'operational');
-        archManager.toggleArchStatus(logMessage.businessType, 'operational');
+        archManager.toggleArchStatus(matchedRule.businessType, 'operational');
     }
 }
 
@@ -106,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/fetch-log');
             const data = await response.text();
             fileLines = data.split('\n');
-            startInterval();
+            startInterval(processLogLine, MESSAGE_LOGGING_INTERVAL);
         } catch (error) {
             console.error("Failed to load log file", error);
         }
@@ -130,7 +120,7 @@ document.getElementById('toggleButton').addEventListener('click', function () {
         button.classList.add('btn-primary');  // Optionally change color to red
     } else {
         console.log(`Starting at  #${currentLine}`);
-        startInterval();
+        startInterval(processLogLine, MESSAGE_LOGGING_INTERVAL);
         // console.log(`Starting at  ${currentLine}`);
         button.textContent = 'Stop'; // Change text to Start
         button.classList.remove('btn-primary');

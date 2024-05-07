@@ -1,15 +1,28 @@
 // intervalControl.js
-let intervalID;
 
-// Make sure this function is defined to use the callback properly
-export function startInterval(callback, interval) {
-    console.log("Starting interval...");
-    intervalID = setInterval(callback, interval);
-    console.log(`Interval started with ID: ${intervalID}`);
+let intervalID;  // Holds the reference to the interval
+
+/**
+ * Starts a repetitive action at specified intervals.
+ * @param {Function} callback - The function to execute on each interval.
+ * @param {number} interval - The time (in milliseconds) how often to execute the action.
+ */
+function startInterval(callback, interval) {
+    if (!intervalID) {  // Ensure no interval is already running
+        intervalID = setInterval(callback, interval);
+        console.log(`Interval started with ID ${intervalID}.`);
+    }
 }
 
-export function stopInterval() {
-    console.log("Stopping interval...");
-    clearInterval(intervalID);
-    console.log(`Interval stopped with interval ID: ${intervalID}`);
+/**
+ * Stops the currently running interval.
+ */
+function stopInterval() {
+    if (intervalID) {
+        clearInterval(intervalID);
+        console.log(`Interval with ID ${intervalID} has been stopped.`);
+        intervalID = null;  // Reset the interval ID
+    }
 }
+
+export { startInterval, stopInterval };
