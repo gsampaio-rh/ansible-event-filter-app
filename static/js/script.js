@@ -7,7 +7,7 @@ import { ArchitectureManager } from './ArchitectureManager.js';
 import { colors, MESSAGE_LOGGING_INTERVAL } from './config.js';
 
 import { getBusinessData, getArchitectureData } from './dataManager.js'
-import { setupSystemBoxHover } from './eventHandlers.js';
+import { setupSystemBoxHover, setupControlListeners } from './eventHandlers.js';
 import { startInterval, stopInterval } from './intervalControl.js';
 
 let fileLines = []; // To store lines fetched from logs
@@ -29,8 +29,6 @@ const notificationManager = new NotificationManager(notificationContainer);
 const playbookManager = new PlaybookManager(playbooksContainer);
 const businessManager = new BusinessCardManager('business-container', businessData);
 const archManager = new ArchitectureManager('architecture-container', architectureData);
-
-// Function definitions for starting and stopping the interval
 
 function handleLogMessageSeverity(logMessage) {
     if (!logMessage || (logMessage.severity !== 'ERROR' && logMessage.severity !== 'CRITICAL')) return;
@@ -57,10 +55,6 @@ function handleMatchedRule(logMessage, currentTime) {
     }
 }
 
-function updateNetworkGraph(logMessage) {
-    networkManager.addNodeAndEdge(MESSAGE_INDEX, colors[MESSAGE_INDEX % colors.length], logMessage.serviceName);
-}
-
 async function processLogLine() {
     const currentTime = new Date().toISOString().replace('T', ' ').substring(0, 19);
     if (currentLine >= fileLines.length) {
@@ -76,7 +70,7 @@ async function processLogLine() {
 
         handleLogMessageSeverity(logMessage);
         handleMatchedRule(line, currentTime);
-        updateNetworkGraph(logMessage);
+        networkManager.addNodeAndEdge(MESSAGE_INDEX, colors[MESSAGE_INDEX % colors.length], logMessage.serviceName);
 
         MESSAGE_INDEX++;
     } catch (error) {
@@ -105,25 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
     businessManager.populateBusinessContainer();
     archManager.populateArchitectureContainer();
 
+    setupControlListeners(processLogLine, MESSAGE_LOGGING_INTERVAL);
     setupSystemBoxHover();
     fetchLogData(); // Start the log fetching and processing
 });
 
-document.getElementById('toggleButton').addEventListener('click', function () {
-    var button = this;
-    if (button.textContent === 'Stop') {
-        console.log(`Stopping at  #${currentLine}`);
-        stopInterval();
-        // console.log(`Stopped at  ${currentLine}`);
-        button.textContent = 'Start';  // Change text to Stop
-        button.classList.remove('btn-danger');
-        button.classList.add('btn-primary');  // Optionally change color to red
-    } else {
-        console.log(`Starting at  #${currentLine}`);
-        startInterval(processLogLine, MESSAGE_LOGGING_INTERVAL);
-        // console.log(`Starting at  ${currentLine}`);
-        button.textContent = 'Stop'; // Change text to Start
-        button.classList.remove('btn-primary');
-        button.classList.add('btn-danger');  // Optionally change color to blue
-    }
-});
