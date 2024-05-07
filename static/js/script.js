@@ -4,7 +4,8 @@ import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
 import { BusinessCardManager } from './BusinessCardManager.js';
 import { ArchitectureManager } from './ArchitectureManager.js';
-import auditJsonData from '../media/test-data/audit-rules.json' with { type: 'json' };
+import businessData from '../media/test-data/business-data.json' with { type: 'json' };
+import architectureData from '../media/test-data/archdata.json' with { type: 'json' };
 
 let intervalID; // Variable to hold the interval ID for starting or stopping it
 let fileLines = []; // To store lines fetched from logs
@@ -13,64 +14,6 @@ let MESSAGE_INDEX = 1; // To track the number of messages processed
 
 const MESSAGE_LOGGING_INTERVAL = 3000; // Interval for logging messages
 const colors = ['#FFC107', '#03A9F4', '#4CAF50', '#E91E63', '#FFEB3B', '#009688', '#673AB7', '#3F51B5', '#FF5722', '#795548']; // Colors for nodes
-
-const businessData = [
-    {
-        name: "Pix",
-        system: "pix",
-        status: "operational",
-        icon: "../static/media/logo-pix-icone-512.webp"
-    },
-    {
-        name: "Cartão de Crédito",
-        system: "cartao_credito",
-        status: "operational",
-        icon: "../static/media/cartao-itau.png"
-    },
-    {
-        name: "Conta Corrente",
-        system: "conta_corrente",
-        status: "operational",
-        icon: "../static/media/conta-corrente.png"
-    },
-    {
-        name: "Aplicativo",
-        system: "mobile_banking",
-        status: "operational",
-        icon: "../static/media/itau-logo-no-bg.png"
-    }
-];
-
-const architectureData = [
-    {
-        name: "API Itaú",
-        system: "cartao_credito",
-        status: "operational",
-        modal: "API is currently operational. Latency SLO is met with 99.99% No issues reported.",
-        icon: "../static/media/api.png"
-    },
-    {
-        name: "Banco de Dados",
-        system: "conta_corrente",
-        status: "operational",
-        modal: "DB is currently operational. Availability SLO is met with 99.999% No issues reported.",
-        icon: "../static/media/db.png"
-    },
-    {
-        name: "Kafka",
-        system: "mobile_banking",
-        status: "operational",
-        modal: "Kafka is currently operational. Replication SLO is met with 99.99% No issues reported.",
-        icon: "../static/media/kafkaicon.png"
-    },
-    {
-        name: "Integrador Banco Central",
-        system: "pix",
-        status: "operational",
-        modal: "Camel Route is currently operational. Latency SLO is met with 99.9999% No issues reported.",
-        icon: "../static/media/fuse.png"
-    }
-];
 
 const logContainer = document.getElementById('log-container');
 const networkContainer = document.getElementById('network');

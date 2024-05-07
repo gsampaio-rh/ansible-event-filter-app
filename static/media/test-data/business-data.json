@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Pix",
+        "system": "pix",
+        "status": "operational",
+        "icon": "../static/media/logo-pix-icone-512.webp"
+    },
+    {
+        "name": "Cartão de Crédito",
+        "system": "cartao_credito",
+        "status": "operational",
+        "icon": "../static/media/cartao-itau.png"
+    },
+    {
+        "name": "Conta Corrente",
+        "system": "conta_corrente",
+        "status": "operational",
+        "icon": "../static/media/conta-corrente.png"
+    },
+    {
+        "name": "Aplicativo",
+        "system": "mobile_banking",
+        "status": "operational",
+        "icon": "../static/media/itau-logo-no-bg.png"
+    }
+]
