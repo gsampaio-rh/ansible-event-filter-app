@@ -101,14 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    function fetchLogData() {
-        fetch('/fetch-log')
-            .then(response => response.text())
-            .then(data => {
-                fileLines = data.split('\n'); // Split the file content into lines
-                startInterval(); // Start processing logs after fetching
-            })
-            .catch(error => console.error("Failed to load log file", error));
+    async function fetchLogData() {
+        try {
+            const response = await fetch('/fetch-log');
+            const data = await response.text();
+            fileLines = data.split('\n');
+            startInterval();
+        } catch (error) {
+            console.error("Failed to load log file", error);
+        }
     }
 
     businessManager.populateBusinessContainer();
