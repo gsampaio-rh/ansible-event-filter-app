@@ -68,6 +68,7 @@ export class ArchitectureManager {
                         componentCard.classList.add('error-flash');
                     } else {
                         componentCard.classList.remove('error-flash');
+                        componentCard.classList.add('healing-flash');
                     }
                     componentCard.classList.toggle('disabled', newStatus !== 'operational');
                 }

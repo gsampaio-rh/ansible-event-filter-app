@@ -63,6 +63,7 @@ export class BusinessCardManager {
                         businessCard.classList.add('error-flash');
                     } else {
                         businessCard.classList.remove('error-flash');
+                        businessCard.classList.add('healing-flash');
                     }
                     businessCard.classList.toggle('disabled', newStatus !== 'operational');
                 }

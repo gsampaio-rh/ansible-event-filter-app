@@ -176,8 +176,23 @@ html {
     /* Bootstrap danger red */
 }
 
+.log-message-error {
+    /* border-left-color: #ffc107; */
+    background-color: rgba(255, 255, 0, 0.1);
+    /* Bootstrap warning yellow */
+}
+
+.log-message-health {
+    background-color: rgba(0, 0, 255, 0.1);
+    /* Bootstrap danger red */
+}
+
 .error-flash {
     animation: flashRed 1s ease-in-out;
+}
+
+.healing-flash {
+    animation: flashBlue 1s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -195,6 +210,17 @@ html {
 @keyframes flashRed {
     from {
         background-color: rgba(255, 0, 0, 0.3); /* Less opaque red */
+    }
+
+    to {
+        background-color: transparent;
+    }
+}
+
+@keyframes flashBlue {
+    from {
+        background-color: rgba(0, 0, 255, 0.3);
+        /* Start with a vibrant blue */
     }
 
     to {

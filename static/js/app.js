@@ -54,6 +54,8 @@ function handleMatchedRule(logMessage, currentTime) {
         businessManager.toggleBusinessStatus(matchedRule.businessType, 'operational');
         archManager.toggleArchStatus(matchedRule.businessType, 'operational');
     }
+
+    logManager.removeErrorFlash(getMessageIndex());
 }
 
 async function processLogLine() {

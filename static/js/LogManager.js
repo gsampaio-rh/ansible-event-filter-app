@@ -81,6 +81,32 @@ export class LogManager {
     `;
     }
 
+    /**
+     * Removes the 'error-flash' class from the element with the specified messageId.
+     * @param {string} messageId - The ID of the message element from which to remove the class.
+    */
+    removeErrorFlash(messageId) {
+        // Construct the element's ID based on the messageId
+        const elementId = `log-message-${messageId}`;
+
+        // Find the element by its ID
+        const messageElement = document.getElementById(elementId);
+
+        // Check if the element exists and has the 'error-flash' class
+        if (messageElement && messageElement.classList.contains('error-flash')) {
+            // Remove the 'error-flash' class from the element
+            messageElement.classList.remove('error-flash');
+            messageElement.classList.remove('log-message-critical');
+            messageElement.classList.add('healing-flash');
+            messageElement.classList.add('log-message-health');
+            console.log(`Class 'error-flash' removed from element with ID: ${elementId}`);
+        } else if (messageElement) {
+            console.log(`Element with ID: ${elementId} does not have the 'error-flash' class.`);
+        } else {
+            console.log(`No element found with ID: ${elementId}`);
+        }
+    }
+
     animateText(element, text) {
         element.textContent = ''; // Clear the element's content before starting the animation
         let index = 0; // Start from the first character
