@@ -58,30 +58,6 @@ A step-by-step series of examples that tell you how to get a development environ
 
    Access the application at `http://localhost:5000/`.
 
-## Usage
-
-Describe how to use the application with examples of functionalities. Include screenshots or code blocks for more clarity.
-
-## Development
-
-### Adding New Features
-
-Describe the process for adding new features for developers. Include any relevant code snippets or architecture diagrams that might be helpful.
-
-### Running Tests
-
-Explain how to run the automated tests for this system.
-
-```bash
-python -m unittest discover -s tests
-```
-
-## Built With
-
-- [Flask](http://flask.palletsprojects.com/) - The web framework used
-- [vis.js](https://visjs.org/) - For creating dynamic, browser-based visualizations
-- [Bootstrap](https://getbootstrap.com/) - For responsive front-end templates
-
 ## Authors
 
 - **Gabriel Sampaio**
