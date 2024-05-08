@@ -1,3 +1,4 @@
+//PlaybookManager.js
 export class PlaybookManager {
     constructor(container) {
         this.container = container;
@@ -21,14 +22,14 @@ export class PlaybookManager {
         };
     }
 
-    addPlaybook(playbook) {
+    addPlaybook(id, playbook) {
         if (!playbook.name || !playbook.description || !playbook.status || !playbook.lastUpdated) {
             console.error('Invalid playbook data:', playbook);
             return;
         }
 
         const playbookCard = `
-        <div class="playbook-card ${playbook.status} mb-3">
+        <div id="playbook-card-${id}" class="playbook-card ${playbook.status} mb-3">
             <img src="/static/media/ansible.png" class="playbook-logo" alt="Ansible Logo">
             <div class="playbook-card-body">
                 <h5 class="playbook-card-title">${playbook.name}</h5>
@@ -38,6 +39,61 @@ export class PlaybookManager {
             </div>
         </div>`;
         this.container.insertAdjacentHTML('afterbegin', playbookCard);
+
+        // Adding hover events after the element is added to the DOM
+        const addedElement = this.container.querySelector('.playbook-card:first-child');
+        this.addHoverEffect(addedElement, id);
+    }
+
+    addHoverEffect(element, playbookId) {
+        element.addEventListener('mouseenter', () => {
+            element.style.backgroundColor = 'rgba(245, 245, 245, 0.8)'; // Light grey background on hover
+            this.adjustLogMessagesOpacity(playbookId, 0.3); // Make all other log messages opaque
+        });
+        element.addEventListener('mouseleave', () => {
+            element.style.backgroundColor = ''; // Reset background when mouse leaves
+            this.resetLogMessagesOpacity();
+        });
+    }
+
+    adjustLogMessagesOpacity(exceptId, opacity) {
+        // Select all log messages and notification divs
+        const allLogMessages = document.querySelectorAll('.log-message');
+        const allNotificationDivs = document.querySelectorAll('.notification');
+
+        // Adjust opacity for log messages
+        allLogMessages.forEach(msg => {
+            if (msg.id !== `log-message-${exceptId}`) {
+                msg.style.opacity = opacity; // Make other log messages opaque
+            } else {
+                // msg.style.border = '2px solid blue'; // Optionally highlight the associated log message
+            }
+        });
+
+        // Adjust opacity for notification divs
+        allNotificationDivs.forEach(div => {
+            if (div.id !== `notification-${exceptId}`) {
+                div.style.opacity = opacity; // Make all notification divs opaque
+            } else {
+                // msg.style.border = '2px solid blue'; // Optionally highlight the associated log message
+            }
+        });
+    }
+
+    resetLogMessagesOpacity() {
+        // Reset opacity and styles for log messages
+        const allLogMessages = document.querySelectorAll('.log-message');
+        const allNotificationDivs = document.querySelectorAll('.notification');
+
+        allLogMessages.forEach(msg => {
+            msg.style.opacity = ''; // Reset opacity to default
+            // msg.style.border = ''; // Remove any border highlights
+        });
+
+        // Reset opacity for notification divs
+        allNotificationDivs.forEach(div => {
+            div.style.opacity = ''; // Reset opacity to default
+        });
     }
 
     getAnsibleLink(description) {

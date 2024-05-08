@@ -97,14 +97,16 @@ export class LogManager {
             // Remove the 'error-flash' class from the element
             messageElement.classList.remove('error-flash');
             messageElement.classList.remove('log-message-critical');
-            messageElement.classList.add('healing-flash');
-            messageElement.classList.add('log-message-health');
             console.log(`Class 'error-flash' removed from element with ID: ${elementId}`);
         } else if (messageElement) {
             console.log(`Element with ID: ${elementId} does not have the 'error-flash' class.`);
         } else {
             console.log(`No element found with ID: ${elementId}`);
         }
+
+        // Add 'healing-flash' class to element
+        messageElement.classList.add('healing-flash');
+        messageElement.classList.add('log-message-health');
     }
 
     animateText(element, text) {

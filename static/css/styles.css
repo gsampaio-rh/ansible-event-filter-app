@@ -162,28 +162,31 @@ html {
 }
 
 .log-message-info {
-    border-left-color: #17a2b8;
+    border-left-color: #007BFF;
     /* Bootstrap info blue */
 }
 
 .log-message-warning {
-    border-left-color: #ffc107;
+    border-left: 4px solid #ffc107;
     /* Bootstrap warning yellow */
 }
 
 .log-message-critical {
-    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 4px solid #dc3545;
+    /* background-color: rgba(255, 0, 0, 0.1); */
     /* Bootstrap danger red */
 }
 
 .log-message-error {
     /* border-left-color: #ffc107; */
-    background-color: rgba(255, 255, 0, 0.1);
+    border-left: 4px solid #ffc107;
+    /* background-color: rgba(255, 255, 0, 0.1); */
     /* Bootstrap warning yellow */
 }
 
 .log-message-health {
-    background-color: rgba(0, 0, 255, 0.1);
+    border-left: 4px solid #007BFF;
+    /* background-color: rgba(0, 0, 255, 0.1); */
     /* Bootstrap danger red */
 }
 

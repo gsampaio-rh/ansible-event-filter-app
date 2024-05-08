@@ -31,7 +31,7 @@ export class NotificationManager {
         return date.toLocaleString('pt-BR', { dateStyle: 'medium', timeStyle: 'short' });
     }
 
-    addNotification(matchedRule) {
+    addNotification(id, matchedRule) {
         const dt = new Date(); // Get current time for log message
         const currentTime = dt.toISOString().replace('T', ' ').substring(0, 19); // Formats to 'YYYY-MM-DD HH:MM:SS'
 
@@ -45,6 +45,7 @@ export class NotificationManager {
 
         const notificationDiv = document.createElement('div');
         notificationDiv.className = 'notification';
+        notificationDiv.id = `notification-${id}`;
 
         const issueNameSpan = document.createElement('span');
         issueNameSpan.className = 'issue-name';

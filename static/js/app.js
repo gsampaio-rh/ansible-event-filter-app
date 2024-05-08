@@ -45,10 +45,10 @@ function handleMatchedRule(logMessage, currentTime) {
     if (!matchedRule) return;
 
     console.log(`Rule triggered: ${matchedRule}`);
-    notificationManager.addNotification(matchedRule);
+    notificationManager.addNotification(getCurrentLine(),matchedRule);
 
     const newPlaybook = playbookManager.createPlaybook(matchedRule, currentTime);
-    playbookManager.addPlaybook(newPlaybook);
+    playbookManager.addPlaybook(getCurrentLine(), newPlaybook);
 
     if (matchedRule.businessType) {
         businessManager.toggleBusinessStatus(matchedRule.businessType, 'operational');
