@@ -11,6 +11,7 @@ import { NotificationManager } from './NotificationManager.js';
 import { PlaybookManager } from './PlaybookManager.js';
 import { BusinessCardManager } from './BusinessCardManager.js';
 import { ArchitectureManager } from './ArchitectureManager.js';
+import { RuleEngine } from './RuleEngine.js';
 
 const logContainer = document.getElementById('log-container');
 const networkContainer = document.getElementById('network');
@@ -27,6 +28,8 @@ const notificationManager = new NotificationManager(notificationContainer);
 const playbookManager = new PlaybookManager(playbooksContainer);
 const businessManager = new BusinessCardManager('business-container', businessData);
 const archManager = new ArchitectureManager('architecture-container', architectureData);
+const ruleEngine = new RuleEngine();
+
 
 function handleLogMessageSeverity(logMessage) {
     if (!logMessage || (logMessage.severity !== 'ERROR' && logMessage.severity !== 'CRITICAL')) return;
@@ -38,7 +41,7 @@ function handleLogMessageSeverity(logMessage) {
 }
 
 function handleMatchedRule(logMessage, currentTime) {
-    const matchedRule = logManager.evaluateLogMessage(logMessage);
+    const matchedRule = ruleEngine.evaluateLogMessage(logMessage);
     if (!matchedRule) return;
 
     console.log(`Rule triggered: ${matchedRule}`);
