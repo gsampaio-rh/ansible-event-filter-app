@@ -1,4 +1,4 @@
-//script.js
+//app.js
 import { colors, MESSAGE_LOGGING_INTERVAL } from './config.js';
 import { getBusinessData, getArchitectureData } from './dataManager.js'
 import { setupSystemBoxHover, setupControlListeners } from './eventHandlers.js';
