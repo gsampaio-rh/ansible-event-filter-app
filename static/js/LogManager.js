@@ -26,7 +26,7 @@ export class LogManager {
 
     createLogMessageElement(id, fields) {
         const element = document.createElement('div');
-        element.className = `log-message ${fields.severity.toLowerCase()}`;
+        element.className = `log-message`;
         element.id = `log-message-${id}`;
         element.innerHTML = this.formatMessage(id, fields);
         return element;
@@ -50,6 +50,7 @@ export class LogManager {
         const fields = this.extractFieldsFromMessage(message);
         const messageDiv = this.createLogMessageElement(id, fields);
         messageDiv.classList.toggle('error-flash', fields.severity === 'ERROR' || fields.severity === 'CRITICAL');
+        messageDiv.classList.toggle(`log-message-${fields.severity.toLowerCase()}`, fields.severity === 'ERROR' || fields.severity === 'CRITICAL');
 
         this.appendAndAnimateLogMessage(messageDiv);
         this.setupMessageEvents(id, messageDiv);

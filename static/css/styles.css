@@ -161,19 +161,23 @@ html {
     /* show details on hover */
 }
 
-.log-message.info {
+.log-message-info {
     border-left-color: #17a2b8;
     /* Bootstrap info blue */
 }
 
-.log-message.warning {
+.log-message-warning {
     border-left-color: #ffc107;
     /* Bootstrap warning yellow */
 }
 
-.log-message.critical {
-    border-left-color: #dc3545;
+.log-message-critical {
+    background-color: rgba(255, 0, 0, 0.1);
     /* Bootstrap danger red */
+}
+
+.error-flash {
+    animation: flashRed 1s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -190,16 +194,12 @@ html {
 
 @keyframes flashRed {
     from {
-        background-color: rgba(255, 0, 0, 0.491);
+        background-color: rgba(255, 0, 0, 0.3); /* Less opaque red */
     }
 
     to {
         background-color: transparent;
     }
-}
-
-.error-flash {
-    animation: flashRed 1s ease-in-out;
 }
 
 #notification-container {
